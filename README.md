@@ -1964,8 +1964,8 @@
         }
         
         function submitOrder() {
-            const message = `سفارش جدید:\nکشور: ${currentOrder.country}\nحجم: ${currentOrder.volume} گیگ\nمدت: ${currentOrder.days} روز${currentOrder.isAffiliate ? `\nتعداد: ${currentOrder.count} عدد` : ''}\nقیمت نهایی: ${(currentOrder.volume * currentOrder.volumePrice + currentOrder.days * currentOrder.dayPrice) * (currentOrder.isAffiliate ? currentOrder.count : 1).toLocaleString('fa-IR')} تومان`;
-            window.open(`https://t.me/xrovpn?text=${encodeURIComponent(message)}`, '_blank');
+            const message = `سفارش جدید برای u0v0n:\nکشور: ${currentOrder.country}\nحجم: ${currentOrder.volume} گیگ\nمدت: ${currentOrder.days} روز${currentOrder.isAffiliate ? `\nتعداد: ${currentOrder.count} عدد` : ''}\nقیمت نهایی: ${(currentOrder.volume * currentOrder.volumePrice + currentOrder.days * currentOrder.dayPrice) * (currentOrder.isAffiliate ? currentOrder.count : 1).toLocaleString('fa-IR')} تومان`;
+            window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
             closeModal();
         }
         
