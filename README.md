@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>XRO VPN | امنیت، سرعت، پایداری</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @font-face {
@@ -91,7 +90,6 @@
             justify-content: center;
             margin-left: 12px;
             box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
-            animation: pulse 3s infinite, float 6s ease-in-out infinite;
             position: relative;
             z-index: 1;
         }
@@ -108,19 +106,6 @@
             z-index: -1;
             opacity: 0.5;
             filter: blur(10px);
-            animation: pulse 3s infinite 0.5s;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
         }
         
         .logo-icon svg {
@@ -168,7 +153,6 @@
             font-size: 0.85rem;
             position: relative;
             overflow: hidden;
-            animation: wave 6s infinite;
             box-shadow: var(--card-shadow);
             display: flex;
             align-items: center;
@@ -179,25 +163,16 @@
             font-size: 1rem;
         }
         
-        @keyframes wave {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0); }
-        }
-        
         .tagline-item:nth-child(1) {
             background: linear-gradient(135deg, var(--primary), #FF8A65);
-            animation-delay: 0s;
         }
         
         .tagline-item:nth-child(2) {
             background: linear-gradient(135deg, var(--secondary), #64B5F6);
-            animation-delay: 0.5s;
         }
         
         .tagline-item:nth-child(3) {
             background: linear-gradient(135deg, #4CAF50, #81C784);
-            animation-delay: 1s;
         }
         
         .app-description {
@@ -279,13 +254,7 @@
             min-height: 250px;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: var(--box-shadow);
-            animation: fadeIn 0.5s ease;
             backdrop-filter: blur(5px);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         .message {
@@ -299,8 +268,7 @@
             border: 1px solid rgba(67, 97, 238, 0.2);
             display: flex;
             align-items: center;
-            justify-content: right;
-            animation: fadeIn 0.6s ease;
+            justify-content: flex-start;
             max-width: 95%;
             backdrop-filter: blur(5px);
         }
@@ -312,7 +280,8 @@
             border-radius: 50px;
             font-weight: 700;
             font-size: 0.8rem;
-            margin-left: 10px;
+            margin-left: 0;
+            margin-right: 10px;
             white-space: nowrap;
             box-shadow: 0 3px 10px rgba(67, 97, 238, 0.3);
         }
@@ -460,8 +429,6 @@
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: var(--box-shadow);
-            animation: modalFadeIn 0.5s ease;
-            transform-origin: center;
             position: relative;
             overflow: hidden;
         }
@@ -475,17 +442,6 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%);
             z-index: -1;
-            animation: rotate 20s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         
         .modal-header {
@@ -526,7 +482,6 @@
         }
         
         .close-modal:hover {
-            transform: rotate(90deg);
             background: rgba(255,255,255,0.2);
         }
         
@@ -594,7 +549,6 @@
         
         .modal-tab-content {
             display: none;
-            animation: fadeIn 0.4s ease;
         }
         
         .modal-tab-content.active {
@@ -696,7 +650,6 @@
             text-align: center;
             margin: 2rem 0;
             font-size: 1.3rem;
-            animation: pulse 2s infinite;
             position: relative;
         }
         
@@ -867,7 +820,6 @@
             border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             box-shadow: var(--box-shadow);
-            animation: fadeIn 0.5s ease;
             transform-origin: center;
         }
         
@@ -913,7 +865,6 @@
         
         .close-download:hover, .close-about:hover {
             color: var(--primary);
-            transform: rotate(90deg);
             background: rgba(255,255,255,0.1);
         }
         
@@ -1187,22 +1138,11 @@
             font-size: 0.9rem;
             z-index: 100;
             box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
-            animation: slideUp 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
             display: none;
             max-width: 90%;
             text-align: center;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        @keyframes slideUp {
-            from { bottom: 50px; opacity: 0; }
-            to { bottom: 70px; opacity: 1; }
-        }
-        
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
         }
         
         .bottom-nav {
@@ -1399,8 +1339,8 @@
         </div>
         <div id="country-tab" class="tab-content">
             <div class="message">
-                <span id="typingText1">این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است</span>
                 <span class="notice-label">توجه</span>
+                <span id="typingText1">این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است</span>
             </div>
             <div class="flag-grid">
                 <div class="flag-item active" onclick="openModal('آمریکا', 1350, 327, false)">
@@ -1455,8 +1395,8 @@
         </div>
         <div id="affiliate-tab" class="tab-content" style="display: none;">
             <div class="message">
-                <span id="typingText2">این بخش مخصوص همکاران و فروشندگان وی پی ان می باشد</span>
                 <span class="notice-label">توجه</span>
+                <span id="typingText2">این بخش مخصوص همکاران و فروشندگان وی پی ان می باشد</span>
             </div>
             <div class="flag-grid">
                 <div class="flag-item active" onclick="openModal('آمریکا', 1010, 240, true)">
@@ -1964,19 +1904,14 @@
         }
         
         function submitOrder() {
-            const message = `سفارش جدید برای u0v0n:\nکشور: ${currentOrder.country}\nحجم: ${currentOrder.volume} گیگ\nمدت: ${currentOrder.days} روز${currentOrder.isAffiliate ? `\nتعداد: ${currentOrder.count} عدد` : ''}\nقیمت نهایی: ${(currentOrder.volume * currentOrder.volumePrice + currentOrder.days * currentOrder.dayPrice) * (currentOrder.isAffiliate ? currentOrder.count : 1).toLocaleString('fa-IR')} تومان`;
+            const totalPrice = (currentOrder.volume * currentOrder.volumePrice + currentOrder.days * currentOrder.dayPrice) * (currentOrder.isAffiliate ? currentOrder.count : 1);
+            const message = `سفارش جدید برای u0v0n:\nکشور: ${currentOrder.country}\nحجم: ${currentOrder.volume} گیگ\nمدت: ${currentOrder.days} روز${currentOrder.isAffiliate ? `\nتعداد: ${currentOrder.count} عدد` : ''}\nقیمت نهایی: ${totalPrice.toLocaleString('fa-IR')} تومان`;
             window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
             closeModal();
         }
         
         window.onload = () => {
             document.getElementById('typingText1').textContent = typingTexts.personal;
-            
-            // Add animation to flag items
-            const flagItems = document.querySelectorAll('.flag-item');
-            flagItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-            });
         };
     </script>
 </body>
