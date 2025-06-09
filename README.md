@@ -137,6 +137,284 @@
             font-weight: 700;
         }
         
+        /* استوری های جدید */
+        .stories-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2rem 0;
+            padding: 0 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .stories-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .story-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            flex: 0 0 auto;
+        }
+        
+        .story-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            position: relative;
+            margin-bottom: 8px;
+            transition: var(--transition);
+        }
+        
+        .story-circle:before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(5px);
+        }
+        
+        .story-item:hover .story-circle {
+            transform: scale(1.1);
+        }
+        
+        .story-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--dark-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .story-label {
+            font-size: 0.8rem;
+            color: var(--lighter);
+            text-align: center;
+            margin-top: 5px;
+        }
+        
+        /* مودال استوری */
+        .story-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            z-index: 2000;
+            overflow: hidden;
+        }
+        
+        .story-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            left: 20px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .story-progress {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            padding: 0 10px;
+        }
+        
+        .progress-bar {
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width linear;
+        }
+        
+        .close-story {
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: rgba(0,0,0,0.3);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .story-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .story-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: white;
+            max-width: 80%;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .story-text.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .story-comments {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .comment {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            width: 80%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .comment.show {
+            opacity: 1;
+        }
+        
+        .comment.left {
+            right: 0;
+            transform: translateX(100%);
+        }
+        
+        .comment.left.show {
+            transform: translateX(0);
+        }
+        
+        .comment.right {
+            left: 0;
+            transform: translateX(-100%);
+        }
+        
+        .comment.right.show {
+            transform: translateX(0);
+        }
+        
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+        
+        .comment-text {
+            font-size: 0.9rem;
+            text-align: right;
+        }
+        
+        .hacker-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0.1),
+                rgba(0, 255, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .hacker-bg.show {
+            opacity: 1;
+        }
+        
+        .hacker-text {
+            position: relative;
+            z-index: 2;
+            color: #00ff00;
+            font-family: monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .guide-steps {
+            text-align: right;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        
+        .guide-step {
+            margin-bottom: 1rem;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+        
+        .guide-step:before {
+            content: '→';
+            position: absolute;
+            right: 0;
+            color: var(--primary);
+        }
+        
+        /* بقیه استایل ها مانند قبل */
         .tagline {
             display: flex;
             justify-content: center;
@@ -1333,6 +1611,53 @@
             </div>
             <p class="app-description">یآ هَمِه یآ هیچ کَس</p>
         </header>
+
+        <!-- بخش استوری های جدید -->
+        <div class="stories-container">
+            <div class="story-item" onclick="openStory('you')">
+                <div class="story-circle">
+                    <div class="story-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="story-label">شما</div>
+            </div>
+            <div class="story-item" onclick="openStory('security')">
+                <div class="story-circle">
+                    <div class="story-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <div class="story-label">امنیت</div>
+            </div>
+            <div class="story-item" onclick="openStory('guide')">
+                <div class="story-circle">
+                    <div class="story-icon">
+                        <i class="fas fa-question"></i>
+                    </div>
+                </div>
+                <div class="story-label">راهنما</div>
+            </div>
+        </div>
+
+        <!-- مودال استوری -->
+        <div id="storyModal" class="story-modal">
+            <div class="story-header">
+                <div class="story-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill1"></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill2"></div>
+                    </div>
+                </div>
+                <div class="close-story" onclick="closeStory()">×</div>
+            </div>
+            <div class="story-content" id="storyContent">
+                <!-- محتوای استوری در اینجا نمایش داده می‌شود -->
+            </div>
+        </div>
+
         <div class="tabs">
             <button class="tab-button active" onclick="showTab('country')">برای خودم</button>
             <button class="tab-button" onclick="showTab('affiliate')">برای همکاری</button>
@@ -1654,6 +1979,7 @@
             <div class="about-text">
                 <p>XRO VPN ارائه دهنده کانفیگ سرورهای پایدار و پرسرعت در کشورهای مختلف می‌باشد. ما با استفاده از بهترین سرورها و فناوری‌های روز، اتصالی پایدار و با کیفیت را برای شما فراهم می‌کنیم.</p>
                 <p>تیم ما متشکل از متخصصان شبکه است که سال‌ها تجربه در زمینه ارائه سرویس‌های اینترنتی دارند. ما از آخرین فناوری‌ها برای ارائه بهترین کیفیت استفاده می‌کنیم.</p>
+                <p>از سال ۱۳۹۸ تاکنون، ما به بیش از ۱۰,۰۰۰ کاربر خدمات ارائه داده‌ایم و همواره در تلاش هستیم تا کیفیت خدمات خود را بهبود بخشیم.</p>
             </div>
             
             <div class="stats-grid">
@@ -1675,12 +2001,22 @@
                 </div>
             </div>
             
-            <h3 style="text-align: center; margin: 2rem 0 1.5rem; color: var(--primary);">سازنده</h3>
+            <h3 style="text-align: center; margin: 2rem 0 1.5rem; color: var(--primary);">تیم ما</h3>
             <div class="team-members">
                 <div class="team-member">
                     <div class="member-avatar">X</div>
                     <div class="member-name">آقای ایکسرو</div>
-                    <div class="member-role">سازنده</div>
+                    <div class="member-role">مدیر فنی</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">A</div>
+                    <div class="member-name">مهندس احمدی</div>
+                    <div class="member-role">توسعه دهنده</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">S</div>
+                    <div class="member-name">خانم سعادت</div>
+                    <div class="member-role">پشتیبانی</div>
                 </div>
             </div>
             
@@ -1734,6 +2070,115 @@
             personal: "این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است",
             affiliate: "این بخش مخصوص همکاران و فروشندگان وی پی ان می باشد"
         };
+        
+        // داده‌های استوری
+        const stories = {
+            you: {
+                title: "شما",
+                steps: [
+                    {
+                        text: "این تنها بخشی از نظرات شماست",
+                        duration: 3000,
+                        comments: [
+                            {
+                                name: "زهرا",
+                                text: "من تازه با این تیم آشنا شدم امیدوارم همینجوری باقی بمونه",
+                                position: "right"
+                            },
+                            {
+                                name: "محمد",
+                                text: "بهترین سرویسی که تا حالا استفاده کردم. واقعا راضیم",
+                                position: "left"
+                            },
+                            {
+                                name: "علی",
+                                text: "سرعت فوق‌العاده‌ای داره مخصوصا برای دانلود",
+                                position: "right"
+                            },
+                            {
+                                name: "فاطمه",
+                                text: "پشتیبانی خیلی خوبی دارن. همیشه پاسخگو هستن",
+                                position: "left"
+                            },
+                            {
+                                name: "رضا",
+                                text: "قیمت‌هاش نسبت به کیفیت واقعا مناسبه",
+                                position: "right"
+                            },
+                            {
+                                name: "نازنین",
+                                text: "من چند ماهه استفاده می‌کنم و هیچ قطعی نداشتم",
+                                position: "left"
+                            },
+                            {
+                                name: "امیر",
+                                text: "کانفیگ‌ها خیلی سریع تحویل داده میشه",
+                                position: "right"
+                            },
+                            {
+                                name: "سارا",
+                                text: "برای کارهای بانکی خیلی امن و مطمئنه",
+                                position: "left"
+                            },
+                            {
+                                name: "حسین",
+                                text: "سرورهای ترکیه پینگ خیلی خوبی داره",
+                                position: "right"
+                            },
+                            {
+                                name: "مریم",
+                                text: "نصبش روی موبایل خیلی ساده بود",
+                                position: "left"
+                            }
+                        ]
+                    }
+                ]
+            },
+            security: {
+                title: "امنیت",
+                steps: [
+                    {
+                        text: "امنیت ریشه ای از کار ماست",
+                        duration: 3000,
+                        bgEffect: "hacker"
+                    },
+                    {
+                        text: "ما از سال ۱۳۹۸ تا همین الان درحال خدمت رسانی به مردم هستیم و از هرگونه مشکل و رفتن اطلاعات به دست غریبه ها جلوگیری میکنیم پس نگران نباش",
+                        duration: 10000
+                    }
+                ]
+            },
+            guide: {
+                title: "راهنما",
+                steps: [
+                    {
+                        text: "راهنمای خرید از سایت",
+                        duration: 3000
+                    },
+                    {
+                        text: "مراحل خرید از XRO VPN:",
+                        duration: 10000,
+                        guideSteps: [
+                            "1. وارد بخش 'برای خودم' شوید",
+                            "2. کشور مورد نظر خود را انتخاب کنید",
+                            "3. حجم و مدت زمان مورد نیاز را تنظیم کنید",
+                            "4. روی دکمه 'ثبت درخواست' کلیک کنید",
+                            "5. به پیام رسان تلگرام منتقل می‌شوید",
+                            "6. اطلاعات سفارش را برای ادمین ارسال کنید",
+                            "7. پرداخت را انجام دهید",
+                            "8. کانفیگ را دریافت کنید",
+                            "9. نرم‌افزار مربوطه را دانلود و نصب کنید",
+                            "10. کانفیگ را وارد نرم‌افزار کرده و استفاده کنید"
+                        ]
+                    }
+                ]
+            }
+        };
+        
+        let currentStory = null;
+        let currentStep = 0;
+        let storyInterval = null;
+        let progressInterval = null;
         
         function showTab(tabName) {
             const tabs = document.querySelectorAll('.tab-button');
@@ -1908,6 +2353,148 @@
             const message = `سفارش جدید برای u0v0n:\nکشور: ${currentOrder.country}\nحجم: ${currentOrder.volume} گیگ\nمدت: ${currentOrder.days} روز${currentOrder.isAffiliate ? `\nتعداد: ${currentOrder.count} عدد` : ''}\nقیمت نهایی: ${totalPrice.toLocaleString('fa-IR')} تومان`;
             window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
             closeModal();
+        }
+        
+        // توابع مربوط به استوری
+        function openStory(storyKey) {
+            currentStory = stories[storyKey];
+            currentStep = 0;
+            document.getElementById('storyModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            showStoryStep();
+        }
+        
+        function closeStory() {
+            clearInterval(storyInterval);
+            clearInterval(progressInterval);
+            document.getElementById('storyModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentStory = null;
+            currentStep = 0;
+        }
+        
+        function showStoryStep() {
+            const storyContent = document.getElementById('storyContent');
+            const step = currentStory.steps[currentStep];
+            
+            // پاک کردن محتوای قبلی
+            storyContent.innerHTML = '';
+            
+            // ایجاد عناصر جدید
+            const textElement = document.createElement('div');
+            textElement.className = 'story-text';
+            textElement.textContent = step.text;
+            
+            storyContent.appendChild(textElement);
+            
+            // نمایش انیمیشن متن
+            setTimeout(() => {
+                textElement.classList.add('show');
+            }, 100);
+            
+            // اضافه کردن افکت پس‌زمینه اگر وجود دارد
+            if (step.bgEffect === 'hacker') {
+                const hackerBg = document.createElement('div');
+                hackerBg.className = 'hacker-bg';
+                storyContent.appendChild(hackerBg);
+                
+                setTimeout(() => {
+                    hackerBg.classList.add('show');
+                }, 100);
+            }
+            
+            // اضافه کردن نظرات اگر وجود دارد
+            if (step.comments) {
+                const commentsContainer = document.createElement('div');
+                commentsContainer.className = 'story-comments';
+                storyContent.appendChild(commentsContainer);
+                
+                // نمایش نظرات با تاخیر
+                step.comments.forEach((comment, index) => {
+                    setTimeout(() => {
+                        const commentElement = document.createElement('div');
+                        commentElement.className = `comment ${comment.position}`;
+                        
+                        const avatar = document.createElement('div');
+                        avatar.className = 'comment-avatar';
+                        avatar.textContent = comment.name.charAt(0);
+                        
+                        const text = document.createElement('div');
+                        text.className = 'comment-text';
+                        text.textContent = comment.text;
+                        
+                        commentElement.appendChild(avatar);
+                        commentElement.appendChild(text);
+                        commentsContainer.appendChild(commentElement);
+                        
+                        setTimeout(() => {
+                            commentElement.classList.add('show');
+                        }, 100);
+                        
+                        // حذف نظر بعد از نمایش
+                        setTimeout(() => {
+                            commentElement.classList.remove('show');
+                            setTimeout(() => {
+                                if (commentElement.parentNode) {
+                                    commentElement.parentNode.removeChild(commentElement);
+                                }
+                            }, 500);
+                        }, 4000);
+                    }, index * 800);
+                });
+            }
+            
+            // اضافه کردن راهنما اگر وجود دارد
+            if (step.guideSteps) {
+                const guideContainer = document.createElement('div');
+                guideContainer.className = 'guide-steps';
+                
+                step.guideSteps.forEach(guideStep => {
+                    const stepElement = document.createElement('div');
+                    stepElement.className = 'guide-step';
+                    stepElement.textContent = guideStep;
+                    guideContainer.appendChild(stepElement);
+                });
+                
+                storyContent.appendChild(guideContainer);
+            }
+            
+            // تنظیم پیشرفت بار
+            resetProgressBars();
+            startProgressBar(step.duration);
+            
+            // تنظیم تایمر برای مرحله بعدی
+            clearInterval(storyInterval);
+            storyInterval = setTimeout(() => {
+                nextStoryStep();
+            }, step.duration);
+        }
+        
+        function nextStoryStep() {
+            currentStep++;
+            if (currentStep < currentStory.steps.length) {
+                showStoryStep();
+            } else {
+                closeStory();
+            }
+        }
+        
+        function resetProgressBars() {
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                bar.style.width = '0%';
+                bar.style.transition = 'none';
+            });
+        }
+        
+        function startProgressBar(duration) {
+            clearInterval(progressInterval);
+            
+            const progressBars = document.querySelectorAll('.progress-fill');
+            if (currentStep < progressBars.length) {
+                const currentBar = progressBars[currentStep];
+                currentBar.style.transition = `width ${duration}ms linear`;
+                currentBar.style.width = '100%';
+            }
         }
         
         window.onload = () => {
