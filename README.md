@@ -207,6 +207,79 @@
             transform: translateY(0);
         }
         
+        /* بخش اعلان */
+        .announcement-box {
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            background: rgba(30,30,30,0.7);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .announcement-box:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            z-index: 0;
+        }
+        
+        .announcement-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--light);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: var(--primary);
+            animation: blink 0.9s infinite;
+            vertical-align: middle;
+            margin-right: 3px;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .heart {
+            color: #fd79a8;
+            margin: 0 3px;
+        }
+        
+        .guide-link {
+            color: #00b894;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed #00b894;
+        }
+        
+        .config-text {
+            color: var(--secondary);
+            font-style: italic;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
         /* تب‌های اصلی */
         .main-tabs {
             display: flex;
@@ -1038,6 +1111,10 @@
             .volume-number {
                 font-size: 1.5rem;
             }
+            
+            .announcement-text {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -1071,6 +1148,11 @@
             </div>
         </div>
 
+        <!-- بخش اعلان -->
+        <div class="announcement-box">
+            <div class="announcement-text" id="typing-container"></div>
+        </div>
+        
         <!-- تب‌های اصلی -->
         <div class="main-tabs">
             <button class="main-tab active" onclick="showMainTab('home')">
@@ -1496,6 +1578,15 @@
         let totalVolume = 1700346912;
         let volumeInterval = null;
         
+        // پیام‌های اعلان
+        const announcementMessages = [
+            "امروز <span class='highlight'>" + getCurrentDay() + "</span> - در حال انجام سفارشات هستیم",
+            "سرویس جدید لهستان اضافه شد",
+            "امیدواریم از آپدیت جدید راضی باشید <span class='heart'>❤</span>",
+            "اگر تازه‌کاری، روی <a href='#' class='guide-link'>راهنمای سایت</a> کلیک کن",
+            "همکاری با فروشندگان <span class='config-text'>کانفیگ :)</span>"
+        ];
+        
         // نمایش تب‌های اصلی
         function showMainTab(tabName) {
             const tabs = document.querySelectorAll('.main-tab');
@@ -1813,6 +1904,55 @@
             }, 1000);
         }
         
+        // افکت تایپ برای اعلان
+        function startTypingEffect() {
+            const typingContainer = document.getElementById('typing-container');
+            let messageIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 80;
+            const pauseBetweenMessages = 3500;
+            
+            function type() {
+                const currentMessage = announcementMessages[messageIndex];
+                
+                if (isDeleting) {
+                    typingContainer.innerHTML = currentMessage.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 40;
+                } else {
+                    typingContainer.innerHTML = currentMessage.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                    charIndex++;
+                    typingSpeed = charIndex % 4 === 0 ? 100 : 80;
+                }
+                
+                if (!isDeleting && charIndex === currentMessage.length) {
+                    typingSpeed = pauseBetweenMessages;
+                    isDeleting = true;
+                    setTimeout(type, typingSpeed);
+                    return;
+                }
+                
+                if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    messageIndex = (messageIndex + 1) % announcementMessages.length;
+                    typingSpeed = 500;
+                }
+                
+                setTimeout(type, typingSpeed);
+            }
+            
+            // شروع افکت تایپ
+            typingContainer.innerHTML = '<span class="cursor"></span>';
+            setTimeout(type, 800);
+        }
+        
+        // دریافت روز جاری
+        function getCurrentDay() {
+            const days = ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه"];
+            return days[new Date().getDay()];
+        }
+        
         // جلوگیری از کپی کردن متن
         document.addEventListener('copy', function(e) {
             e.preventDefault();
@@ -1823,6 +1963,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             showMainTab('home');
             updateVolumeCounter();
+            startTypingEffect();
         });
     </script>
 </body>
