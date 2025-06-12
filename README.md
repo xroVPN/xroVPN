@@ -30,7 +30,7 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none; /* جلوگیری از انتخاب متن */
+            -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
@@ -44,9 +44,9 @@
             min-height: 100vh;
             padding-bottom: 70px;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(67,97,238,0.15) 0%, transparent 25%),
-                radial-gradient(circle at 90% 80%, rgba(255,107,53,0.15) 0%, transparent 25%),
-                linear-gradient(135deg, rgba(106,17,203,0.05) 0%, rgba(37,117,252,0.05) 100%);
+                radial-gradient(circle at 10% 20%, rgba(67,97,238,0.2) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(255,107,53,0.2) 0%, transparent 25%),
+                linear-gradient(135deg, rgba(106,17,203,0.1) 0%, rgba(37,117,252,0.1) 100%);
         }
         
         .container {
@@ -122,6 +122,91 @@
             text-align: center;
         }
         
+        /* مودال استوری */
+        .story-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            z-index: 2000;
+        }
+        
+        .story-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            left: 20px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .story-progress {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            padding: 0 10px;
+        }
+        
+        .progress-bar {
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width linear;
+        }
+        
+        .close-story {
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: rgba(0,0,0,0.3);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .story-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .story-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: white;
+            max-width: 80%;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .story-text.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* تب‌های اصلی */
         .main-tabs {
             display: flex;
@@ -168,28 +253,6 @@
         .main-tab-content.active {
             display: block;
             animation: fadeIn 0.5s ease;
-        }
-        
-        .message {
-            background: rgba(67,97,238,0.1);
-            padding: 1rem;
-            border-radius: var(--radius);
-            margin: 1rem 0;
-            border: 1px solid rgba(67,97,238,0.2);
-            display: flex;
-            align-items: center;
-        }
-        
-        .notice-label {
-            background: var(--secondary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            margin-left: 0;
-            margin-right: 10px;
-            box-shadow: 0 3px 10px rgba(67,97,238,0.3);
         }
         
         /* فلگ‌ها */
@@ -589,6 +652,15 @@
             text-align: center;
             margin-bottom: 2rem;
             position: relative;
+        }
+        
+        .download-header h2, .about-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .close-download, .close-about {
@@ -1017,10 +1089,6 @@
         
         <!-- محتوای تب‌های اصلی -->
         <div id="home-tab" class="main-tab-content active">
-            <div class="message">
-                <span class="notice-label">توجه</span>
-                <span>این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است</span>
-            </div>
             <div class="flag-grid">
                 <div class="flag-item active" onclick="openModal('آمریکا', 1290, 298, false)">
                     <span>🇺🇸</span>
@@ -1092,11 +1160,6 @@
         </div>
         
         <div id="volume-tab" class="main-tab-content">
-            <div class="message">
-                <span class="notice-label">توجه</span>
-                <span>این بخش یک دمو است. در نسخه آینده این بخش و بخش‌های دیگر آزاد می‌شوند</span>
-            </div>
-            
             <!-- شمارنده حجم کل -->
             <div class="volume-counter">
                 <h3>حجم کل مصرفی کاربران</h3>
@@ -1112,10 +1175,6 @@
         </div>
         
         <div id="download-tab" class="main-tab-content">
-            <div class="message">
-                <span class="notice-label">توجه</span>
-                <span>این بخش مخصوص دانلود اپلیکیشن ویتوری برای سیستم شما است</span>
-            </div>
             <div class="download-items">
                 <div class="download-item">
                     <h3>
@@ -1143,7 +1202,7 @@
                         <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/04/28</div>
                     </div>
                     <p>نرم‌افزار v2rayN برای سیستم‌عامل ویندوز. پشتیبانی از ویندوز 7 به بالا با قابلیت‌های مدیریت چند کانفیگ.</p>
-                    <a href="https://github.com/2dust/v2rayN/releases/download/6.27/v2rayN-Core.zip" class="download-btn">
+                    <a href="https://zarafe.click/wp-content/uploads/2024/10/v2rayN-Core.zip" class="download-btn">
                         دانلود (45MB)
                         <i class="fas fa-download"></i>
                     </a>
