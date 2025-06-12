@@ -1,37 +1,29 @@
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>XRO VPN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XRO VPN | فروشگاه کانفیگ اختصاصی</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @font-face {
-            font-family: 'Vazir';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
-            font-display: swap;
-        }
-        
+        /* متغیرهای اصلی */
         :root {
             --primary: #FF6B35;
             --primary-dark: #EF5621;
-            --primary-light: rgba(255, 107, 53, 0.15);
             --secondary: #4361EE;
             --secondary-dark: #3A56D4;
-            --success: #4CAF50;
-            --danger: #F44336;
-            --warning: #FFC107;
-            --info: #17A2B8;
-            --gray: #9E9E9E;
             --dark: #0F0F0F;
             --dark-light: #1A1A1A;
             --darker: #121212;
-            --light: rgba(255, 255, 255, 0.95);
-            --lighter: rgba(255, 255, 255, 0.7);
-            --border-radius: 16px;
-            --border-radius-sm: 10px;
-            --box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            --light: rgba(255,255,255,0.95);
+            --lighter: rgba(255,255,255,0.7);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow: 0 8px 20px rgba(0,0,0,0.3);
+            --shadow-lg: 0 15px 40px rgba(0,0,0,0.4);
+            --transition: all 0.3s ease;
+            --transition-slow: all 0.5s ease;
+            --menu-color: #6a11cb;
         }
         
         * {
@@ -39,109 +31,37 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none; /* جلوگیری از انتخاب متن */
+            -moz-user-select: none;
+            -ms-user-select: none;
             user-select: none;
-            -webkit-user-select: none;
         }
         
         body {
             font-family: 'Vazir', sans-serif;
             background: var(--darker);
             color: var(--light);
+            line-height: 1.6;
             min-height: 100vh;
-            line-height: 1.8;
-            padding-bottom: 80px;
-            overflow-x: hidden;
-            font-size: 14px;
-            background-image: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
-                            radial-gradient(circle at 90% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 20%);
+            padding-bottom: 70px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(67,97,238,0.15) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(255,107,53,0.15) 0%, transparent 25%),
+                linear-gradient(135deg, rgba(106,17,203,0.05) 0%, rgba(37,117,252,0.05) 100%);
         }
         
         .container {
             max-width: 100%;
             margin: 0 auto;
             padding: 0 15px;
-            width: 100%;
-            overflow-x: hidden;
         }
         
-        .app-header {
-            padding: 1.5rem 0;
-            text-align: center;
-            position: relative;
-            margin-bottom: 1rem;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 12px;
-            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .logo-icon:after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 18px;
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(10px);
-        }
-        
-        .logo-icon svg {
-            width: 28px;
-            height: 28px;
-            fill: white;
-        }
-        
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-        
-        .logo-text:after {
-            content: 'PREMIUM';
-            position: absolute;
-            top: -10px;
-            left: 0;
-            font-size: 0.6rem;
-            background: var(--warning);
-            color: var(--dark);
-            padding: 2px 8px;
-            border-radius: 50px;
-            font-weight: 700;
-        }
-        
-        /* استوری های جدید */
+        /* استوری‌ها */
         .stories-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 2rem 0;
+            gap: 15px;
+            margin: 1.5rem 0;
             padding: 0 10px;
             overflow-x: auto;
             scrollbar-width: none;
@@ -156,7 +76,6 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            position: relative;
             flex: 0 0 auto;
         }
         
@@ -170,7 +89,6 @@
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             position: relative;
             margin-bottom: 8px;
-            transition: var(--transition);
         }
         
         .story-circle:before {
@@ -185,10 +103,6 @@
             z-index: -1;
             opacity: 0.6;
             filter: blur(5px);
-        }
-        
-        .story-item:hover .story-circle {
-            transform: scale(1.1);
         }
         
         .story-icon {
@@ -207,309 +121,64 @@
             font-size: 0.8rem;
             color: var(--lighter);
             text-align: center;
-            margin-top: 5px;
         }
         
-        /* مودال استوری */
-        .story-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--darker);
-            z-index: 2000;
-            overflow: hidden;
-        }
-        
-        .story-header {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            left: 20px;
-            z-index: 10;
+        /* تب‌های اصلی */
+        .main-tabs {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .story-progress {
-            display: flex;
-            gap: 5px;
-            width: 100%;
-            padding: 0 10px;
-        }
-        
-        .progress-bar {
-            height: 3px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 3px;
-            flex: 1;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: white;
-            width: 0%;
-            transition: width linear;
-        }
-        
-        .close-story {
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: rgba(0,0,0,0.3);
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        
-        .story-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .story-text {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: white;
-            max-width: 80%;
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-        
-        .story-text.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .story-comments {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .comment {
-            position: absolute;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            width: 80%;
-            opacity: 0;
-            transition: all 0.5s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .comment.show {
-            opacity: 1;
-        }
-        
-        .comment.left {
-            right: 0;
-            transform: translateX(100%);
-        }
-        
-        .comment.left.show {
-            transform: translateX(0);
-        }
-        
-        .comment.right {
-            left: 0;
-            transform: translateX(-100%);
-        }
-        
-        .comment.right.show {
-            transform: translateX(0);
-        }
-        
-        .comment-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            margin-left: 10px;
-            flex-shrink: 0;
-        }
-        
-        .comment-text {
-            font-size: 0.9rem;
-            text-align: right;
-        }
-        
-        .hacker-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 255, 0, 0.1),
-                rgba(0, 255, 0, 0.1) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .hacker-bg.show {
-            opacity: 1;
-        }
-        
-        .hacker-text {
-            position: relative;
-            z-index: 2;
-            color: #00ff00;
-            font-family: monospace;
-            font-size: 1rem;
-            line-height: 1.6;
-            max-width: 90%;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .guide-steps {
-            text-align: right;
-            max-width: 90%;
-            margin: 0 auto;
-        }
-        
-        .guide-step {
-            margin-bottom: 1rem;
-            padding-right: 1.5rem;
-            position: relative;
-        }
-        
-        .guide-step:before {
-            content: '→';
-            position: absolute;
-            right: 0;
-            color: var(--primary);
-        }
-        
-        /* بقیه استایل ها مانند قبل */
-        .app-description {
-            font-size: 0.95rem;
-            color: var(--lighter);
-            max-width: 90%;
-            margin: 0 auto;
-            line-height: 1.7;
-            text-align: center;
-            background: rgba(255,255,255,0.05);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
-        }
-        
-        .tabs {
-            display: flex;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             background: var(--dark-light);
-            border-radius: 50px;
+            border-radius: var(--radius);
             overflow: hidden;
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
             border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: var(--box-shadow);
+            box-shadow: var(--shadow);
             position: relative;
         }
         
-        .tabs:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(67,97,238,0.1));
-            z-index: 0;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .tabs:hover:before {
-            opacity: 1;
-        }
-        
-        .tab-button {
+        .main-tab {
             flex: 1;
             padding: 1rem;
             background: transparent;
             border: none;
             cursor: pointer;
-            font-size: 0.95rem;
             font-weight: 600;
-            color: var(--gray);
-            position: relative;
-            overflow: hidden;
+            color: var(--lighter);
             transition: var(--transition);
-            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         
-        .tab-button.active {
+        .main-tab i {
+            font-size: 1.2rem;
+        }
+        
+        .main-tab.active {
             color: white;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
         }
         
-        .tab-button:not(.active):hover {
-            color: var(--light);
-            transform: translateY(-2px);
+        /* محتوا */
+        .main-tab-content {
+            margin: 1rem 0;
+            display: none;
         }
         
-        .tab-content {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            background: var(--dark-light);
-            border-radius: var(--border-radius);
-            min-height: 250px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: var(--box-shadow);
-            backdrop-filter: blur(5px);
+        .main-tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
         
         .message {
-            background: rgba(67, 97, 238, 0.1);
-            margin: 1rem auto;
+            background: rgba(67,97,238,0.1);
             padding: 1rem;
-            border-radius: var(--border-radius);
-            text-align: right;
-            font-size: 0.85rem;
-            color: var(--light);
-            border: 1px solid rgba(67, 97, 238, 0.2);
+            border-radius: var(--radius);
+            margin: 1rem 0;
+            border: 1px solid rgba(67,97,238,0.2);
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            max-width: 95%;
-            backdrop-filter: blur(5px);
         }
         
         .notice-label {
@@ -521,10 +190,10 @@
             font-size: 0.8rem;
             margin-left: 0;
             margin-right: 10px;
-            white-space: nowrap;
-            box-shadow: 0 3px 10px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 3px 10px rgba(67,97,238,0.3);
         }
         
+        /* فلگ‌ها */
         .flag-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -536,19 +205,13 @@
             background: var(--dark);
             padding: 1rem;
             text-align: center;
-            border-radius: var(--border-radius);
+            border-radius: var(--radius);
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.1);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 120px;
-            aspect-ratio: 1/1;
+            box-shadow: var(--shadow);
         }
         
         .flag-item:before {
@@ -558,29 +221,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(67,97,238,0.1) 100%);
+            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(67,97,238,0.1));
             z-index: -1;
             opacity: 0;
             transition: var(--transition);
         }
         
-        .flag-item.active {
-            border-color: var(--success);
+        .flag-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
         
-        .flag-item.inactive {
-            opacity: 0.7;
-            filter: grayscale(0.8);
-            cursor: not-allowed;
-        }
-        
-        .flag-item:hover:not(.inactive) {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255,255,255,0.2);
-        }
-        
-        .flag-item:hover:not(.inactive):before {
+        .flag-item:hover:before {
             opacity: 1;
         }
         
@@ -588,35 +240,27 @@
             font-size: 2.5rem;
             display: block;
             margin-bottom: 0.5rem;
-            transition: var(--transition);
-            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        .flag-item:hover:not(.inactive) span {
-            transform: scale(1.2);
         }
         
         .flag-item p {
             margin: 0;
             font-size: 0.95rem;
-            color: var(--light);
             font-weight: 600;
         }
         
-        .flag-item .country-info {
+        .country-info {
             font-size: 0.8rem;
             color: var(--lighter);
             margin-top: 0.5rem;
             opacity: 0;
             max-height: 0;
             overflow: hidden;
-            transition: var(--transition);
+            transition: var(--transition-slow);
         }
         
-        .flag-item:hover:not(.inactive) .country-info {
+        .flag-item:hover .country-info {
             opacity: 1;
             max-height: 100px;
-            margin-top: 0.8rem;
         }
         
         .status-badge {
@@ -627,25 +271,71 @@
             padding: 0.3rem 0.6rem;
             border-radius: 50px;
             font-weight: 700;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
         }
         
         .status-badge.active {
-            background: rgba(76, 175, 80, 0.2);
-            color: var(--success);
-            border: 1px solid var(--success);
+            background: rgba(76,175,80,0.2);
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
         }
         
         .status-badge.inactive {
-            background: rgba(158, 158, 158, 0.2);
-            color: var(--gray);
-            border: 1px solid var(--gray);
+            background: rgba(158,158,158,0.2);
+            color: #9E9E9E;
+            border: 1px solid #9E9E9E;
         }
         
-        .server-stats {
-            display: none;
+        /* شمارنده حجم */
+        .volume-counter {
+            background: linear-gradient(135deg, rgba(67,97,238,0.2), rgba(255,107,53,0.2));
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
         
+        .volume-counter:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            z-index: 0;
+        }
+        
+        .volume-counter h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .volume-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .volume-label {
+            font-size: 0.9rem;
+            color: var(--lighter);
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* مودال سفارش */
         .modal {
             display: none;
             position: fixed;
@@ -656,31 +346,17 @@
             background-color: rgba(0,0,0,0.95);
             z-index: 1000;
             overflow-y: auto;
-            backdrop-filter: blur(5px);
         }
         
         .modal-content {
             background: var(--dark-light);
-            border-radius: var(--border-radius);
+            border-radius: var(--radius);
             max-width: 95%;
             width: 100%;
             margin: 5% auto;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: var(--box-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .modal-content:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%);
-            z-index: -1;
+            box-shadow: var(--shadow-lg);
         }
         
         .modal-header {
@@ -689,7 +365,6 @@
             color: white;
             text-align: center;
             position: relative;
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
         }
         
         .modal-header h2 {
@@ -711,22 +386,10 @@
             font-size: 1.8rem;
             cursor: pointer;
             color: white;
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        
-        .close-modal:hover {
-            background: rgba(255,255,255,0.2);
         }
         
         .modal-body {
             padding: 1.5rem;
-            color: var(--light);
         }
         
         .modal-tabs {
@@ -735,31 +398,15 @@
             margin-bottom: 1.5rem;
             overflow-x: auto;
             white-space: nowrap;
-            position: relative;
-        }
-        
-        .modal-tabs:after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            opacity: 0.3;
         }
         
         .modal-tab {
             padding: 0.8rem 1.2rem;
             cursor: pointer;
             font-weight: 600;
-            color: var(--gray);
-            font-size: 0.9rem;
+            color: var(--lighter);
             position: relative;
             transition: var(--transition);
-            flex: 1;
-            text-align: center;
-            min-width: 80px;
         }
         
         .modal-tab:after {
@@ -771,7 +418,6 @@
             height: 3px;
             background: var(--primary);
             transition: var(--transition);
-            border-radius: 3px 3px 0 0;
         }
         
         .modal-tab.active {
@@ -782,10 +428,6 @@
             width: 100%;
         }
         
-        .modal-tab:hover {
-            color: var(--light);
-        }
-        
         .modal-tab-content {
             display: none;
         }
@@ -794,17 +436,15 @@
             display: block;
         }
         
+        /* اسلایدرها */
         .slider-container {
             margin: 1.5rem 0;
-            position: relative;
         }
         
         .slider-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 1rem;
-            font-size: 0.95rem;
-            align-items: center;
         }
         
         .slider-value {
@@ -813,8 +453,6 @@
             background: rgba(255,107,53,0.1);
             padding: 0.4rem 0.8rem;
             border-radius: 50px;
-            min-width: 80px;
-            text-align: center;
         }
         
         .slider {
@@ -825,31 +463,6 @@
             background: var(--dark);
             outline: none;
             margin: 1rem 0;
-            transition: var(--transition);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .slider:before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(67,97,238,0.1));
-            border-radius: 8px;
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .slider:hover:before {
-            opacity: 1;
-        }
-        
-        .slider:hover {
-            opacity: 0.9;
         }
         
         .slider::-webkit-slider-thumb {
@@ -860,24 +473,16 @@
             background: var(--primary);
             cursor: pointer;
             border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: var(--transition);
-        }
-        
-        .slider::-webkit-slider-thumb:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         
         .price-info {
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(255,107,53,0.1);
             padding: 1rem;
-            border-radius: var(--border-radius-sm);
+            border-radius: var(--radius-sm);
             margin-top: 1.5rem;
             text-align: center;
-            font-size: 0.9rem;
             border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
         }
         
         .price-info span {
@@ -885,6 +490,7 @@
             font-weight: 700;
         }
         
+        /* قیمت نهایی */
         .final-price {
             text-align: center;
             margin: 2rem 0;
@@ -892,60 +498,27 @@
             position: relative;
         }
         
-        .final-price:before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        }
-        
-        .final-price:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        }
-        
         .final-price span {
             color: var(--primary);
             font-weight: 800;
             font-size: 1.8rem;
-            text-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
         }
         
+        /* خلاصه سفارش */
         .order-summary {
-            background: rgba(30, 30, 30, 0.7);
+            background: rgba(30,30,30,0.7);
             padding: 1.5rem;
-            border-radius: var(--border-radius-sm);
+            border-radius: var(--radius-sm);
             margin: 2rem 0;
             border-left: 3px solid var(--primary);
-            backdrop-filter: blur(5px);
-            box-shadow: var(--card-shadow);
         }
         
         .order-summary p {
             margin-bottom: 0.8rem;
-            font-size: 0.95rem;
             display: flex;
             justify-content: space-between;
             padding: 0.4rem 0;
             border-bottom: 1px dashed rgba(255,255,255,0.1);
-        }
-        
-        .order-summary p:last-child {
-            margin-bottom: 0;
-            border-bottom: none;
-        }
-        
-        .order-summary span {
-            color: var(--light);
-            font-weight: 500;
         }
         
         .order-summary .value {
@@ -953,6 +526,7 @@
             font-weight: 600;
         }
         
+        /* فوتر مودال */
         .modal-footer {
             display: flex;
             justify-content: space-between;
@@ -961,11 +535,11 @@
             gap: 15px;
         }
         
+        /* دکمه‌ها */
         .btn {
             padding: 1rem 1.8rem;
             border-radius: 50px;
             font-family: inherit;
-            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             border: none;
@@ -974,68 +548,21 @@
             align-items: center;
             justify-content: center;
             flex: 1;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .btn:hover:before {
-            opacity: 1;
-        }
-        
-        .btn svg {
-            width: 20px;
-            height: 20px;
-            margin-left: 10px;
-            transition: var(--transition);
         }
         
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(255, 107, 53, 0.4);
-        }
-        
-        .btn-primary:hover svg {
-            transform: translateX(3px);
+            box-shadow: 0 8px 20px rgba(255,107,53,0.3);
         }
         
         .btn-secondary {
             background: var(--dark);
             color: var(--light);
             border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.05);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .btn-secondary:hover svg {
-            transform: translateX(-3px);
-        }
-        
+        /* صفحات دانلود و درباره ما */
         .download-page, .about-page {
             display: none;
             position: fixed;
@@ -1047,7 +574,6 @@
             z-index: 1000;
             padding: 1rem;
             overflow-y: auto;
-            backdrop-filter: blur(5px);
         }
         
         .download-content, .about-content {
@@ -1055,11 +581,9 @@
             margin: 2rem auto;
             background: var(--dark-light);
             padding: 2rem;
-            border-radius: var(--border-radius);
+            border-radius: var(--radius);
             border: 1px solid rgba(255,255,255,0.1);
-            position: relative;
-            box-shadow: var(--box-shadow);
-            transform-origin: center;
+            box-shadow: var(--shadow-lg);
         }
         
         .download-header, .about-header {
@@ -1068,82 +592,34 @@
             position: relative;
         }
         
-        .download-header h2, .about-header h2 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .download-header p, .about-header p {
-            color: var(--gray);
-            font-size: 1rem;
-            max-width: 80%;
-            margin: 0 auto;
-        }
-        
         .close-download, .close-about {
             position: absolute;
             top: 0;
             left: 0;
             font-size: 2rem;
             cursor: pointer;
-            color: var(--gray);
+            color: var(--lighter);
             padding: 0.5rem;
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
         }
         
-        .close-download:hover, .close-about:hover {
-            color: var(--primary);
-            background: rgba(255,255,255,0.1);
-        }
-        
+        /* آیتم‌های دانلود */
         .download-items {
             display: grid;
             gap: 1.5rem;
         }
         
         .download-item {
-            background: rgba(30, 30, 30, 0.7);
+            background: rgba(30,30,30,0.7);
             padding: 1.5rem;
-            border-radius: var(--border-radius-sm);
+            border-radius: var(--radius-sm);
             border-left: 3px solid var(--primary);
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-            box-shadow: var(--card-shadow);
-        }
-        
-        .download-item:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(67,97,238,0.1), transparent);
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
         
         .download-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-        
-        .download-item:hover:before {
-            opacity: 1;
+            box-shadow: var(--shadow-lg);
         }
         
         .download-item h3 {
@@ -1154,18 +630,10 @@
             align-items: center;
         }
         
-        .download-item h3 svg {
-            width: 24px;
-            height: 24px;
-            margin-left: 10px;
-            fill: currentColor;
-        }
-        
         .download-item p {
             font-size: 0.95rem;
             color: var(--lighter);
             margin-bottom: 1.5rem;
-            line-height: 1.7;
         }
         
         .download-meta {
@@ -1173,17 +641,7 @@
             justify-content: space-between;
             margin-bottom: 1.5rem;
             font-size: 0.85rem;
-            color: var(--gray);
-        }
-        
-        .meta-item {
-            display: flex;
-            align-items: center;
-        }
-        
-        .meta-item i {
-            margin-left: 6px;
-            color: var(--primary);
+            color: var(--lighter);
         }
         
         .download-btn {
@@ -1196,30 +654,23 @@
             font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 5px 15px rgba(67,97,238,0.3);
         }
         
         .download-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
-            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
+            box-shadow: 0 8px 20px rgba(67,97,238,0.4);
         }
         
-        .download-btn svg {
-            width: 20px;
-            height: 20px;
-            margin-left: 8px;
-            fill: white;
-        }
-        
+        /* متن درباره ما */
         .about-text {
             line-height: 1.8;
             margin-bottom: 2rem;
             font-size: 0.95rem;
             color: var(--lighter);
-            text-align: justify;
         }
         
+        /* آمار و ارقام */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -1228,18 +679,17 @@
         }
         
         .stat-card {
-            background: rgba(30, 30, 30, 0.7);
+            background: rgba(30,30,30,0.7);
             padding: 1.5rem;
-            border-radius: var(--border-radius-sm);
+            border-radius: var(--radius-sm);
             text-align: center;
             border: 1px solid rgba(255,255,255,0.1);
             transition: var(--transition);
-            box-shadow: var(--card-shadow);
         }
         
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
         }
         
         .stat-value {
@@ -1249,17 +699,42 @@
             margin-bottom: 0.5rem;
         }
         
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--lighter);
+        /* تیم ما */
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
+        .team-member {
+            background: rgba(30,30,30,0.7);
+            padding: 1.5rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        
+        /* لینک‌های اجتماعی */
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             margin-top: 2rem;
-            flex-wrap: wrap;
         }
         
         .social-link {
@@ -1273,49 +748,17 @@
             font-size: 1.5rem;
             transition: var(--transition);
             border: 1px solid rgba(255,255,255,0.1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .social-link:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .social-link:hover:before {
-            opacity: 1;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-        }
-        
-        .social-link:hover svg {
-            transform: scale(1.2);
         }
         
         .telegram {
             background: #0088CC;
         }
         
-        .virasty {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-        }
-        
         .instagram {
             background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
         }
         
+        /* اعلان‌ها */
         .notification {
             position: fixed;
             bottom: 70px;
@@ -1325,16 +768,14 @@
             color: white;
             padding: 1rem 1.8rem;
             border-radius: 50px;
-            font-size: 0.9rem;
             z-index: 100;
-            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
+            box-shadow: var(--shadow);
             display: none;
             max-width: 90%;
             text-align: center;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
         }
         
+        /* نوار پایینی */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -1342,17 +783,11 @@
             right: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
             background: var(--dark-light);
             padding: 1rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             z-index: 99;
-            box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-            gap: 15px;
+            box-shadow: 0 -8px 25px rgba(0,0,0,0.3);
         }
         
         .bottom-nav-btn {
@@ -1364,50 +799,12 @@
             color: var(--light);
             border: none;
             font-family: inherit;
-            font-size: 0.95rem;
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .bottom-nav-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .bottom-nav-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .bottom-nav-btn:hover:before {
-            opacity: 1;
-        }
-        
-        .bottom-nav-btn svg {
-            width: 22px;
-            height: 22px;
-            margin-left: 10px;
-            fill: currentColor;
-            transition: var(--transition);
-        }
-        
-        .bottom-nav-btn:hover svg {
-            transform: scale(1.1);
         }
         
         #aboutBtn {
@@ -1418,104 +815,164 @@
             color: var(--secondary);
         }
         
-        @media (min-width: 768px) {
-            body { font-size: 16px; padding-bottom: 100px; }
-            .container { max-width: 1200px; padding: 0 25px; }
-            .app-header { padding: 3rem 0 2rem; }
-            .logo-icon { width: 60px; height: 60px; }
-            .logo-icon svg { width: 32px; height: 32px; }
-            .logo-text { font-size: 2rem; }
-            .logo-text:after { font-size: 0.7rem; padding: 3px 10px; top: -12px; }
-            .app-description { font-size: 1rem; max-width: 800px; padding: 1.2rem; }
-            .tabs { max-width: 550px; }
-            .tab-button { padding: 1.2rem; font-size: 1rem; }
-            .tab-content { padding: 2rem; min-height: 350px; }
-            .message { padding: 1.2rem 1.8rem; font-size: 0.9rem; max-width: 90%; }
-            .notice-label { padding: 0.4rem 1rem; font-size: 0.85rem; }
-            .flag-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; }
-            .flag-item { padding: 1.5rem; min-height: 150px; }
-            .flag-item span { font-size: 3rem; }
-            .flag-item p { font-size: 1.1rem; }
-            .status-badge { font-size: 0.8rem; padding: 0.3rem 0.8rem; top: 15px; left: 15px; }
-            .modal-content { max-width: 550px; margin: 3% auto; }
-            .modal-header { padding: 2rem; }
-            .modal-header h2 { font-size: 1.5rem; }
-            .modal-header h2 span { font-size: 2rem; }
-            .close-modal { font-size: 2rem; top: 1.5rem; left: 2rem; }
-            .modal-body { padding: 2rem; }
-            .modal-tab { padding: 1rem 1.5rem; font-size: 1rem; }
-            .slider-container { margin: 2rem 0; }
-            .slider-header { font-size: 1rem; }
-            .slider { height: 10px; margin: 1.2rem 0; }
-            .slider::-webkit-slider-thumb { width: 28px; height: 28px; border: 4px solid white; }
-            .price-info { padding: 1.2rem; font-size: 1rem; }
-            .final-price { font-size: 1.5rem; margin: 2.5rem 0; }
-            .final-price span { font-size: 2.2rem; }
-            .order-summary { padding: 2rem; }
-            .order-summary p { font-size: 1rem; }
-            .modal-footer { padding: 2rem; }
-            .btn { padding: 1.2rem 2rem; font-size: 1rem; }
-            .btn svg { width: 22px; height: 22px; margin-left: 12px; }
-            .download-content, .about-content { max-width: 700px; padding: 3rem; }
-            .download-header h2, .about-header h2 { font-size: 2.2rem; }
-            .download-header p, .about-header p { font-size: 1.1rem; }
-            .close-download, .close-about { font-size: 2.2rem; }
-            .download-item { padding: 2rem; }
-            .download-item h3 { font-size: 1.5rem; }
-            .download-item h3 svg { width: 28px; height: 28px; }
-            .download-item p { font-size: 1rem; }
-            .download-btn { padding: 1rem 1.8rem; font-size: 1rem; }
-            .download-btn svg { width: 22px; height: 22px; margin-left: 10px; }
-            .about-text { font-size: 1.1rem; line-height: 2; }
-            .stats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; }
-            .stat-value { font-size: 2.5rem; }
-            .stat-label { font-size: 0.95rem; }
-            .social-links { gap: 2rem; }
-            .social-link { width: 70px; height: 70px; font-size: 1.8rem; }
-            .social-link svg { width: 32px; height: 32px; }
-            .notification { padding: 1.2rem 2rem; font-size: 1rem; max-width: 500px; }
-            .bottom-nav { padding: 1.2rem; }
-            .bottom-nav-btn { max-width: 250px; padding: 1.2rem; font-size: 1rem; }
-            .bottom-nav-btn svg { width: 24px; height: 24px; margin-left: 12px; }
+        /* انیمیشن‌ها */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        @media (min-width: 480px) and (max-width: 767px) {
-            .flag-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.8rem; }
-            .flag-item span { font-size: 2.8rem; }
-            .modal-content { max-width: 90%; }
-            .bottom-nav-btn { font-size: 0.9rem; padding: 1rem; }
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        @media (max-width: 479px) {
-            .flag-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-            .flag-item { padding: 1rem; min-height: 120px; }
-            .flag-item span { font-size: 2.2rem; }
-            .tab-button { padding: 0.8rem; font-size: 0.85rem; }
-            .modal-tab { padding: 0.7rem 0.9rem; font-size: 0.85rem; min-width: 70px; }
-            .btn { padding: 0.9rem 1.2rem; font-size: 0.85rem; }
-            .social-link { width: 50px; height: 50px; font-size: 1.3rem; }
-            .social-link svg { width: 24px; height: 24px; }
-            .notification { padding: 0.9rem 1.5rem; font-size: 0.85rem; }
-            .bottom-nav-btn { font-size: 0.85rem; padding: 0.9rem; }
-            .bottom-nav-btn svg { width: 20px; height: 20px; }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary); }
+        }
+        
+        /* منوی شناور */
+        #floatingBtn {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, var(--menu-color), #2575fc);
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            z-index: 100;
+            bottom: 80px;
+            right: 15px;
+            border: none;
+            transition: var(--transition);
+            font-size: 1.5rem;
+        }
+        
+        #floatingBtn:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+        
+        #menuContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-slow);
+        }
+        
+        #menuContainer.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        #menuBackdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+        }
+        
+        #menuItems {
+            background: var(--dark-light);
+            border-radius: var(--radius);
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            border-top: 6px solid var(--menu-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: var(--transition-slow);
+        }
+        
+        #menuContainer.active #menuItems {
+            transform: scale(1);
+        }
+        
+        .menu-item {
+            padding: 1.2rem;
+            margin: 0.8rem 0;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .menu-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-8px);
+            border-color: var(--menu-color);
+        }
+        
+        .menu-item i {
+            margin-left: 1.2rem;
+            font-size: 1.5rem;
+            color: var(--menu-color);
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .menu-item span {
+            font-weight: 600;
+        }
+        
+        /* رسپانسیو */
+        @media (max-width: 768px) {
+            .flag-item {
+                padding: 0.8rem;
+            }
+            
+            .flag-item span {
+                font-size: 2rem;
+            }
+            
+            #floatingBtn {
+                width: 55px;
+                height: 55px;
+                bottom: 75px;
+                font-size: 1.3rem;
+            }
+            
+            .bottom-nav-btn {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .menu-item {
+                padding: 1rem;
+            }
+            
+            .volume-number {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="app-header">
-            <div class="logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-                    </svg>
-                </div>
-                <div class="logo-text">XRO VPN</div>
-            </div>
-            <p class="app-description">یآ هَمِه یآ هیچ کَس</p>
-        </header>
-
-        <!-- بخش استوری های جدید -->
+        <!-- بخش استوری‌ها - بالای صفحه -->
         <div class="stories-container">
             <div class="story-item" onclick="openStory('you')">
                 <div class="story-circle">
@@ -1523,7 +980,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
-                <div class="story-label">شما</div>
+                <div class="story-label">نظرات کاربران</div>
             </div>
             <div class="story-item" onclick="openStory('security')">
                 <div class="story-circle">
@@ -1539,145 +996,198 @@
                         <i class="fas fa-question"></i>
                     </div>
                 </div>
-                <div class="story-label">راهنما</div>
+                <div class="story-label">راهنمای خرید</div>
             </div>
         </div>
 
-        <!-- مودال استوری -->
-        <div id="storyModal" class="story-modal">
-            <div class="story-header">
-                <div class="story-progress">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill1"></div>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill2"></div>
-                    </div>
-                </div>
-                <div class="close-story" onclick="closeStory()">×</div>
-            </div>
-            <div class="story-content" id="storyContent">
-                <!-- محتوای استوری در اینجا نمایش داده می‌شود -->
-            </div>
+        <!-- تب‌های اصلی -->
+        <div class="main-tabs">
+            <button class="main-tab active" onclick="showMainTab('home')">
+                <i class="fas fa-store"></i>
+                <span>فروشگاه</span>
+            </button>
+            <button class="main-tab" onclick="showMainTab('volume')">
+                <i class="fas fa-database"></i>
+                <span>حجم</span>
+            </button>
+            <button class="main-tab" onclick="showMainTab('download')">
+                <i class="fas fa-download"></i>
+                <span>دانلود</span>
+            </button>
         </div>
-
-        <div class="tabs">
-            <button class="tab-button active" onclick="showTab('country')">برای خودم</button>
-            <button class="tab-button" onclick="showTab('affiliate')">برای همکاری</button>
-        </div>
-        <div id="country-tab" class="tab-content">
+        
+        <!-- محتوای تب‌های اصلی -->
+        <div id="home-tab" class="main-tab-content active">
             <div class="message">
                 <span class="notice-label">توجه</span>
-                <span id="typingText1">این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است</span>
+                <span>این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است</span>
             </div>
             <div class="flag-grid">
                 <div class="flag-item active" onclick="openModal('آمریکا', 1290, 298, false)">
                     <span>🇺🇸</span>
                     <p>آمریکا</p>
-                    <div class="country-info">سرورهای پرسرعت در نیویورک و لس آنجلس</div>
+                    <div class="country-info">سرورهای پرسرعت در نیویورک و لس آنجلس با پینگ پایین</div>
                     <div class="status-badge active">سرویس فعال</div>
                 </div>
                 <div class="flag-item active" onclick="openModal('انگلیس', 1290, 298, false)">
-                    <span>🇬🇧</span>
+                    <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
                     <p>انگلیس</p>
-                    <div class="country-info">سرورهای لندن با پهنای باند بالا</div>
+                    <div class="country-info">سرورهای لندن با پهنای باند بالا و اتصال پایدار</div>
                     <div class="status-badge active">سرویس فعال</div>
                 </div>
-                <div class="flag-item active" onclick="openModal('ترکیه', 1290, 298, false)">
+                <div class="flag-item active" onclick="openModal('ترکیه', 990, 198, false)">
                     <span>🇹🇷</span>
                     <p>ترکیه</p>
-                    <div class="country-info">سرورهای استانبول با پینگ پایین</div>
+                    <div class="country-info">سرورهای استانبول با پینگ بسیار پایین برای کاربران ایرانی</div>
                     <div class="status-badge active">سرویس فعال</div>
                 </div>
-                <div class="flag-item active" onclick="openModal('هلند', 1290, 298, false)">
+                <div class="flag-item active" onclick="openModal('هلند', 1190, 258, false)">
                     <span>🇳🇱</span>
                     <p>هلند</p>
-                    <div class="country-info">سرورهای آمستردام با اتصال پایدار</div>
+                    <div class="country-info">سرورهای آمستردام با اتصال پایدار و بدون قطعی</div>
                     <div class="status-badge active">سرویس فعال</div>
                 </div>
-                <div class="flag-item active" onclick="openModal('فرانسه', 1290, 298, false)">
+                <div class="flag-item active" onclick="openModal('آلمان', 1190, 258, false)">
+                    <span>🇩🇪</span>
+                    <p>آلمان</p>
+                    <div class="country-info">سرورهای فرانکفورت با کیفیت بالا و پینگ پایین</div>
+                    <div class="status-badge active">سرویس فعال</div>
+                </div>
+                <div class="flag-item active" onclick="openModal('فرانسه', 1190, 258, false)">
                     <span>🇫🇷</span>
                     <p>فرانسه</p>
-                    <div class="country-info">سرورهای پاریس با امنیت بالا</div>
+                    <div class="country-info">سرورهای پاریس با اتصال پایدار و بدون قطعی</div>
                     <div class="status-badge active">سرویس فعال</div>
                 </div>
-                <div class="flag-item active" onclick="openModal('فنلاند', 1290, 298, false)">
+                <div class="flag-item active" onclick="openModal('فنلاند', 1190, 258, false)">
                     <span>🇫🇮</span>
                     <p>فنلاند</p>
-                    <div class="country-info">سرورهای هلسینکی با حریم خصوصی قوی</div>
+                    <div class="country-info">سرورهای هلسینکی با کیفیت بالا و پینگ پایین</div>
                     <div class="status-badge active">سرویس فعال</div>
                 </div>
-                <div class="flag-item inactive" onclick="showNotification()">
+                <div class="flag-item active" onclick="openModal('لهستان', 1190, 258, false)">
+                    <span>🇵🇱</span>
+                    <p>لهستان</p>
+                    <div class="country-info">سرورهای ورشو با اتصال پایدار و بدون قطعی</div>
+                    <div class="status-badge active">سرویس فعال</div>
+                </div>
+                <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
                     <span>🇮🇳</span>
                     <p>هند</p>
-                    <div class="country-info">به زودی فعال می‌شود</div>
+                    <div class="country-info">سرورهای بمبئی با پهنای باند بالا (به زودی)</div>
                     <div class="status-badge inactive">غیرفعال</div>
                 </div>
-                <div class="flag-item inactive" onclick="showNotification()">
+                <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
                     <span>🇨🇳</span>
                     <p>چین</p>
-                    <div class="country-info">به زودی فعال می‌شود</div>
+                    <div class="country-info">سرورهای هنگ کنگ با پهنای باند بالا (به زودی)</div>
+                    <div class="status-badge inactive">غیرفعال</div>
+                </div>
+                <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
+                    <span>🇸🇦</span>
+                    <p>عربستان</p>
+                    <div class="country-info">سرورهای ریاض با پهنای باند بالا (به زودی)</div>
                     <div class="status-badge inactive">غیرفعال</div>
                 </div>
             </div>
         </div>
-        <div id="affiliate-tab" class="tab-content" style="display: none;">
+        
+        <div id="volume-tab" class="main-tab-content">
             <div class="message">
                 <span class="notice-label">توجه</span>
-                <span id="typingText2">این بخش مخصوص همکاران و فروشندگان وی پی ان می باشد</span>
+                <span>این بخش یک دمو است. در نسخه آینده این بخش و بخش‌های دیگر آزاد می‌شوند</span>
             </div>
-            <div class="flag-grid">
-                <div class="flag-item active" onclick="openModal('آمریکا', 849, 173, true)">
-                    <span>🇺🇸</span>
-                    <p>آمریکا</p>
-                    <div class="country-info">سرورهای پرسرعت در نیویورک و لس آنجلس</div>
-                    <div class="status-badge active">سرویس فعال</div>
+            
+            <!-- شمارنده حجم کل -->
+            <div class="volume-counter">
+                <h3>حجم کل مصرفی کاربران</h3>
+                <div class="volume-number" id="totalVolume">1,700,346,912</div>
+                <div class="volume-label">مگابایت</div>
+            </div>
+            
+            <div style="text-align: center; padding: 2rem 0;">
+                <i class="fas fa-chart-pie" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">مدیریت حجم مصرفی</h3>
+                <p style="color: var(--lighter);">در نسخه آینده امکان مشاهده و مدیریت حجم مصرفی اضافه خواهد شد</p>
+            </div>
+        </div>
+        
+        <div id="download-tab" class="main-tab-content">
+            <div class="message">
+                <span class="notice-label">توجه</span>
+                <span>این بخش مخصوص دانلود اپلیکیشن ویتوری برای سیستم شما است</span>
+            </div>
+            <div class="download-items">
+                <div class="download-item">
+                    <h3>
+                        <i class="fas fa-mobile-alt"></i>
+                        نسخه اندروید
+                    </h3>
+                    <div class="download-meta">
+                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 1.8.5</div>
+                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/05/12</div>
+                    </div>
+                    <p>نرم‌افزار v2rayNG برای دستگاه‌های اندروید. بهترین انتخاب برای کاربران اندروید با رابط کاربری ساده و امکانات پیشرفته.</p>
+                    <a href="https://github.com/2dust/v2rayNG/releases/download/1.8.5/v2rayNG_1.8.5.apk" class="download-btn">
+                        دانلود (12MB)
+                        <i class="fas fa-download"></i>
+                    </a>
                 </div>
-                <div class="flag-item active" onclick="openModal('انگلیس', 849, 173, true)">
-                    <span>🇬🇧</span>
-                    <p>انگلیس</p>
-                    <div class="country-info">سرورهای لندن با پهنای باند بالا</div>
-                    <div class="status-badge active">سرویس فعال</div>
+                
+                <div class="download-item">
+                    <h3>
+                        <i class="fas fa-desktop"></i>
+                        نسخه ویندوز
+                    </h3>
+                    <div class="download-meta">
+                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 6.27</div>
+                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/04/28</div>
+                    </div>
+                    <p>نرم‌افزار v2rayN برای سیستم‌عامل ویندوز. پشتیبانی از ویندوز 7 به بالا با قابلیت‌های مدیریت چند کانفیگ.</p>
+                    <a href="https://github.com/2dust/v2rayN/releases/download/6.27/v2rayN-Core.zip" class="download-btn">
+                        دانلود (45MB)
+                        <i class="fas fa-download"></i>
+                    </a>
                 </div>
-                <div class="flag-item active" onclick="openModal('ترکیه', 849, 173, true)">
-                    <span>🇹🇷</span>
-                    <p>ترکیه</p>
-                    <div class="country-info">سرورهای استانبول با پینگ پایین</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                <div class="flag-item active" onclick="openModal('هلند', 849, 173, true)">
-                    <span>🇳🇱</span>
-                    <p>هلند</p>
-                    <div class="country-info">سرورهای آمستردام با اتصال پایدار</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                <div class="flag-item active" onclick="openModal('فرانسه', 849, 173, true)">
-                    <span>🇫🇷</span>
-                    <p>فرانسه</p>
-                    <div class="country-info">سرورهای پاریس با امنیت بالا</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                <div class="flag-item active" onclick="openModal('فنلاند', 849, 173, true)">
-                    <span>🇫🇮</span>
-                    <p>فنلاند</p>
-                    <div class="country-info">سرورهای هلسینکی با حریم خصوصی قوی</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                <div class="flag-item inactive" onclick="showNotification()">
-                    <span>🇮🇳</span>
-                    <p>هند</p>
-                    <div class="country-info">به زودی فعال می‌شود</div>
-                    <div class="status-badge inactive">غیرفعال</div>
-                </div>
-                <div class="flag-item inactive" onclick="showNotification()">
-                    <span>🇨🇳</span>
-                    <p>چین</p>
-                    <div class="country-info">به زودی فعال می‌شود</div>
-                    <div class="status-badge inactive">غیرفعال</div>
+                
+                <div class="download-item">
+                    <h3>
+                        <i class="fas fa-mobile-alt"></i>
+                        نسخه iOS
+                    </h3>
+                    <div class="download-meta">
+                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 2.1.3</div>
+                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/03/15</div>
+                    </div>
+                    <p>نرم‌افزار v2box برای دستگاه‌های iOS. بهترین انتخاب برای کاربران آیفون و آیپد با رابط کاربری ساده.</p>
+                    <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" class="download-btn" target="_blank">
+                        دانلود از اپ استور
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- مودال استوری -->
+    <div id="storyModal" class="story-modal">
+        <div class="story-header">
+            <div class="story-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill1"></div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill2"></div>
+                </div>
+            </div>
+            <div class="close-story" onclick="closeStory()">×</div>
+        </div>
+        <div class="story-content" id="storyContent">
+            <!-- محتوای استوری در اینجا نمایش داده می‌شود -->
+        </div>
+    </div>
+    
+    <!-- مودال سفارش -->
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1686,6 +1196,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-tabs" id="modalTabs"></div>
+                
                 <div id="volumeTab" class="modal-tab-content active">
                     <div class="slider-container">
                         <div class="slider-header">
@@ -1699,19 +1210,14 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" onclick="closeModal()">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                            </svg>
                             انصراف
                         </button>
                         <button class="btn btn-primary" onclick="showModalTab('days')">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                            </svg>
                             بعدی
                         </button>
                     </div>
                 </div>
+                
                 <div id="daysTab" class="modal-tab-content">
                     <div class="slider-container">
                         <div class="slider-header">
@@ -1725,19 +1231,14 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" onclick="showModalTab('volume')">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                            </svg>
                             قبلی
                         </button>
                         <button class="btn btn-primary" id="daysNextButton">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                            </svg>
                             بعدی
                         </button>
                     </div>
                 </div>
+                
                 <div id="countTab" class="modal-tab-content">
                     <div class="slider-container">
                         <div class="slider-header">
@@ -1751,19 +1252,14 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" onclick="showModalTab('days')">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                            </svg>
                             قبلی
                         </button>
                         <button class="btn btn-primary" onclick="showModalTab('final')">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                            </svg>
                             بعدی
                         </button>
                     </div>
                 </div>
+                
                 <div id="finalTab" class="modal-tab-content">
                     <div class="final-price">
                         قیمت نهایی: <span id="finalPrice">0</span> تومان
@@ -1788,15 +1284,9 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" id="finalPreviousButton">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                            </svg>
                             قبلی
                         </button>
                         <button class="btn btn-primary" onclick="submitOrder()">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                            </svg>
                             سفارش
                         </button>
                     </div>
@@ -1804,104 +1294,20 @@
             </div>
         </div>
     </div>
-    <div id="downloadPage" class="download-page">
-        <div class="download-content">
-            <div class="download-header">
-                <span class="close-download" onclick="closeDownload()">×</span>
-                <h2>دانلود نرم‌افزار</h2>
-                <p>نسخه‌های مختلف برای دستگاه‌های مختلف</p>
-            </div>
-            <div class="download-items">
-                <div class="download-item">
-                    <h3>
-                        <svg viewBox="0 0 24 24">
-                            <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.3-.15-.68-.04-.85.26l-1.85 3.2c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.71c-.18-.3-.55-.41-.85-.26-.3.16-.42.54-.26.85L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
-                        </svg>
-                        نسخه اندروید
-                    </h3>
-                    <div class="download-meta">
-                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 1.8.5</div>
-                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/05/12</div>
-                    </div>
-                    <p>نرم‌افزار v2rayNG برای دستگاه‌های اندروید. بهترین انتخاب برای کاربران اندروید با رابط کاربری ساده و امکانات پیشرفته.</p>
-                    <a href="https://github.com/2dust/v2rayNG/releases/download/1.8.5/v2rayNG_1.8.5.apk" class="download-btn" target="_blank">
-                        دانلود (12MB)
-                        <svg viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="download-item">
-                    <h3>
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
-                        </svg>
-                        نسخه ویندوز
-                    </h3>
-                    <div class="download-meta">
-                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 6.27</div>
-                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/04/28</div>
-                    </div>
-                    <p>نرم‌افزار v2rayN برای سیستم‌عامل ویندوز. پشتیبانی از ویندوز 7 به بالا با قابلیت‌های مدیریت چند کانفیگ.</p>
-                    <a href="https://github.com/2dust/v2rayN/releases/download/6.27/zz_v2rayN-With-Core-SelfContained.7z" class="download-btn" target="_blank">
-                        دانلود (45MB)
-                        <svg viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="download-item">
-                    <h3>
-                        <svg viewBox="0 0 24 24">
-                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-.96 3.07-.69.84-1.8 1.5-2.95 1.42-.15-1.15.41-2.35.97-2.99z"/>
-                        </svg>
-                        نسخه آیفون
-                    </h3>
-                    <div class="download-meta">
-                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 2.1.4</div>
-                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/05/05</div>
-                    </div>
-                    <p>نرم‌افزار Foxray برای دستگاه‌های iOS. سازگار با آیفون و آیپد با پشتیبانی از آخرین نسخه iOS.</p>
-                    <a href="https://apps.apple.com/ca/app/foxray/id6448898396?platform=iphone" class="download-btn" target="_blank">
-                        دانلود از اپ استور
-                        <svg viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <!-- صفحه درباره ما -->
     <div id="aboutPage" class="about-page">
         <div class="about-content">
             <div class="about-header">
                 <span class="close-about" onclick="closeAbout()">×</span>
                 <h2>درباره ما</h2>
-                <p>XRO VPN - ارائه کانفیگ سرورهای پایدار</p>
-            </div>
-            <div class="about-text">
-                <p>XRO VPN ارائه دهنده کانفیگ سرورهای پایدار و پرسرعت در کشورهای مختلف می‌باشد. ما با استفاده از بهترین سرورها و فناوری‌های روز، اتصالی پایدار و با کیفیت را برای شما فراهم می‌کنیم.</p>
-                <p>تیم ما متشکل از متخصصان شبکه است که سال‌ها تجربه در زمینه ارائه سرویس‌های اینترنتی دارند. ما از آخرین فناوری‌ها برای ارائه بهترین کیفیت استفاده می‌کنیم.</p>
-                <p>از سال ۱۳۹۸ تاکنون، ما به بیش از ۱۰,۰۰۰ کاربر خدمات ارائه داده‌ایم و همواره در تلاش هستیم تا کیفیت خدمات خود را بهبود بخشیم.</p>
+                <p>XRO VPN - ارائه کانفیگ سرورهای پایدار و پرسرعت</p>
             </div>
             
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">50+</div>
-                    <div class="stat-label">سرور در سراسر جهان</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">15</div>
-                    <div class="stat-label">کشور مختلف</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">10K+</div>
-                    <div class="stat-label">کاربر راضی</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">99.9%</div>
-                    <div class="stat-label">آپتایم سرویس</div>
-                </div>
+            <div class="about-text">
+                <p>XRO VPN ارائه دهنده کانفیگ سرورهای پایدار و پرسرعت در کشورهای مختلف می‌باشد. ما با استفاده از بهترین سرورها و فناوری‌های روز، اتصالی پایدار و با کیفیت را برای شما فراهم می‌کنیم.</p>
+                
+                <p>تیم ما متشکل از متخصصان شبکه است که سال‌ها تجربه در زمینه ارائه سرویس‌های اینترنتی دارند. ما از آخرین فناوری‌ها برای ارائه بهترین کیفیت استفاده می‌کنیم و همواره در حال به‌روزرسانی سرورها و بهبود خدمات خود هستیم.</p>
             </div>
             
             <h3 style="text-align: center; margin: 2rem 0 1.5rem; color: var(--primary);">تیم ما</h3>
@@ -1909,7 +1315,7 @@
                 <div class="team-member">
                     <div class="member-avatar">X</div>
                     <div class="member-name">آقای ایکسرو</div>
-                    <div class="member-role">سازندگی</div>
+                    <div class="member-role">مدیر فنی و بنیان‌گذار</div>
                 </div>
             </div>
             
@@ -1917,34 +1323,47 @@
                 <a href="https://t.me/xrovpn" class="social-link telegram" target="_blank">
                     <i class="fab fa-telegram"></i>
                 </a>
-                <a href="https://virasty.com/xroVPN" class="social-link virasty" target="_blank">
-                    <i class="fas fa-globe"></i>
-                </a>
-                <a href="#" class="social-link instagram" onclick="showNotification()">
+                <a href="#" class="social-link instagram" onclick="showNotification('صفحه اینستاگرام به زودی راه‌اندازی می‌شود')">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
         </div>
     </div>
+    
+    <!-- اعلان -->
     <div class="notification" id="notification">
         این سرویس در حال حاضر غیرفعال می‌باشد
     </div>
     
-    <div class="bottom-nav">
-        <button class="bottom-nav-btn" id="aboutBtn" onclick="showAbout()">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-            </svg>
-            درباره ما
-        </button>
-        <button class="bottom-nav-btn" id="downloadBtn" onclick="showDownload()">
-            <svg viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-            دانلود نرم‌افزار
-        </button>
+    <!-- منوی شناور بهبود یافته -->
+    <button id="floatingBtn" aria-label="منوی اصلی">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div id="menuContainer">
+        <div id="menuBackdrop"></div>
+        <div id="menuItems">
+            <div class="menu-item" onclick="closeMenu()">
+                <i class="fas fa-times"></i>
+                <span>بستن منو</span>
+            </div>
+            <div class="menu-item" onclick="showNotification('تست سرعت در نسخه بعدی اضافه خواهد شد')">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>تست سرعت</span>
+            </div>
+            <div class="menu-item" onclick="window.open('https://t.me/xrovpn', '_blank')">
+                <i class="fab fa-telegram"></i>
+                <span>پشتیبانی آنلاین</span>
+            </div>
+            <div class="menu-item" onclick="showAbout()">
+                <i class="fas fa-info-circle"></i>
+                <span>درباره ما</span>
+            </div>
+        </div>
     </div>
+
     <script>
+        // تنظیمات اولیه
         let currentOrder = {
             country: '',
             volume: 10,
@@ -1959,68 +1378,23 @@
             maxDays: 140
         };
         
-        const typingTexts = {
-            personal: "این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است",
-            affiliate: "این بخش مخصوص همکاران و فروشندگان وی پی ان می باشد"
-        };
-        
         // داده‌های استوری
         const stories = {
             you: {
-                title: "شما",
+                title: "نظرات کاربران",
                 steps: [
                     {
-                        text: "این تنها بخشی از نظرات شماست",
+                        text: "این تنها بخشی از نظرات صدها کاربر راضی XRO VPN است",
                         duration: 3000,
                         comments: [
                             {
                                 name: "زهرا",
-                                text: "من تازه با این تیم آشنا شدم امیدوارم همینجوری باقی بمونه",
+                                text: "من تازه با این تیم آشنا شدم امیدوارم همینجوری باقی بمونه. سرعت فوق‌العاده‌ای داره!",
                                 position: "right"
                             },
                             {
                                 name: "محمد",
-                                text: "بهترین سرویسی که تا حالا استفاده کردم. واقعا راضیم",
-                                position: "left"
-                            },
-                            {
-                                name: "علی",
-                                text: "سرعت فوق‌العاده‌ای داره مخصوصا برای دانلود",
-                                position: "right"
-                            },
-                            {
-                                name: "فاطمه",
-                                text: "پشتیبانی خیلی خوبی دارن. همیشه پاسخگو هستن",
-                                position: "left"
-                            },
-                            {
-                                name: "رضا",
-                                text: "قیمت‌هاش نسبت به کیفیت واقعا مناسبه",
-                                position: "right"
-                            },
-                            {
-                                name: "نازنین",
-                                text: "من چند ماهه استفاده می‌کنم و هیچ قطعی نداشتم",
-                                position: "left"
-                            },
-                            {
-                                name: "امیر",
-                                text: "کانفیگ‌ها خیلی سریع تحویل داده میشه",
-                                position: "right"
-                            },
-                            {
-                                name: "سارا",
-                                text: "برای کارهای بانکی خیلی امن و مطمئنه",
-                                position: "left"
-                            },
-                            {
-                                name: "حسین",
-                                text: "سرورهای ترکیه پینگ خیلی خوبی داره",
-                                position: "right"
-                            },
-                            {
-                                name: "مریم",
-                                text: "نصبش روی موبایل خیلی ساده بود",
+                                text: "بهترین سرویسی که تا حالا استفاده کردم. واقعا راضیم و به همه توصیه می‌کنم",
                                 position: "left"
                             }
                         ]
@@ -2031,38 +1405,25 @@
                 title: "امنیت",
                 steps: [
                     {
-                        text: "امنیت ریشه ای از کار ماست",
-                        duration: 3000,
-                        bgEffect: "hacker"
+                        text: "امنیت و حریم خصوصی شما اولویت اصلی ماست",
+                        duration: 3000
                     },
                     {
                         text: "ما از سال ۱۳۹۸ تا همین الان درحال خدمت رسانی به مردم هستیم و از هرگونه مشکل و رفتن اطلاعات به دست غریبه ها جلوگیری میکنیم پس نگران نباش",
-                        duration: 10000
+                        duration: 5000
                     }
                 ]
             },
             guide: {
-                title: "راهنما",
+                title: "راهنمای خرید",
                 steps: [
                     {
-                        text: "راهنمای خرید از سایت",
+                        text: "راهنمای خرید از XRO VPN",
                         duration: 3000
                     },
                     {
-                        text: "مراحل خرید از XRO VPN:",
-                        duration: 10000,
-                        guideSteps: [
-                            "1. وارد بخش 'برای خودم' شوید",
-                            "2. کشور مورد نظر خود را انتخاب کنید",
-                            "3. حجم و مدت زمان مورد نیاز را تنظیم کنید",
-                            "4. روی دکمه 'سفارش' کلیک کنید",
-                            "5. به پیام رسان تلگرام منتقل می‌شوید",
-                            "6. اطلاعات سفارش را برای ادمین ارسال کنید",
-                            "7. پرداخت را انجام دهید",
-                            "8. کانفیگ را دریافت کنید",
-                            "9. نرم‌افزار مربوطه را دانلود و نصب کنید",
-                            "10. کانفیگ را وارد نرم‌افزار کرده و استفاده کنید"
-                        ]
+                        text: "مراحل خرید از XRO VPN:\n1. وارد بخش 'برای خودم' شوید\n2. کشور مورد نظر خود را انتخاب کنید\n3. حجم و مدت زمان مورد نیاز را تنظیم کنید\n4. روی دکمه 'سفارش' کلیک کنید",
+                        duration: 8000
                     }
                 ]
             }
@@ -2073,45 +1434,40 @@
         let storyInterval = null;
         let progressInterval = null;
         
-        function showTab(tabName) {
-            const tabs = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
+        // شمارنده حجم کل
+        let totalVolume = 1700346912;
+        let volumeInterval = null;
+        
+        // نمایش تب‌های اصلی
+        function showMainTab(tabName) {
+            const tabs = document.querySelectorAll('.main-tab');
+            const tabContents = document.querySelectorAll('.main-tab-content');
             
             tabs.forEach(tab => tab.classList.remove('active'));
-            tabContents.forEach(content => content.style.display = 'none');
+            tabContents.forEach(content => content.classList.remove('active'));
             
-            document.getElementById(`${tabName}-tab`).style.display = 'block';
-            event.currentTarget.classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            document.querySelector(`.main-tab[onclick="showMainTab('${tabName}')"]`).classList.add('active');
             
-            if (tabName === 'affiliate') {
-                currentOrder.minVolume = 15;
-                currentOrder.maxVolume = 1000;
-                currentOrder.minDays = 10;
-                currentOrder.maxDays = 365;
-                document.getElementById('typingText2').textContent = typingTexts.affiliate;
-            } else {
-                currentOrder.minVolume = 10;
-                currentOrder.maxVolume = 300;
-                currentOrder.minDays = 5;
-                currentOrder.maxDays = 140;
-                document.getElementById('typingText1').textContent = typingTexts.personal;
-            }
+            closeMenu();
         }
         
-        function showNotification() {
+        // نمایش اعلان
+        function showNotification(message = 'این سرویس در حال حاضر غیرفعال می‌باشد') {
             const notification = document.getElementById('notification');
+            notification.textContent = message;
             notification.style.display = 'block';
             
             setTimeout(() => {
                 notification.style.display = 'none';
-            }, 2500);
-            
-            return false;
+            }, 3000);
         }
         
+        // نمایش صفحه درباره ما
         function showAbout() {
             document.getElementById('aboutPage').style.display = 'block';
             document.body.style.overflow = 'hidden';
+            closeMenu();
         }
         
         function closeAbout() {
@@ -2119,16 +1475,7 @@
             document.body.style.overflow = 'auto';
         }
         
-        function showDownload() {
-            document.getElementById('downloadPage').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeDownload() {
-            document.getElementById('downloadPage').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
+        // باز کردن مودال سفارش
         function openModal(country, volumePrice, dayPrice, isAffiliate) {
             currentOrder = {
                 country: country,
@@ -2169,20 +1516,25 @@
             showModalTab('volume');
         }
         
+        // دریافت پرچم کشور
         function getCountryFlag(country) {
             const flags = {
                 'آمریکا': '🇺🇸',
-                'انگلیس': '🇬🇧',
+                'انگلیس': '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
                 'ترکیه': '🇹🇷',
                 'هلند': '🇳🇱',
                 'فرانسه': '🇫🇷',
                 'فنلاند': '🇫🇮',
+                'آلمان': '🇩🇪',
+                'لهستان': '🇵🇱',
                 'هند': '🇮🇳',
-                'چین': '🇨🇳'
+                'چین': '🇨🇳',
+                'عربستان': '🇸🇦'
             };
             return flags[country] || '';
         }
         
+        // تنظیم تب‌های مودال
         function setupModalTabs(isAffiliate) {
             const modalTabs = document.getElementById('modalTabs');
             modalTabs.innerHTML = `
@@ -2197,19 +1549,21 @@
             document.getElementById('finalPreviousButton').onclick = isAffiliate ? () => showModalTab('count') : () => showModalTab('days');
         }
         
+        // نمایش تب‌های مودال
         function showModalTab(tabName) {
             const modalTabs = document.querySelectorAll('.modal-tab');
             const modalTabContents = document.querySelectorAll('.modal-tab-content');
             
             modalTabs.forEach(tab => tab.classList.remove('active'));
-            modalTabContents.forEach(content => content.style.display = 'none');
+            modalTabContents.forEach(content => content.classList.remove('active'));
             
-            document.getElementById(`${tabName}Tab`).style.display = 'block';
+            document.getElementById(`${tabName}Tab`).classList.add('active');
             document.querySelector(`.modal-tab[onclick="showModalTab('${tabName}')"]`).classList.add('active');
             
             updatePrice();
         }
         
+        // به‌روزرسانی حجم
         function updateVolume(value) {
             currentOrder.volume = parseInt(value);
             document.getElementById('volumeValue').textContent = `${currentOrder.volume} گیگ`;
@@ -2217,6 +1571,7 @@
             updatePrice();
         }
         
+        // به‌روزرسانی روزها
         function updateDays(value) {
             currentOrder.days = parseInt(value);
             document.getElementById('daysValue').textContent = `${currentOrder.days} روز`;
@@ -2224,6 +1579,7 @@
             updatePrice();
         }
         
+        // به‌روزرسانی تعداد
         function updateCount(value) {
             currentOrder.count = parseInt(value);
             document.getElementById('countValue').textContent = `${currentOrder.count} عدد`;
@@ -2231,19 +1587,22 @@
             updatePrice();
         }
         
+        // محاسبه قیمت نهایی
         function updatePrice() {
             const totalPrice = (currentOrder.volume * currentOrder.volumePrice + currentOrder.days * currentOrder.dayPrice) * (currentOrder.isAffiliate ? currentOrder.count : 1);
             document.getElementById('finalPrice').textContent = totalPrice.toLocaleString('fa-IR');
         }
         
+        // بستن مودال
         function closeModal() {
             document.getElementById('orderModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
         
+        // ارسال سفارش
         function submitOrder() {
             const totalPrice = (currentOrder.volume * currentOrder.volumePrice + currentOrder.days * currentOrder.dayPrice) * (currentOrder.isAffiliate ? currentOrder.count : 1);
-            const message = `سفارش جدید برای u0v0n:\nکشور: ${currentOrder.country}\nحجم: ${currentOrder.volume} گیگ\nمدت: ${currentOrder.days} روز${currentOrder.isAffiliate ? `\nتعداد: ${currentOrder.count} عدد` : ''}\nقیمت نهایی: ${totalPrice.toLocaleString('fa-IR')} تومان`;
+            const message = `سفارش جدید برای XRO VPN:\nکشور: ${currentOrder.country}\nحجم: ${currentOrder.volume} گیگ\nمدت: ${currentOrder.days} روز${currentOrder.isAffiliate ? `\nتعداد: ${currentOrder.count} عدد` : ''}\nقیمت نهایی: ${totalPrice.toLocaleString('fa-IR')} تومان`;
             window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
             closeModal();
         }
@@ -2285,17 +1644,6 @@
                 textElement.classList.add('show');
             }, 100);
             
-            // اضافه کردن افکت پس‌زمینه اگر وجود دارد
-            if (step.bgEffect === 'hacker') {
-                const hackerBg = document.createElement('div');
-                hackerBg.className = 'hacker-bg';
-                storyContent.appendChild(hackerBg);
-                
-                setTimeout(() => {
-                    hackerBg.classList.add('show');
-                }, 100);
-            }
-            
             // اضافه کردن نظرات اگر وجود دارد
             if (step.comments) {
                 const commentsContainer = document.createElement('div');
@@ -2323,41 +1671,14 @@
                         setTimeout(() => {
                             commentElement.classList.add('show');
                         }, 100);
-                        
-                        // حذف نظر بعد از نمایش
-                        setTimeout(() => {
-                            commentElement.classList.remove('show');
-                            setTimeout(() => {
-                                if (commentElement.parentNode) {
-                                    commentElement.parentNode.removeChild(commentElement);
-                                }
-                            }, 500);
-                        }, 4000);
-                    }, index * 800);
+                    }, index * 1000);
                 });
             }
             
-            // اضافه کردن راهنما اگر وجود دارد
-            if (step.guideSteps) {
-                const guideContainer = document.createElement('div');
-                guideContainer.className = 'guide-steps';
-                
-                step.guideSteps.forEach(guideStep => {
-                    const stepElement = document.createElement('div');
-                    stepElement.className = 'guide-step';
-                    stepElement.textContent = guideStep;
-                    guideContainer.appendChild(stepElement);
-                });
-                
-                storyContent.appendChild(guideContainer);
-            }
-            
-            // تنظیم پیشرفت بار
-            resetProgressBars();
-            startProgressBar(step.duration);
+            // شروع پیشرفت بار
+            startProgressBars(step.duration);
             
             // تنظیم تایمر برای مرحله بعدی
-            clearInterval(storyInterval);
             storyInterval = setTimeout(() => {
                 nextStoryStep();
             }, step.duration);
@@ -2372,27 +1693,79 @@
             }
         }
         
-        function resetProgressBars() {
-            document.querySelectorAll('.progress-fill').forEach(bar => {
-                bar.style.width = '0%';
-                bar.style.transition = 'none';
-            });
-        }
-        
-        function startProgressBar(duration) {
+        function startProgressBars(duration) {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => bar.style.width = '0%');
+            
             clearInterval(progressInterval);
             
-            const progressBars = document.querySelectorAll('.progress-fill');
-            if (currentStep < progressBars.length) {
-                const currentBar = progressBars[currentStep];
-                currentBar.style.transition = `width ${duration}ms linear`;
-                currentBar.style.width = '100%';
-            }
+            const progressFill = document.getElementById(`progressFill${currentStep + 1}`);
+            let width = 0;
+            const increment = 100 / (duration / 50);
+            
+            progressInterval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(progressInterval);
+                } else {
+                    width += increment;
+                    progressFill.style.width = `${width}%`;
+                }
+            }, 50);
         }
         
-        window.onload = () => {
-            document.getElementById('typingText1').textContent = typingTexts.personal;
-        };
+        // منوی شناور بهبود یافته
+        const floatingBtn = document.getElementById('floatingBtn');
+        const menuContainer = document.getElementById('menuContainer');
+        
+        function toggleMenu() {
+            menuContainer.classList.toggle('active');
+        }
+        
+        function closeMenu() {
+            menuContainer.classList.remove('active');
+        }
+        
+        floatingBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMenu();
+        });
+        
+        document.getElementById('menuBackdrop').addEventListener('click', function() {
+            closeMenu();
+        });
+        
+        // شمارنده حجم کل
+        function updateVolumeCounter() {
+            // ذخیره مقدار فعلی در localStorage
+            const savedVolume = localStorage.getItem('totalVolume');
+            if (savedVolume) {
+                totalVolume = parseInt(savedVolume);
+            }
+            
+            // نمایش مقدار اولیه
+            document.getElementById('totalVolume').textContent = totalVolume.toLocaleString('fa-IR');
+            
+            // افزایش خودکار هر ثانیه
+            volumeInterval = setInterval(() => {
+                totalVolume += Math.floor(Math.random() * 1000) + 500;
+                document.getElementById('totalVolume').textContent = totalVolume.toLocaleString('fa-IR');
+                
+                // ذخیره مقدار جدید در localStorage
+                localStorage.setItem('totalVolume', totalVolume.toString());
+            }, 1000);
+        }
+        
+        // جلوگیری از کپی کردن متن
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            showNotification('امکان کپی کردن متن وجود ندارد');
+        });
+        
+        // مقداردهی اولیه تب‌ها
+        document.addEventListener('DOMContentLoaded', function() {
+            showMainTab('home');
+            updateVolumeCounter();
+        });
     </script>
 </body>
 </html>
