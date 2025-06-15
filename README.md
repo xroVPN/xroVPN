@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -23,6 +24,7 @@
             --transition: all 0.3s ease;
             --transition-slow: all 0.5s ease;
             --menu-color: #6a11cb;
+            --war-color: #FF5252;
         }
         
         * {
@@ -30,10 +32,6 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
         
         body {
@@ -44,15 +42,104 @@
             min-height: 100vh;
             padding-bottom: 70px;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(67,97,238,0.2) 0%, transparent 25%),
-                radial-gradient(circle at 90% 80%, rgba(255,107,53,0.2) 0%, transparent 25%),
-                linear-gradient(135deg, rgba(106,17,203,0.1) 0%, rgba(37,117,252,0.1) 100%);
+                radial-gradient(circle at 10% 20%, rgba(67,97,238,0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255,107,53,0.1) 0%, transparent 20%);
         }
         
         .container {
             max-width: 100%;
             margin: 0 auto;
             padding: 0 15px;
+        }
+        
+        /* هدر */
+        .app-header {
+            padding: 2rem 0 1rem;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .logo-icon:after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .logo-text:after {
+            content: 'ویرایش ۷';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            font-size: 0.6rem;
+            background: #FFC107;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 50px;
+            font-weight: 700;
+        }
+        
+        .announcement-box {
+            font-size: 0.95rem;
+            color: var(--lighter);
+            max-width: 90%;
+            margin: 1.5rem auto;
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeIn 1s both 0.5s;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 2px solid var(--primary);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 1px;
+            animation: blink-caret 0.75s step-end infinite;
         }
         
         /* استوری‌ها */
@@ -207,79 +294,6 @@
             transform: translateY(0);
         }
         
-        /* بخش اعلان */
-        .announcement-box {
-            border: 2px solid var(--primary);
-            border-radius: var(--radius-sm);
-            padding: 1rem;
-            margin: 1.5rem 0;
-            text-align: center;
-            background: rgba(30,30,30,0.7);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .announcement-box:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
-            z-index: 0;
-        }
-        
-        .announcement-text {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--light);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background-color: var(--primary);
-            animation: blink 0.9s infinite;
-            vertical-align: middle;
-            margin-right: 3px;
-        }
-        
-        .highlight {
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        .heart {
-            color: #fd79a8;
-            margin: 0 3px;
-        }
-        
-        .guide-link {
-            color: #00b894;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px dashed #00b894;
-        }
-        
-        .config-text {
-            color: var(--secondary);
-            font-style: italic;
-        }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        
         /* تب‌های اصلی */
         .main-tabs {
             display: flex;
@@ -328,6 +342,28 @@
             animation: fadeIn 0.5s ease;
         }
         
+        .message {
+            background: rgba(67,97,238,0.1);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin: 1rem 0;
+            border: 1px solid rgba(67,97,238,0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        .notice-label {
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-left: 0;
+            margin-right: 10px;
+            box-shadow: 0 3px 10px rgba(67,97,238,0.3);
+        }
+        
         /* فلگ‌ها */
         .flag-grid {
             display: grid;
@@ -347,6 +383,19 @@
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow);
+        }
+        
+        .flag-item.war {
+            background: rgba(255, 82, 82, 0.1);
+            border: 1px solid rgba(255, 82, 82, 0.2);
+        }
+        
+        .flag-item.war:before {
+            background: linear-gradient(135deg, rgba(255, 82, 82, 0.2), rgba(67,97,238,0.1));
+        }
+        
+        .flag-item.war:hover {
+            transform: translateY(-5px) scale(1.03);
         }
         
         .flag-item:before {
@@ -412,6 +461,12 @@
             background: rgba(76,175,80,0.2);
             color: #4CAF50;
             border: 1px solid #4CAF50;
+        }
+        
+        .status-badge.war {
+            background: rgba(255, 82, 82, 0.2);
+            color: var(--war-color);
+            border: 1px solid var(--war-color);
         }
         
         .status-badge.inactive {
@@ -502,6 +557,10 @@
             position: relative;
         }
         
+        .modal-header.war {
+            background: linear-gradient(90deg, var(--war-color), #C62828);
+        }
+        
         .modal-header h2 {
             font-size: 1.3rem;
             display: flex;
@@ -555,8 +614,16 @@
             transition: var(--transition);
         }
         
+        .modal-tab.war:after {
+            background: var(--war-color);
+        }
+        
         .modal-tab.active {
             color: var(--primary);
+        }
+        
+        .modal-tab.war.active {
+            color: var(--war-color);
         }
         
         .modal-tab.active:after {
@@ -590,6 +657,11 @@
             border-radius: 50px;
         }
         
+        .slider-value.war {
+            color: var(--war-color);
+            background: rgba(255, 82, 82, 0.1);
+        }
+        
         .slider {
             -webkit-appearance: none;
             width: 100%;
@@ -611,6 +683,10 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         
+        .slider.war::-webkit-slider-thumb {
+            background: var(--war-color);
+        }
+        
         .price-info {
             background: rgba(255,107,53,0.1);
             padding: 1rem;
@@ -620,9 +696,17 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
         
+        .price-info.war {
+            background: rgba(255, 82, 82, 0.1);
+        }
+        
         .price-info span {
             color: var(--primary);
             font-weight: 700;
+        }
+        
+        .price-info.war span {
+            color: var(--war-color);
         }
         
         /* قیمت نهایی */
@@ -639,6 +723,10 @@
             font-size: 1.8rem;
         }
         
+        .final-price.war span {
+            color: var(--war-color);
+        }
+        
         /* خلاصه سفارش */
         .order-summary {
             background: rgba(30,30,30,0.7);
@@ -646,6 +734,10 @@
             border-radius: var(--radius-sm);
             margin: 2rem 0;
             border-left: 3px solid var(--primary);
+        }
+        
+        .order-summary.war {
+            border-left: 3px solid var(--war-color);
         }
         
         .order-summary p {
@@ -659,6 +751,10 @@
         .order-summary .value {
             color: var(--primary);
             font-weight: 600;
+        }
+        
+        .order-summary.war .value {
+            color: var(--war-color);
         }
         
         /* فوتر مودال */
@@ -689,6 +785,12 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+        }
+        
+        .btn-war {
+            background: linear-gradient(135deg, var(--war-color), #C62828);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 82, 82, 0.3);
         }
         
         .btn-secondary {
@@ -1084,6 +1186,15 @@
         
         /* رسپانسیو */
         @media (max-width: 768px) {
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
             .flag-item {
                 padding: 0.8rem;
             }
@@ -1111,16 +1222,21 @@
             .volume-number {
                 font-size: 1.5rem;
             }
-            
-            .announcement-text {
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- بخش استوری‌ها - بالای صفحه -->
+        <header class="app-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">XRO VPN</div>
+            </div>
+        </header>
+
+        <!-- بخش استوری‌ها -->
         <div class="stories-container">
             <div class="story-item" onclick="openStory('you')">
                 <div class="story-circle">
@@ -1148,11 +1264,11 @@
             </div>
         </div>
 
-        <!-- بخش اعلان -->
+        <!-- کادر اعلانات -->
         <div class="announcement-box">
-            <div class="announcement-text" id="typing-container"></div>
+            <div id="typingText" class="typing-text"></div>
         </div>
-        
+
         <!-- تب‌های اصلی -->
         <div class="main-tabs">
             <button class="main-tab active" onclick="showMainTab('home')">
@@ -1171,7 +1287,19 @@
         
         <!-- محتوای تب‌های اصلی -->
         <div id="home-tab" class="main-tab-content active">
+            <div class="message">
+                <span class="notice-label">توجه</span>
+                <span>این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است</span>
+            </div>
             <div class="flag-grid">
+                <!-- کادر شرایط جنگی -->
+                <div class="flag-item war active" onclick="openModal('شرایط جنگی', 890, 170, false)">
+                    <span>🇮🇷 ⚔️ 🇮🇱</span>
+                    <p>شرایط جنگی</p>
+                    <div class="country-info">سرورهای ویژه برای شرایط فعلی با پینگ بسیار پایین و اتصال پایدار</div>
+                    <div class="status-badge war">ویژه</div>
+                </div>
+                
                 <div class="flag-item active" onclick="openModal('آمریکا', 1290, 298, false)">
                     <span>🇺🇸</span>
                     <p>آمریکا</p>
@@ -1179,7 +1307,7 @@
                     <div class="status-badge active">سرویس فعال</div>
                 </div>
                 <div class="flag-item active" onclick="openModal('انگلیس', 1290, 298, false)">
-                    <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+                    <span>🇬🇧</span>
                     <p>انگلیس</p>
                     <div class="country-info">سرورهای لندن با پهنای باند بالا و اتصال پایدار</div>
                     <div class="status-badge active">سرویس فعال</div>
@@ -1196,52 +1324,21 @@
                     <div class="country-info">سرورهای آمستردام با اتصال پایدار و بدون قطعی</div>
                     <div class="status-badge active">سرویس فعال</div>
                 </div>
-                <div class="flag-item active" onclick="openModal('آلمان', 1190, 258, false)">
-                    <span>🇩🇪</span>
-                    <p>آلمان</p>
-                    <div class="country-info">سرورهای فرانکفورت با کیفیت بالا و پینگ پایین</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                <div class="flag-item active" onclick="openModal('فرانسه', 1190, 258, false)">
-                    <span>🇫🇷</span>
-                    <p>فرانسه</p>
-                    <div class="country-info">سرورهای پاریس با اتصال پایدار و بدون قطعی</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                <div class="flag-item active" onclick="openModal('فنلاند', 1190, 258, false)">
-                    <span>🇫🇮</span>
-                    <p>فنلاند</p>
-                    <div class="country-info">سرورهای هلسینکی با کیفیت بالا و پینگ پایین</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                <div class="flag-item active" onclick="openModal('لهستان', 1190, 258, false)">
-                    <span>🇵🇱</span>
-                    <p>لهستان</p>
-                    <div class="country-info">سرورهای ورشو با اتصال پایدار و بدون قطعی</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
                 <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
                     <span>🇮🇳</span>
                     <p>هند</p>
                     <div class="country-info">سرورهای بمبئی با پهنای باند بالا (به زودی)</div>
                     <div class="status-badge inactive">غیرفعال</div>
                 </div>
-                <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
-                    <span>🇨🇳</span>
-                    <p>چین</p>
-                    <div class="country-info">سرورهای هنگ کنگ با پهنای باند بالا (به زودی)</div>
-                    <div class="status-badge inactive">غیرفعال</div>
-                </div>
-                <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
-                    <span>🇸🇦</span>
-                    <p>عربستان</p>
-                    <div class="country-info">سرورهای ریاض با پهنای باند بالا (به زودی)</div>
-                    <div class="status-badge inactive">غیرفعال</div>
-                </div>
             </div>
         </div>
         
         <div id="volume-tab" class="main-tab-content">
+            <div class="message">
+                <span class="notice-label">توجه</span>
+                <span>این بخش خدمات مصرفی تا حال حاضر را نمایش می‌دهد</span>
+            </div>
+            
             <!-- شمارنده حجم کل -->
             <div class="volume-counter">
                 <h3>حجم کل مصرفی کاربران</h3>
@@ -1252,11 +1349,15 @@
             <div style="text-align: center; padding: 2rem 0;">
                 <i class="fas fa-chart-pie" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
                 <h3 style="color: var(--primary); margin-bottom: 1rem;">مدیریت حجم مصرفی</h3>
-                <p style="color: var(--lighter);">در نسخه آینده امکان مشاهده و مدیریت حجم مصرفی اضافه خواهد شد</p>
+                <p style="color: var(--lighter);">در این بخش می‌توانید حجم مصرفی خود را مشاهده و مدیریت کنید</p>
             </div>
         </div>
         
         <div id="download-tab" class="main-tab-content">
+            <div class="message">
+                <span class="notice-label">توجه</span>
+                <span>این بخش مخصوص دانلود اپلیکیشن ویتوری برای سیستم شما است</span>
+            </div>
             <div class="download-items">
                 <div class="download-item">
                     <h3>
@@ -1268,7 +1369,7 @@
                         <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/05/12</div>
                     </div>
                     <p>نرم‌افزار v2rayNG برای دستگاه‌های اندروید. بهترین انتخاب برای کاربران اندروید با رابط کاربری ساده و امکانات پیشرفته.</p>
-                    <a href="https://github.com/2dust/v2rayNG/releases/download/1.8.5/v2rayNG_1.8.5.apk" class="download-btn">
+                    <a href="#" class="download-btn" onclick="showNotification('لینک دانلود به زودی اضافه خواهد شد')">
                         دانلود (12MB)
                         <i class="fas fa-download"></i>
                     </a>
@@ -1284,25 +1385,9 @@
                         <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/04/28</div>
                     </div>
                     <p>نرم‌افزار v2rayN برای سیستم‌عامل ویندوز. پشتیبانی از ویندوز 7 به بالا با قابلیت‌های مدیریت چند کانفیگ.</p>
-                    <a href="https://zarafe.click/wp-content/uploads/2024/10/v2rayN-Core.zip" class="download-btn">
+                    <a href="#" class="download-btn" onclick="showNotification('لینک دانلود به زودی اضافه خواهد شد')">
                         دانلود (45MB)
                         <i class="fas fa-download"></i>
-                    </a>
-                </div>
-                
-                <div class="download-item">
-                    <h3>
-                        <i class="fas fa-mobile-alt"></i>
-                        نسخه iOS
-                    </h3>
-                    <div class="download-meta">
-                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 2.1.3</div>
-                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/03/15</div>
-                    </div>
-                    <p>نرم‌افزار v2box برای دستگاه‌های iOS. بهترین انتخاب برای کاربران آیفون و آیپد با رابط کاربری ساده.</p>
-                    <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" class="download-btn" target="_blank">
-                        دانلود از اپ استور
-                        <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
             </div>
@@ -1330,7 +1415,7 @@
     <!-- مودال سفارش -->
     <div id="orderModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" id="modalHeader">
                 <span class="close-modal" onclick="closeModal()">×</span>
                 <h2 id="modalCountryName"><span>آمریکا</span> 🇺🇸</h2>
             </div>
@@ -1345,14 +1430,14 @@
                         </div>
                         <input type="range" min="10" max="300" value="10" class="slider" id="volumeSlider" oninput="updateVolume(this.value)">
                     </div>
-                    <div class="price-info">
+                    <div class="price-info" id="volumePriceInfo">
                         قیمت هر گیگ: <span id="volumePriceText">1,290 تومان</span>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" onclick="closeModal()">
                             انصراف
                         </button>
-                        <button class="btn btn-primary" onclick="showModalTab('days')">
+                        <button class="btn btn-primary" id="volumeNextButton" onclick="showModalTab('days')">
                             بعدی
                         </button>
                     </div>
@@ -1366,7 +1451,7 @@
                         </div>
                         <input type="range" min="5" max="140" value="5" class="slider" id="daysSlider" oninput="updateDays(this.value)">
                     </div>
-                    <div class="price-info">
+                    <div class="price-info" id="dayPriceInfo">
                         قیمت هر روز: <span id="dayPriceText">298 تومان</span>
                     </div>
                     <div class="modal-footer">
@@ -1401,10 +1486,10 @@
                 </div>
                 
                 <div id="finalTab" class="modal-tab-content">
-                    <div class="final-price">
+                    <div class="final-price" id="finalPriceContainer">
                         قیمت نهایی: <span id="finalPrice">0</span> تومان
                     </div>
-                    <div class="order-summary">
+                    <div class="order-summary" id="orderSummary">
                         <p>
                             <span>کشور:</span>
                             <span class="value" id="finalCountry">آمریکا</span>
@@ -1426,7 +1511,7 @@
                         <button class="btn btn-secondary" id="finalPreviousButton">
                             قبلی
                         </button>
-                        <button class="btn btn-primary" onclick="submitOrder()">
+                        <button class="btn btn-primary" id="submitOrderButton" onclick="submitOrder()">
                             سفارش
                         </button>
                     </div>
@@ -1475,7 +1560,7 @@
         این سرویس در حال حاضر غیرفعال می‌باشد
     </div>
     
-    <!-- منوی شناور بهبود یافته -->
+    <!-- منوی شناور -->
     <button id="floatingBtn" aria-label="منوی اصلی">
         <i class="fas fa-bars"></i>
     </button>
@@ -1484,16 +1569,16 @@
         <div id="menuBackdrop"></div>
         <div id="menuItems">
             <div class="menu-item" onclick="closeMenu()">
-                <i class="fas fa-times"></i>
-                <span>بستن منو</span>
+                <i class="fas fa-arrow-right"></i>
+                <span>بازگشت</span>
             </div>
             <div class="menu-item" onclick="showNotification('تست سرعت در نسخه بعدی اضافه خواهد شد')">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>تست سرعت</span>
             </div>
-            <div class="menu-item" onclick="window.open('https://t.me/xrovpn', '_blank')">
+            <div class="menu-item" onclick="showNotification('پشتیبانی تلگرام در نسخه بعدی فعال خواهد شد')">
                 <i class="fab fa-telegram"></i>
-                <span>پشتیبانی آنلاین</span>
+                <span>پشتیبانی تلگرام</span>
             </div>
             <div class="menu-item" onclick="showAbout()">
                 <i class="fas fa-info-circle"></i>
@@ -1515,7 +1600,8 @@
             minVolume: 10,
             maxVolume: 300,
             minDays: 5,
-            maxDays: 140
+            maxDays: 140,
+            isWar: false
         };
         
         // داده‌های استوری
@@ -1578,13 +1664,15 @@
         let totalVolume = 1700346912;
         let volumeInterval = null;
         
-        // پیام‌های اعلان
-        const announcementMessages = [
-            "امروز <span class='highlight'>" + getCurrentDay() + "</span> - در حال انجام سفارشات هستیم",
-            "سرویس جدید لهستان اضافه شد",
-            "امیدواریم از آپدیت جدید راضی باشید <span class='heart'>❤</span>",
-            "اگر تازه‌کاری، روی <a href='#' class='guide-link'>راهنمای سایت</a> کلیک کن",
-            "همکاری با فروشندگان <span class='config-text'>کانفیگ :)</span>"
+        // اعلانات
+        const days = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
+        const today = new Date().getDay();
+        const todayName = days[today];
+        
+        const announcements = [
+            `${todayName}: درحال انجام سفارشات هستیم`,
+            "سرویس جدید برای شرایط جنگی اضافه شد",
+            "آقای ایکسرو در این شرایط پشت مردم است"
         ];
         
         // نمایش تب‌های اصلی
@@ -1626,6 +1714,8 @@
         
         // باز کردن مودال سفارش
         function openModal(country, volumePrice, dayPrice, isAffiliate) {
+            const isWar = country === 'شرایط جنگی';
+            
             currentOrder = {
                 country: country,
                 volume: isAffiliate ? 15 : 10,
@@ -1637,20 +1727,62 @@
                 minVolume: isAffiliate ? 15 : 10,
                 maxVolume: isAffiliate ? 1000 : 300,
                 minDays: isAffiliate ? 10 : 5,
-                maxDays: isAffiliate ? 365 : 140
+                maxDays: isAffiliate ? 365 : 140,
+                isWar: isWar
             };
+            
+            // تنظیم استایل‌های مربوط به شرایط جنگی
+            const modalHeader = document.getElementById('modalHeader');
+            const modalTabs = document.getElementById('modalTabs');
+            const volumeValue = document.getElementById('volumeValue');
+            const daysValue = document.getElementById('daysValue');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const daysSlider = document.getElementById('daysSlider');
+            const volumePriceInfo = document.getElementById('volumePriceInfo');
+            const dayPriceInfo = document.getElementById('dayPriceInfo');
+            const finalPriceContainer = document.getElementById('finalPriceContainer');
+            const orderSummary = document.getElementById('orderSummary');
+            const volumeNextButton = document.getElementById('volumeNextButton');
+            const daysNextButton = document.getElementById('daysNextButton');
+            const submitOrderButton = document.getElementById('submitOrderButton');
+            
+            if (isWar) {
+                modalHeader.className = 'modal-header war';
+                volumeValue.className = 'slider-value war';
+                daysValue.className = 'slider-value war';
+                volumeSlider.className = 'slider war';
+                daysSlider.className = 'slider war';
+                volumePriceInfo.className = 'price-info war';
+                dayPriceInfo.className = 'price-info war';
+                finalPriceContainer.className = 'final-price war';
+                orderSummary.className = 'order-summary war';
+                volumeNextButton.className = 'btn btn-war';
+                daysNextButton.className = 'btn btn-war';
+                submitOrderButton.className = 'btn btn-war';
+            } else {
+                modalHeader.className = 'modal-header';
+                volumeValue.className = 'slider-value';
+                daysValue.className = 'slider-value';
+                volumeSlider.className = 'slider';
+                daysSlider.className = 'slider';
+                volumePriceInfo.className = 'price-info';
+                dayPriceInfo.className = 'price-info';
+                finalPriceContainer.className = 'final-price';
+                orderSummary.className = 'order-summary';
+                volumeNextButton.className = 'btn btn-primary';
+                daysNextButton.className = 'btn btn-primary';
+                submitOrderButton.className = 'btn btn-primary';
+            }
             
             document.getElementById('modalCountryName').innerHTML = `<span>${country}</span> ${getCountryFlag(country)}`;
             document.getElementById('finalCountry').textContent = country;
             document.getElementById('volumePriceText').textContent = volumePrice.toLocaleString('fa-IR') + ' تومان';
             document.getElementById('dayPriceText').textContent = dayPrice.toLocaleString('fa-IR') + ' تومان';
             
-            const volumeSlider = document.getElementById('volumeSlider');
             volumeSlider.min = currentOrder.minVolume;
             volumeSlider.max = currentOrder.maxVolume;
             volumeSlider.value = currentOrder.volume;
             
-            const daysSlider = document.getElementById('daysSlider');
             daysSlider.min = currentOrder.minDays;
             daysSlider.max = currentOrder.maxDays;
             daysSlider.value = currentOrder.days;
@@ -1669,16 +1801,14 @@
         function getCountryFlag(country) {
             const flags = {
                 'آمریکا': '🇺🇸',
-                'انگلیس': '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+                'انگلیس': '🇬🇧',
                 'ترکیه': '🇹🇷',
                 'هلند': '🇳🇱',
                 'فرانسه': '🇫🇷',
                 'فنلاند': '🇫🇮',
-                'آلمان': '🇩🇪',
-                'لهستان': '🇵🇱',
                 'هند': '🇮🇳',
                 'چین': '🇨🇳',
-                'عربستان': '🇸🇦'
+                'شرایط جنگی': '🇮🇷 ⚔️ 🇮🇱'
             };
             return flags[country] || '';
         }
@@ -1687,10 +1817,10 @@
         function setupModalTabs(isAffiliate) {
             const modalTabs = document.getElementById('modalTabs');
             modalTabs.innerHTML = `
-                <div class="modal-tab active" onclick="showModalTab('volume')">حجم</div>
-                <div class="modal-tab" onclick="showModalTab('days')">روز</div>
-                ${isAffiliate ? '<div class="modal-tab" onclick="showModalTab(\'count\')">تعداد</div>' : ''}
-                <div class="modal-tab" onclick="showModalTab('final')">نهایی</div>
+                <div class="modal-tab ${currentOrder.isWar ? 'war' : ''} active" onclick="showModalTab('volume')">حجم</div>
+                <div class="modal-tab ${currentOrder.isWar ? 'war' : ''}" onclick="showModalTab('days')">روز</div>
+                ${isAffiliate ? `<div class="modal-tab ${currentOrder.isWar ? 'war' : ''}" onclick="showModalTab('count')">تعداد</div>` : ''}
+                <div class="modal-tab ${currentOrder.isWar ? 'war' : ''}" onclick="showModalTab('final')">نهایی</div>
             `;
             
             document.getElementById('finalCountContainer').style.display = isAffiliate ? 'flex' : 'none';
@@ -1862,7 +1992,7 @@
             }, 50);
         }
         
-        // منوی شناور بهبود یافته
+        // منوی شناور
         const floatingBtn = document.getElementById('floatingBtn');
         const menuContainer = document.getElementById('menuContainer');
         
@@ -1904,66 +2034,60 @@
             }, 1000);
         }
         
-        // افکت تایپ برای اعلان
-        function startTypingEffect() {
-            const typingContainer = document.getElementById('typing-container');
-            let messageIndex = 0;
-            let charIndex = 0;
+        // نمایش اعلان تایپی
+        function typeAnnouncement() {
+            const typingText = document.getElementById('typingText');
+            let currentAnnouncement = 0;
+            let i = 0;
             let isDeleting = false;
-            let typingSpeed = 80;
-            const pauseBetweenMessages = 3500;
+            const speed = 50; // سرعت تایپ (میلی‌ثانیه)
             
-            function type() {
-                const currentMessage = announcementMessages[messageIndex];
+            function typeWriter() {
+                const announcement = announcements[currentAnnouncement];
                 
                 if (isDeleting) {
-                    typingContainer.innerHTML = currentMessage.substring(0, charIndex - 1);
-                    charIndex--;
-                    typingSpeed = 40;
+                    typingText.textContent = announcement.substring(0, i-1);
+                    i--;
                 } else {
-                    typingContainer.innerHTML = currentMessage.substring(0, charIndex + 1) + '<span class="cursor"></span>';
-                    charIndex++;
-                    typingSpeed = charIndex % 4 === 0 ? 100 : 80;
+                    typingText.textContent = announcement.substring(0, i+1);
+                    i++;
                 }
                 
-                if (!isDeleting && charIndex === currentMessage.length) {
-                    typingSpeed = pauseBetweenMessages;
+                if (!isDeleting && i === announcement.length) {
                     isDeleting = true;
-                    setTimeout(type, typingSpeed);
-                    return;
-                }
-                
-                if (isDeleting && charIndex === 0) {
+                    setTimeout(typeWriter, 2000);
+                } else if (isDeleting && i === 0) {
                     isDeleting = false;
-                    messageIndex = (messageIndex + 1) % announcementMessages.length;
-                    typingSpeed = 500;
+                    currentAnnouncement = (currentAnnouncement + 1) % announcements.length;
+                    setTimeout(typeWriter, 500);
+                } else {
+                    setTimeout(typeWriter, speed);
                 }
-                
-                setTimeout(type, typingSpeed);
             }
             
-            // شروع افکت تایپ
-            typingContainer.innerHTML = '<span class="cursor"></span>';
-            setTimeout(type, 800);
+            typeWriter();
         }
         
-        // دریافت روز جاری
-        function getCurrentDay() {
-            const days = ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه"];
-            return days[new Date().getDay()];
-        }
-        
-        // جلوگیری از کپی کردن متن
-        document.addEventListener('copy', function(e) {
-            e.preventDefault();
-            showNotification('امکان کپی کردن متن وجود ندارد');
+        // بستن با کلید ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (menuContainer.classList.contains('active')) {
+                    closeMenu();
+                } else if (document.getElementById('orderModal').style.display === 'block') {
+                    closeModal();
+                } else if (document.getElementById('aboutPage').style.display === 'block') {
+                    closeAbout();
+                } else if (document.getElementById('storyModal').style.display === 'block') {
+                    closeStory();
+                }
+            }
         });
         
         // مقداردهی اولیه تب‌ها
         document.addEventListener('DOMContentLoaded', function() {
             showMainTab('home');
             updateVolumeCounter();
-            startTypingEffect();
+            typeAnnouncement();
         });
     </script>
 </body>
