@@ -5,6 +5,193 @@
     <title>XRO VPN | فروشگاه کانفیگ اختصاصی</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* استایل صفحه لودینگ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+        
+        /* صفحه لودینگ */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 80px;
+            margin-top: -30px;
+        }
+        
+        .logo-text {
+            font-size: 48px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+        
+        .mr {
+            color: #FFD700;
+            opacity: 0;
+            animation: slideInRight 1s forwards 0.5s;
+        }
+        
+        .xero {
+            color: #FFFF00;
+            opacity: 0;
+            animation: slideInLeft 1s forwards 0.5s;
+        }
+        
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOutRight {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes slideOutLeft {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+        }
+        
+        .loading-footer {
+            position: absolute;
+            bottom: 120px;
+            width: 80%;
+            max-width: 500px;
+        }
+        
+        @keyframes slideDown {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100px); opacity: 0; }
+        }
+        
+        .waiting-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .waiting-text {
+            font-size: 18px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dot {
+            opacity: 0;
+            animation: dotAnimation 1.5s infinite;
+            margin-right: 2px;
+        }
+        
+        .dot:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .dot:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes dotAnimation {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        .loading-bar-container {
+            width: 100%;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 8px;
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+        }
+        
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FFA500, #FFD700);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 8px;
+        }
+        
+        .counter {
+            font-size: 16px;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        /* صفحه اصلی */
+        .main-screen {
+            display: none;
+            animation: fadeIn 1s ease;
+            opacity: 0;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         /* متغیرهای اصلی */
         :root {
             --primary: #FF6B35;
@@ -26,34 +213,15 @@
             --war-color: #FF5252;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        
-        body {
-            font-family: 'Vazir', sans-serif;
-            background: var(--darker);
-            color: var(--light);
-            line-height: 1.6;
-            min-height: 100vh;
-            padding-bottom: 70px;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(67,97,238,0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255,107,53,0.1) 0%, transparent 20%);
-            touch-action: pan-y;
-        }
-        
         .container {
             max-width: 100%;
             margin: 0 auto;
             padding: 0 15px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            touch-action: pan-y;
         }
         
         /* هدر */
@@ -120,10 +288,10 @@
         
         .announcement-box {
             font-size: 0.95rem;
-            color: var(--lighter);
+            color: var(--light);
             max-width: 90%;
             margin: 1.5rem auto;
-            background: rgba(255,255,255,0.05);
+            background: rgba(30, 30, 30, 0.8);
             padding: 1rem;
             border-radius: var(--radius);
             border: 1px solid rgba(255,255,255,0.1);
@@ -439,13 +607,14 @@
         }
         
         .message {
-            background: rgba(67,97,238,0.1);
+            background: rgba(67,97,238,0.2);
             padding: 1rem;
             border-radius: var(--radius);
             margin: 1rem 0;
             border: 1px solid rgba(67,97,238,0.2);
             display: flex;
             align-items: center;
+            color: #e0e0e0;
         }
         
         .notice-label {
@@ -526,6 +695,7 @@
             margin: 0;
             font-size: 0.95rem;
             font-weight: 600;
+            color: #f0f0f0;
         }
         
         .country-info {
@@ -571,8 +741,8 @@
             border: 1px solid #9E9E9E;
         }
         
-        /* شمارنده حجم */
-        .volume-counter {
+        /* بخش DNS */
+        .dns-container {
             background: linear-gradient(135deg, rgba(67,97,238,0.2), rgba(255,107,53,0.2));
             padding: 1.5rem;
             border-radius: var(--radius);
@@ -584,7 +754,7 @@
             overflow: hidden;
         }
         
-        .volume-counter:before {
+        .dns-container:before {
             content: '';
             position: absolute;
             top: 0;
@@ -595,30 +765,42 @@
             z-index: 0;
         }
         
-        .volume-counter h3 {
+        .dns-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(30,30,30,0.7);
+            border-radius: var(--radius-sm);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .dns-label {
+            font-weight: 600;
             color: var(--primary);
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
         }
         
-        .volume-number {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .dns-value {
+            font-family: monospace;
+            font-size: 1.1rem;
             color: white;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            z-index: 1;
         }
         
-        .volume-label {
-            font-size: 0.9rem;
-            color: var(--lighter);
-            margin-top: 0.5rem;
-            position: relative;
-            z-index: 1;
+        .copy-btn {
+            padding: 0.5rem 1rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .copy-btn:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
         }
         
         /* مودال سفارش */
@@ -1322,414 +1504,449 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="app-header">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="logo-text">XRO VPN</div>
-            </div>
-        </header>
-
-        <!-- بخش استوری‌ها -->
-        <div class="stories-container">
-            <div class="story-item" onclick="openStory('you')">
-                <div class="story-circle">
-                    <div class="story-icon">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-                <div class="story-label">نظرات کاربران</div>
-            </div>
-            <div class="story-item" onclick="openStory('security')">
-                <div class="story-circle">
-                    <div class="story-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                </div>
-                <div class="story-label">امنیت</div>
-            </div>
-            <div class="story-item" onclick="openStory('guide')">
-                <div class="story-circle">
-                    <div class="story-icon">
-                        <i class="fas fa-question"></i>
-                    </div>
-                </div>
-                <div class="story-label">راهنمای خرید</div>
-            </div>
-        </div>
-
-        <!-- کادر اعلانات -->
-        <div class="announcement-box">
-            <div id="typingText" class="typing-text"></div>
-        </div>
-
-        <!-- تب‌های اصلی -->
-        <div class="main-tabs">
-            <button class="main-tab active" onclick="showMainTab('home')">
-                <i class="fas fa-store"></i>
-                <span>فروشگاه</span>
-            </button>
-            <button class="main-tab" onclick="showMainTab('volume')">
-                <i class="fas fa-database"></i>
-                <span>حجم</span>
-            </button>
-            <button class="main-tab" onclick="showMainTab('download')">
-                <i class="fas fa-download"></i>
-                <span>دانلود</span>
-            </button>
-        </div>
-        
-        <!-- محتوای تب‌های اصلی -->
-        <div id="home-tab" class="main-tab-content active">
-            <div class="message">
-                <span class="notice-label">توجه</span>
-                <span>این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است</span>
-            </div>
-            <div class="flag-grid">
-                <!-- کادر شرایط جنگی -->
-                <div class="flag-item war active" onclick="openModal('شرایط جنگی', 1170, 170, false)">
-                    <span>🇮🇷 ⚔️ 🇮🇱</span>
-                    <p>شرایط جنگی</p>
-                    <div class="country-info">سرورهای ویژه برای شرایط فعلی با پینگ بسیار پایین و اتصال پایدار</div>
-                    <div class="status-badge war">ویژه</div>
-                </div>
-                
-                <div class="flag-item active" onclick="openModal('آمریکا', 1390, 298, false)">
-                    <span>🇺🇸</span>
-                    <p>آمریکا</p>
-                    <div class="country-info">سرورهای پرسرعت در نیویورک و لس آنجلس با پینگ پایین</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                
-                <div class="flag-item active" onclick="openModal('انگلیس', 1390, 298, false)">
-                    <span>🇬🇧</span>
-                    <p>انگلیس</p>
-                    <div class="country-info">سرورهای لندن با پهنای باند بالا و اتصال پایدار</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                
-                <div class="flag-item active" onclick="openModal('ترکیه', 1390, 198, false)">
-                    <span>🇹🇷</span>
-                    <p>ترکیه</p>
-                    <div class="country-info">سرورهای استانبول با پینگ بسیار پایین برای کاربران ایرانی</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                
-                <div class="flag-item active" onclick="openModal('آلمان', 1390, 298, false)">
-                    <span>🇩🇪</span>
-                    <p>آلمان</p>
-                    <div class="country-info">سرورهای فرانکفورت با اتصال پایدار و بدون قطعی</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                
-                <div class="flag-item active" onclick="openModal('لهستان', 1390, 298, false)">
-                    <span>🇵🇱</span>
-                    <p>لهستان</p>
-                    <div class="country-info">سرورهای ورشو با پهنای باند بالا و اتصال پایدار</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                
-                <div class="flag-item active" onclick="openModal('فرانسه', 1390, 298, false)">
-                    <span>🇫🇷</span>
-                    <p>فرانسه</p>
-                    <div class="country-info">سرورهای پاریس با پهنای باند بالا و اتصال پایدار</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                
-                <div class="flag-item active" onclick="openModal('هند', 1390, 198, false)">
-                    <span>🇮🇳</span>
-                    <p>هند</p>
-                    <div class="country-info">سرورهای بمبئی با پهنای باند بالا و اتصال پایدار</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                
-                <div class="flag-item active" onclick="openModal('برزیل', 1390, 298, false)">
-                    <span>🇧🇷</span>
-                    <p>برزیل</p>
-                    <div class="country-info">سرورهای سائوپائولو با پهنای باند بالا و اتصال پایدار</div>
-                    <div class="status-badge active">سرویس فعال</div>
-                </div>
-                
-                <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
-                    <span>🇸🇦</span>
-                    <p>عربستان</p>
-                    <div class="country-info">سرورهای ریاض با پهنای باند بالا (به زودی)</div>
-                    <div class="status-badge inactive">غیرفعال</div>
-                </div>
-                
-                <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
-                    <span>🇮🇶</span>
-                    <p>عراق</p>
-                    <div class="country-info">سرورهای بغداد با پهنای باند بالا (به زودی)</div>
-                    <div class="status-badge inactive">غیرفعال</div>
-                </div>
+    <!-- صفحه لودینگ -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="logo-container">
+            <div class="logo-text">
+                <div class="mr">آقای</div>
+                <div class="xero">ایکسرو</div>
             </div>
         </div>
         
-        <div id="volume-tab" class="main-tab-content">
-            <div class="message">
-                <span class="notice-label">توجه</span>
-                <span>این بخش خدمات مصرفی تا حال حاضر را نمایش می‌دهد</span>
-            </div>
-            
-            <!-- شمارنده حجم کل -->
-            <div class="volume-counter">
-                <h3>حجم کل مصرفی کاربران</h3>
-                <div class="volume-number" id="totalVolume">1,700,346,912</div>
-                <div class="volume-label">مگابایت</div>
-            </div>
-        </div>
-        
-        <div id="download-tab" class="main-tab-content">
-            <div class="message">
-                <span class="notice-label">توجه</span>
-                <span>این بخش مخصوص دانلود اپلیکیشن ویتوری برای سیستم شما است</span>
-            </div>
-            <div class="download-items">
-                <div class="download-item">
-                    <h3>
-                        <i class="fas fa-mobile-alt"></i>
-                        نسخه اندروید
-                    </h3>
-                    <div class="download-meta">
-                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 1.8.5</div>
-                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/05/12</div>
-                    </div>
-                    <p>نرم‌افزار v2rayNG برای دستگاه‌های اندروید. بهترین انتخاب برای کاربران اندروید با رابط کاربری ساده و امکانات پیشرفته.</p>
-                    <a href="https://myket.ir/app/com.v2ray.ang" class="download-btn" target="_blank">
-                        دانلود از مایکت
-                        <i class="fas fa-download"></i>
-                    </a>
+        <div class="loading-footer">
+            <div class="waiting-container">
+                <div class="waiting-text">
+                    منتظر باشید
+                    <span class="dot">.</span>
+                    <span class="dot">.</span>
+                    <span class="dot">.</span>
                 </div>
-                
-                <div class="download-item">
-                    <h3>
-                        <i class="fas fa-desktop"></i>
-                        نسخه ویندوز
-                    </h3>
-                    <div class="download-meta">
-                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 6.27</div>
-                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/04/28</div>
-                    </div>
-                    <p>نرم‌افزار v2rayN برای سیستم‌عامل ویندوز. پشتیبانی از ویندوز 7 به بالا با قابلیت‌های مدیریت چند کانفیگ.</p>
-                    <a href="#" class="download-btn" onclick="showNotification('لینک دانلود به زودی اضافه خواهد شد')">
-                        دانلود (45MB)
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-                
-                <div class="download-item">
-                    <h3>
-                        <i class="fas fa-mobile"></i>
-                        نسخه iOS
-                    </h3>
-                    <div class="download-meta">
-                        <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 2.1.1</div>
-                        <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/03/15</div>
-                    </div>
-                    <p>نرم‌افزار Shadowrocket برای دستگاه‌های iOS. بهترین انتخاب برای کاربران آیفون و آیپد با رابط کاربری ساده.</p>
-                    <a href="#" class="download-btn" onclick="showNotification('لینک اپ استور به زودی اضافه خواهد شد')">
-                        دانلود از اپ استور
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
+                <div class="counter" id="counter">0%</div>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loadingBar"></div>
             </div>
         </div>
     </div>
     
-    <!-- مودال استوری -->
-    <div id="storyModal" class="story-modal">
-        <div class="story-header">
-            <div class="story-progress">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill1"></div>
+    <!-- صفحه اصلی -->
+    <div class="main-screen" id="mainScreen">
+        <div class="container">
+            <header class="app-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="logo-text">XRO VPN</div>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill2"></div>
+            </header>
+
+            <!-- بخش استوری‌ها -->
+            <div class="stories-container">
+                <div class="story-item" onclick="openStory('you')">
+                    <div class="story-circle">
+                        <div class="story-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="story-label">نظرات کاربران</div>
+                </div>
+                <div class="story-item" onclick="openStory('security')">
+                    <div class="story-circle">
+                        <div class="story-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="story-label">امنیت</div>
+                </div>
+                <div class="story-item" onclick="openStory('guide')">
+                    <div class="story-circle">
+                        <div class="story-icon">
+                            <i class="fas fa-question"></i>
+                        </div>
+                    </div>
+                    <div class="story-label">راهنمای خرید</div>
                 </div>
             </div>
-            <div class="close-story" onclick="closeStory()">×</div>
-        </div>
-        <div class="story-content" id="storyContent">
-            <!-- محتوای استوری در اینجا نمایش داده می‌شود -->
-            <div class="nav-area left" onclick="prevStoryStep()"></div>
-            <div class="nav-area right" onclick="nextStoryStep()"></div>
-        </div>
-    </div>
-    
-    <!-- مودال سفارش -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header" id="modalHeader">
-                <span class="close-modal" onclick="closeModal()">×</span>
-                <h2 id="modalCountryName"><span>آمریکا</span> 🇺🇸</h2>
+
+            <!-- کادر اعلانات -->
+            <div class="announcement-box">
+                <div id="typingText" class="typing-text"></div>
             </div>
-            <div class="modal-body">
-                <div class="modal-tabs" id="modalTabs"></div>
-                
-                <div id="volumeTab" class="modal-tab-content active">
-                    <div class="slider-container">
-                        <div class="slider-header">
-                            <span>حجم کانفیگ:</span>
-                            <span class="slider-value" id="volumeValue">10 گیگ</span>
-                        </div>
-                        <input type="range" min="10" max="300" value="10" class="slider" id="volumeSlider" oninput="updateVolume(this.value)">
-                    </div>
-                    <div class="price-info" id="volumePriceInfo">
-                        قیمت هر گیگ: <span id="volumePriceText">1,390 تومان</span>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" onclick="closeModal()">
-                            انصراف
-                        </button>
-                        <button class="btn btn-primary" id="volumeNextButton" onclick="showModalTab('days')">
-                            بعدی
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="daysTab" class="modal-tab-content">
-                    <div class="slider-container">
-                        <div class="slider-header">
-                            <span>تعداد روز:</span>
-                            <span class="slider-value" id="daysValue">5 روز</span>
-                        </div>
-                        <input type="range" min="5" max="140" value="5" class="slider" id="daysSlider" oninput="updateDays(this.value)">
-                    </div>
-                    <div class="price-info" id="dayPriceInfo">
-                        قیمت هر روز: <span id="dayPriceText">298 تومان</span>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" onclick="showModalTab('volume')">
-                            قبلی
-                        </button>
-                        <button class="btn btn-primary" id="daysNextButton">
-                            بعدی
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="countTab" class="modal-tab-content">
-                    <div class="slider-container">
-                        <div class="slider-header">
-                            <span>تعداد کانفیگ:</span>
-                            <span class="slider-value" id="countValue">3 عدد</span>
-                        </div>
-                        <input type="range" min="3" max="15" value="3" class="slider" id="countSlider" oninput="updateCount(this.value)">
-                    </div>
-                    <div class="price-info">
-                        تعداد کانفیگ‌های مورد نیاز خود را انتخاب کنید
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" onclick="showModalTab('days')">
-                            قبلی
-                        </button>
-                        <button class="btn btn-primary" onclick="showModalTab('final')">
-                            بعدی
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="finalTab" class="modal-tab-content">
-                    <div class="final-price" id="finalPriceContainer">
-                        قیمت نهایی: <span id="finalPrice">0</span> تومان
-                    </div>
-                    <div class="order-summary" id="orderSummary">
-                        <p>
-                            <span>کشور:</span>
-                            <span class="value" id="finalCountry">آمریکا</span>
-                        </p>
-                        <p>
-                            <span>حجم:</span>
-                            <span class="value" id="finalVolume">10 گیگ</span>
-                        </p>
-                        <p>
-                            <span>مدت:</span>
-                            <span class="value" id="finalDays">5 روز</span>
-                        </p>
-                        <p id="finalCountContainer" style="display: none;">
-                            <span>تعداد:</span>
-                            <span class="value" id="finalCount">3 عدد</span>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" id="finalPreviousButton">
-                            قبلی
-                        </button>
-                        <button class="btn btn-primary" id="submitOrderButton" onclick="submitOrder()">
-                            سفارش
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- صفحه درباره ما -->
-    <div id="aboutPage" class="about-page">
-        <div class="about-content">
-            <div class="about-header">
-                <span class="close-about" onclick="closeAbout()">×</span>
-                <h2>درباره ما</h2>
-                <p>XRO VPN - ارائه کانفیگ سرورهای پایدار و پرسرعت</p>
+
+            <!-- تب‌های اصلی -->
+            <div class="main-tabs">
+                <button class="main-tab active" onclick="showMainTab('home')">
+                    <i class="fas fa-store"></i>
+                    <span>فروشگاه</span>
+                </button>
+                <button class="main-tab" onclick="showMainTab('dns')">
+                    <i class="fas fa-network-wired"></i>
+                    <span>DNS</span>
+                </button>
+                <button class="main-tab" onclick="showMainTab('download')">
+                    <i class="fas fa-download"></i>
+                    <span>دانلود</span>
+                </button>
             </div>
             
-            <div class="about-text">
-                <p>XRO VPN ارائه دهنده کانفیگ سرورهای پایدار و پرسرعت در کشورهای مختلف می‌باشد. ما با استفاده از بهترین سرورها و فناوری‌های روز، اتصالی پایدار و با کیفیت را برای شما فراهم می‌کنیم.</p>
-                
-                <p>تیم ما متشکل از متخصصان شبکه است که سال‌ها تجربه در زمینه ارائه سرویس‌های اینترنتی دارند. ما از آخرین فناوری‌ها برای ارائه بهترین کیفیت استفاده می‌کنیم و همواره در حال به‌روزرسانی سرورها و بهبود خدمات خود هستیم.</p>
-            </div>
-            
-            <h3 style="text-align: center; margin: 2rem 0 1.5rem; color: var(--primary);">تیم ما</h3>
-            <div class="team-members">
-                <div class="team-member">
-                    <div class="member-avatar">X</div>
-                    <div class="member-name">آقای ایکسرو</div>
-                    <div class="member-role">مدیر فنی و بنیان‌گذار</div>
+            <!-- محتوای تب‌های اصلی -->
+            <div id="home-tab" class="main-tab-content active">
+                <div class="message">
+                    <span class="notice-label">توجه</span>
+                    <span>این بخش مخصوص سفارش کانفیگ برای استفاده شخصی است</span>
+                </div>
+                <div class="flag-grid">
+                    <!-- کادر شرایط جنگی -->
+                    <div class="flag-item war active" onclick="openModal('شرایط جنگی', 1170, 170, false)">
+                        <span>🇮🇷 ⚔️ 🇮🇱</span>
+                        <p>شرایط جنگی</p>
+                        <div class="country-info">سرورهای ویژه برای شرایط فعلی با پینگ بسیار پایین و اتصال پایدار</div>
+                        <div class="status-badge war">ویژه</div>
+                    </div>
+                    
+                    <div class="flag-item active" onclick="openModal('آمریکا', 1390, 298, false)">
+                        <span>🇺🇸</span>
+                        <p>آمریکا</p>
+                        <div class="country-info">سرورهای پرسرعت در نیویورک و لس آنجلس با پینگ پایین</div>
+                        <div class="status-badge active">سرویس فعال</div>
+                    </div>
+                    
+                    <div class="flag-item active" onclick="openModal('انگلیس', 1390, 298, false)">
+                        <span>🇬🇧</span>
+                        <p>انگلیس</p>
+                        <div class="country-info">سرورهای لندن با پهنای باند بالا و اتصال پایدار</div>
+                        <div class="status-badge active">سرویس فعال</div>
+                    </div>
+                    
+                    <div class="flag-item active" onclick="openModal('ترکیه', 1390, 198, false)">
+                        <span>🇹🇷</span>
+                        <p>ترکیه</p>
+                        <div class="country-info">سرورهای استانبول با پینگ بسیار پایین برای کاربران ایرانی</div>
+                        <div class="status-badge active">سرویس فعال</div>
+                    </div>
+                    
+                    <div class="flag-item active" onclick="openModal('آلمان', 1390, 298, false)">
+                        <span>🇩🇪</span>
+                        <p>آلمان</p>
+                        <div class="country-info">سرورهای فرانکفورت با اتصال پایدار و بدون قطعی</div>
+                        <div class="status-badge active">سرویس فعال</div>
+                    </div>
+                    
+                    <div class="flag-item active" onclick="openModal('لهستان', 1390, 298, false)">
+                        <span>🇵🇱</span>
+                        <p>لهستان</p>
+                        <div class="country-info">سرورهای ورشو با پهنای باند بالا و اتصال پایدار</div>
+                        <div class="status-badge active">سرویس فعال</div>
+                    </div>
+                    
+                    <div class="flag-item active" onclick="openModal('فرانسه', 1390, 298, false)">
+                        <span>🇫🇷</span>
+                        <p>فرانسه</p>
+                        <div class="country-info">سرورهای پاریس با پهنای باند بالا و اتصال پایدار</div>
+                        <div class="status-badge active">سرویس فعال</div>
+                    </div>
+                    
+                    <div class="flag-item active" onclick="openModal('هند', 1390, 198, false)">
+                        <span>🇮🇳</span>
+                        <p>هند</p>
+                        <div class="country-info">سرورهای بمبئی با پهنای باند بالا و اتصال پایدار</div>
+                        <div class="status-badge active">سرویس فعال</div>
+                    </div>
+                    
+                    <div class="flag-item active" onclick="openModal('برزیل', 1390, 298, false)">
+                        <span>🇧🇷</span>
+                        <p>برزیل</p>
+                        <div class="country-info">سرورهای سائوپائولو با پهنای باند بالا و اتصال پایدار</div>
+                        <div class="status-badge active">سرویس فعال</div>
+                    </div>
+                    
+                    <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
+                        <span>🇸🇦</span>
+                        <p>عربستان</p>
+                        <div class="country-info">سرورهای ریاض با پهنای باند بالا (به زودی)</div>
+                        <div class="status-badge inactive">غیرفعال</div>
+                    </div>
+                    
+                    <div class="flag-item inactive" onclick="showNotification('این سرویس به زودی فعال خواهد شد')">
+                        <span>🇮🇶</span>
+                        <p>عراق</p>
+                        <div class="country-info">سرورهای بغداد با پهنای باند بالا (به زودی)</div>
+                        <div class="status-badge inactive">غیرفعال</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="social-links">
-                <a href="https://t.me/xrovpn" class="social-link telegram" target="_blank">
+            <div id="dns-tab" class="main-tab-content">
+                <div class="message">
+                    <span class="notice-label">توجه</span>
+                    <span>این بخش با استفاده از DNS سرعتی، پایدار برای بازی برقرار کنید. کاهش پینگ و جلوگیری از نوسان در بازی‌های آنلاین</span>
+                </div>
+                
+                <!-- بخش DNS -->
+                <div class="dns-container">
+                    <div class="dns-item">
+                        <span class="dns-label">DNS اول:</span>
+                        <span class="dns-value" id="dns1">78.157.42.100</span>
+                        <button class="copy-btn" onclick="copyToClipboard('dns1')">کپی</button>
+                    </div>
+                    <div class="dns-item">
+                        <span class="dns-label">DNS دوم:</span>
+                        <span class="dns-value" id="dns2">78.157.42.101</span>
+                        <button class="copy-btn" onclick="copyToClipboard('dns2')">کپی</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="download-tab" class="main-tab-content">
+                <div class="message">
+                    <span class="notice-label">توجه</span>
+                    <span>این بخش مخصوص دانلود اپلیکیشن ویتوری برای سیستم شما است</span>
+                </div>
+                <div class="download-items">
+                    <div class="download-item">
+                        <h3>
+                            <i class="fas fa-mobile-alt"></i>
+                            نسخه اندروید
+                        </h3>
+                        <div class="download-meta">
+                            <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 1.8.5</div>
+                            <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/05/12</div>
+                        </div>
+                        <p>نرم‌افزار v2rayNG برای دستگاه‌های اندروید. بهترین انتخاب برای کاربران اندروید با رابط کاربری ساده و امکانات پیشرفته.</p>
+                        <a href="https://myket.ir/app/com.v2ray.ang" class="download-btn" target="_blank">
+                            دانلود از مایکت
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="download-item">
+                        <h3>
+                            <i class="fas fa-desktop"></i>
+                            نسخه ویندوز
+                        </h3>
+                        <div class="download-meta">
+                            <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 6.27</div>
+                            <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/04/28</div>
+                        </div>
+                        <p>نرم‌افزار v2rayN برای سیستم‌عامل ویندوز. پشتیبانی از ویندوز 7 به بالا با قابلیت‌های مدیریت چند کانفیگ.</p>
+                        <a href="#" class="download-btn" onclick="showNotification('لینک دانلود به زودی اضافه خواهد شد')">
+                            دانلود (45MB)
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="download-item">
+                        <h3>
+                            <i class="fas fa-mobile"></i>
+                            نسخه iOS
+                        </h3>
+                        <div class="download-meta">
+                            <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 2.1.1</div>
+                            <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/03/15</div>
+                        </div>
+                        <p>نرم‌افزار Shadowrocket برای دستگاه‌های iOS. بهترین انتخاب برای کاربران آیفون و آیپد با رابط کاربری ساده.</p>
+                        <a href="#" class="download-btn" onclick="showNotification('لینک اپ استور به زودی اضافه خواهد شد')">
+                            دانلود از اپ استور
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- مودال استوری -->
+        <div id="storyModal" class="story-modal">
+            <div class="story-header">
+                <div class="story-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill1"></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill2"></div>
+                    </div>
+                </div>
+                <div class="close-story" onclick="closeStory()">×</div>
+            </div>
+            <div class="story-content" id="storyContent">
+                <!-- محتوای استوری در اینجا نمایش داده می‌شود -->
+                <div class="nav-area left" onclick="prevStoryStep()"></div>
+                <div class="nav-area right" onclick="nextStoryStep()"></div>
+            </div>
+        </div>
+        
+        <!-- مودال سفارش -->
+        <div id="orderModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header" id="modalHeader">
+                    <span class="close-modal" onclick="closeModal()">×</span>
+                    <h2 id="modalCountryName"><span>آمریکا</span> 🇺🇸</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-tabs" id="modalTabs"></div>
+                    
+                    <div id="volumeTab" class="modal-tab-content active">
+                        <div class="slider-container">
+                            <div class="slider-header">
+                                <span>حجم کانفیگ:</span>
+                                <span class="slider-value" id="volumeValue">10 گیگ</span>
+                            </div>
+                            <input type="range" min="10" max="300" value="10" class="slider" id="volumeSlider" oninput="updateVolume(this.value)">
+                        </div>
+                        <div class="price-info" id="volumePriceInfo">
+                            قیمت هر گیگ: <span id="volumePriceText">1,390 تومان</span>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" onclick="closeModal()">
+                                انصراف
+                            </button>
+                            <button class="btn btn-primary" id="volumeNextButton" onclick="showModalTab('days')">
+                                بعدی
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="daysTab" class="modal-tab-content">
+                        <div class="slider-container">
+                            <div class="slider-header">
+                                <span>تعداد روز:</span>
+                                <span class="slider-value" id="daysValue">5 روز</span>
+                            </div>
+                            <input type="range" min="5" max="140" value="5" class="slider" id="daysSlider" oninput="updateDays(this.value)">
+                        </div>
+                        <div class="price-info" id="dayPriceInfo">
+                            قیمت هر روز: <span id="dayPriceText">298 تومان</span>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" onclick="showModalTab('volume')">
+                                قبلی
+                            </button>
+                            <button class="btn btn-primary" id="daysNextButton">
+                                بعدی
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="countTab" class="modal-tab-content">
+                        <div class="slider-container">
+                            <div class="slider-header">
+                                <span>تعداد کانفیگ:</span>
+                                <span class="slider-value" id="countValue">3 عدد</span>
+                            </div>
+                            <input type="range" min="3" max="15" value="3" class="slider" id="countSlider" oninput="updateCount(this.value)">
+                        </div>
+                        <div class="price-info">
+                            تعداد کانفیگ‌های مورد نیاز خود را انتخاب کنید
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" onclick="showModalTab('days')">
+                                قبلی
+                            </button>
+                            <button class="btn btn-primary" onclick="showModalTab('final')">
+                                بعدی
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="finalTab" class="modal-tab-content">
+                        <div class="final-price" id="finalPriceContainer">
+                            قیمت نهایی: <span id="finalPrice">0</span> تومان
+                        </div>
+                        <div class="order-summary" id="orderSummary">
+                            <p>
+                                <span>کشور:</span>
+                                <span class="value" id="finalCountry">آمریکا</span>
+                            </p>
+                            <p>
+                                <span>حجم:</span>
+                                <span class="value" id="finalVolume">10 گیگ</span>
+                            </p>
+                            <p>
+                                <span>مدت:</span>
+                                <span class="value" id="finalDays">5 روز</span>
+                            </p>
+                            <p id="finalCountContainer" style="display: none;">
+                                <span>تعداد:</span>
+                                <span class="value" id="finalCount">3 عدد</span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" id="finalPreviousButton">
+                                قبلی
+                            </button>
+                            <button class="btn btn-primary" id="submitOrderButton" onclick="submitOrder()">
+                                سفارش
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- صفحه درباره ما -->
+        <div id="aboutPage" class="about-page">
+            <div class="about-content">
+                <div class="about-header">
+                    <span class="close-about" onclick="closeAbout()">×</span>
+                    <h2>درباره ما</h2>
+                    <p>XRO VPN - ارائه کانفیگ سرورهای پایدار و پرسرعت</p>
+                </div>
+                
+                <div class="about-text">
+                    <p>XRO VPN ارائه دهنده کانفیگ سرورهای پایدار و پرسرعت در کشورهای مختلف می‌باشد. ما با استفاده از بهترین سرورها و فناوری‌های روز، اتصالی پایدار و با کیفیت را برای شما فراهم می‌کنیم.</p>
+                    
+                    <p>تیم ما متشکل از متخصصان شبکه است که سال‌ها تجربه در زمینه ارائه سرویس‌های اینترنتی دارند. ما از آخرین فناوری‌ها برای ارائه بهترین کیفیت استفاده می‌کنیم و همواره در حال به‌روزرسانی سرورها و بهبود خدمات خود هستیم.</p>
+                </div>
+                
+                <h3 style="text-align: center; margin: 2rem 0 1.5rem; color: var(--primary);">تیم ما</h3>
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="member-avatar">X</div>
+                        <div class="member-name">آقای ایکسرو</div>
+                        <div class="member-role">مدیر فنی و بنیان‌گذار</div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://t.me/xrovpn" class="social-link telegram" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link instagram" onclick="showNotification('صفحه اینستاگرام به زودی راه‌اندازی می‌شود')">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- اعلان -->
+        <div class="notification" id="notification">
+            این سرویس در حال حاضر غیرفعال می‌باشد
+        </div>
+        
+        <!-- منوی شناور -->
+        <button id="floatingBtn" aria-label="منوی اصلی">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div id="menuContainer">
+            <div id="menuBackdrop"></div>
+            <div id="menuItems">
+                <div class="menu-item" onclick="closeMenu()">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>بازگشت</span>
+                </div>
+                <div class="menu-item" onclick="showNotification('تست سرعت در نسخه بعدی اضافه خواهد شد')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>تست سرعت</span>
+                </div>
+                <div class="menu-item" onclick="showNotification('پشتیبانی تلگرام در نسخه بعدی فعال خواهد شد')">
                     <i class="fab fa-telegram"></i>
-                </a>
-                <a href="#" class="social-link instagram" onclick="showNotification('صفحه اینستاگرام به زودی راه‌اندازی می‌شود')">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- اعلان -->
-    <div class="notification" id="notification">
-        این سرویس در حال حاضر غیرفعال می‌باشد
-    </div>
-    
-    <!-- منوی شناور -->
-    <button id="floatingBtn" aria-label="منوی اصلی">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <div id="menuContainer">
-        <div id="menuBackdrop"></div>
-        <div id="menuItems">
-            <div class="menu-item" onclick="closeMenu()">
-                <i class="fas fa-arrow-right"></i>
-                <span>بازگشت</span>
-            </div>
-            <div class="menu-item" onclick="showNotification('تست سرعت در نسخه بعدی اضافه خواهد شد')">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>تست سرعت</span>
-            </div>
-            <div class="menu-item" onclick="showNotification('پشتیبانی تلگرام در نسخه بعدی فعال خواهد شد')">
-                <i class="fab fa-telegram"></i>
-                <span>پشتیبانی تلگرام</span>
-            </div>
-            <div class="menu-item" onclick="showAbout()">
-                <i class="fas fa-info-circle"></i>
-                <span>درباره ما</span>
+                    <span>پشتیبانی تلگرام</span>
+                </div>
+                <div class="menu-item" onclick="showAbout()">
+                    <i class="fas fa-info-circle"></i>
+                    <span>درباره ما</span>
+                </div>
             </div>
         </div>
     </div>
@@ -2262,6 +2479,17 @@
             typeWriter();
         }
         
+        // کپی DNS
+        function copyToClipboard(id) {
+            const text = document.getElementById(id).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('DNS با موفقیت کپی شد');
+            }).catch(err => {
+                console.error('خطا در کپی کردن متن: ', err);
+                showNotification('خطا در کپی کردن DNS');
+            });
+        }
+        
         // بستن با کلید ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
@@ -2277,12 +2505,49 @@
             }
         });
         
-        // مقداردهی اولیه تب‌ها
-        document.addEventListener('DOMContentLoaded', function() {
-            showMainTab('home');
-            updateVolumeCounter();
-            typeAnnouncement();
-        });
+        // شمارنده و تغییر صفحه
+        const loadingScreen = document.getElementById('loadingScreen');
+        const mainScreen = document.getElementById('mainScreen');
+        const loadingBar = document.getElementById('loadingBar');
+        const counter = document.getElementById('counter');
+        const mrText = document.querySelector('.mr');
+        const xeroText = document.querySelector('.xero');
+        const loadingFooter = document.querySelector('.loading-footer');
+        
+        let count = 0;
+        const interval = setInterval(() => {
+            if (count < 100) {
+                count++;
+                loadingBar.style.width = `${count}%`;
+                counter.textContent = `${count}%`;
+                
+                const glowIntensity = count/3;
+                loadingBar.style.boxShadow = `0 0 ${glowIntensity}px rgba(255, 215, 0, 0.7)`;
+            } else {
+                clearInterval(interval);
+                
+                // انیمیشن خروج بخش پایین
+                loadingFooter.style.animation = 'slideDown 0.8s forwards';
+                
+                // تاخیر قبل از انیمیشن خروج متن
+                setTimeout(() => {
+                    // انیمیشن خروج متن‌ها به جهت مخالف
+                    mrText.style.animation = 'slideOutRight 0.8s forwards';
+                    xeroText.style.animation = 'slideOutLeft 0.8s forwards';
+                    
+                    // نمایش صفحه اصلی پس از اتمام انیمیشن‌ها
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        mainScreen.style.display = 'block';
+                        mainScreen.style.opacity = '1';
+                        
+                        // مقداردهی اولیه تب‌ها
+                        showMainTab('home');
+                        typeAnnouncement();
+                    }, 800);
+                }, 300);
+            }
+        }, 40);
     </script>
 </body>
 </html>
