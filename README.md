@@ -1,63 +1,71 @@
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>XRO VPN | فروشگاه کانفیگ اختصاصی</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* استایل‌های پایه و متغیرهای جدید */
+        /* سیستم طراحی پیشرفته */
         :root {
             --primary: #6e45e2;
+            --primary-light: #9d8aff;
             --primary-dark: #4a2bbd;
-            --secondary: #88d3ce;
-            --secondary-dark: #50c9c3;
+            --secondary: #ff4757;
+            --secondary-light: #ff6b81;
             --accent: #ff7e5f;
             --accent-dark: #f95a3b;
-            --dark: #0f0f1a;
-            --darker: #0a0a12;
-            --dark-light: #1a1a2e;
-            --light: rgba(255,255,255,0.95);
-            --lighter: rgba(255,255,255,0.7);
-            --neon-shadow: 0 0 15px rgba(110, 69, 226, 0.5);
-            --radius: 16px;
-            --radius-sm: 10px;
-            --shadow: 0 8px 20px rgba(0,0,0,0.3);
-            --shadow-lg: 0 15px 40px rgba(0,0,0,0.4);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --transition-slow: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --phone-color: #4CAF50;
-            --phone-dark: #2E7D32;
-            --modem-color: #2196F3;
-            --modem-dark: #1565C0;
-            --affiliate-color: #9C27B0;
-            --affiliate-dark: #7B1FA2;
+            --background: #0f0f1a;
+            --surface: #1a1a2e;
+            --surface-light: #2a2a3e;
+            --on-surface: #ffffff;
+            --on-surface-light: rgba(255,255,255,0.8);
+            --success: #2ed573;
+            --info: #1e90ff;
+            --warning: #ffa502;
+            --error: #ff4757;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.2);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Yekan', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: var(--darker);
-            color: #f0f0f0;
-            overflow-x: hidden;
-            line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(110, 69, 226, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(136, 211, 206, 0.1) 0%, transparent 20%);
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
-        /* صفحه لودینگ بهبود یافته */
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: var(--background);
+            color: var(--on-surface);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(110, 69, 226, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(255, 71, 87, 0.15) 0%, transparent 30%);
+            touch-action: manipulation;
+        }
+
+        /* صفحه لودینگ پیشرفته */
         .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--darker);
+            background: var(--background);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -65,132 +73,76 @@
             z-index: 1000;
             overflow: hidden;
         }
-        
+
         .logo-container {
-            text-align: center;
-            margin-bottom: 80px;
-            margin-top: -30px;
-            animation: fadeIn 1s both;
             position: relative;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s both;
         }
-        
-        .logo-text {
-            font-size: 48px;
-            font-weight: bold;
+
+        .logo-animation {
+            width: 150px;
+            height: 150px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 15px;
-            text-shadow: var(--neon-shadow);
             position: relative;
         }
-        
-        .mr {
+
+        .logo-text {
+            font-size: 72px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .logo-text span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-text .heart {
             color: var(--secondary);
-            opacity: 0;
-            animation: slideInRight 0.8s forwards 0.3s;
+            animation: pulse 1.5s infinite;
         }
-        
-        .xero {
-            color: var(--primary);
-            opacity: 0;
-            animation: slideInLeft 0.8s forwards 0.3s;
+
+        .logo-text .x {
+            color: white;
         }
-        
-        .logo-container::before {
-            content: '';
+
+        .heart-progress {
             position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(110, 69, 226, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(20px);
-            animation: pulse 4s infinite alternate;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 0;
+            background: var(--secondary);
+            z-index: 1;
+            border-radius: 0 0 10px 10px;
+            transition: height 0.3s ease;
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            100% { transform: scale(1.2); opacity: 0.8; }
-        }
-        
-        @keyframes slideInRight {
-            0% { transform: translateX(100px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideInLeft {
-            0% { transform: translateX(-100px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOutRight {
-            0% { transform: translateX(0); opacity: 1; }
-            100% { transform: translateX(100px); opacity: 0; }
-        }
-        
-        @keyframes slideOutLeft {
-            0% { transform: translateX(0); opacity: 1; }
-            100% { transform: translateX(-100px); opacity: 0; }
-        }
-        
-        .loading-footer {
-            position: absolute;
-            bottom: 120px;
+
+        .loading-progress {
             width: 80%;
-            max-width: 500px;
-            animation: fadeIn 1s both 0.5s;
-        }
-        
-        .waiting-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .waiting-text {
-            font-size: 18px;
-            color: var(--secondary);
-            display: flex;
-            align-items: center;
-        }
-        
-        .dot {
-            opacity: 0;
-            animation: dotAnimation 1.5s infinite;
-            margin-right: 2px;
-        }
-        
-        .dot:nth-child(1) { animation-delay: 0.2s; }
-        .dot:nth-child(2) { animation-delay: 0.4s; }
-        .dot:nth-child(3) { animation-delay: 0.6s; }
-        
-        @keyframes dotAnimation {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-        
-        .loading-bar-container {
-            width: 100%;
-            height: 15px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            max-width: 300px;
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
             overflow: hidden;
-            margin-bottom: 8px;
-            box-shadow: 0 0 15px rgba(110, 69, 226, 0.3);
             position: relative;
         }
-        
-        .loading-bar {
+
+        .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
             width: 0%;
-            transition: width 0.3s;
-            border-radius: 8px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 6px;
+            transition: width 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        
-        .loading-bar::after {
+
+        .progress-bar::after {
             content: '';
             position: absolute;
             top: 0;
@@ -199,145 +151,652 @@
             bottom: 0;
             background: linear-gradient(90deg, 
                 transparent, 
-                rgba(255, 255, 255, 0.3), 
+                rgba(255,255,255,0.4), 
                 transparent);
-            animation: loadingShine 2s infinite;
-        }
-        
-        @keyframes loadingShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .counter {
-            font-size: 16px;
-            font-weight: bold;
-            background: linear-gradient(90deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* صفحه اصلی */
-        .main-screen {
-            display: none;
-            animation: fadeIn 1s ease;
-            opacity: 0;
-            min-height: 100vh;
-            overflow-y: auto;
-            padding-bottom: 80px;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: loadingShine 1.5s infinite;
         }
 
-        /* هدر بهبود یافته */
-        .app-header {
-            padding: 2rem 0 1rem;
-            text-align: center;
-            animation: fadeIn 0.8s both 0.3s;
-            position: relative;
+        /* صفحه لاگین */
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-slow);
         }
-        
-        .logo {
+
+        .login-screen.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .login-container {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9);
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                rgba(110, 69, 226, 0.1),
+                rgba(255, 71, 87, 0.1)
+            );
+            transform: rotate(30deg);
+            animation: shine 6s linear infinite;
+        }
+
+        .login-screen.active .login-container {
+            transform: scale(1);
+        }
+
+        .login-title {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: var(--primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .fingerprint-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+        }
+
+        .fingerprint-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--surface-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
             position: relative;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 30px rgba(0,0,0,0.5),
+                0 0 0 10px rgba(110, 69, 226, 0.2),
+                0 0 0 20px rgba(110, 69, 226, 0.1);
         }
-        
+
+        .fingerprint-icon {
+            font-size: 80px;
+            color: var(--primary);
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+
+        .fingerprint-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0%, transparent 0%);
+            transition: var(--transition-slow);
+            z-index: 1;
+        }
+
+        .fingerprint-scan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to bottom, 
+                rgba(110, 69, 226, 0.5), 
+                transparent);
+            z-index: 3;
+            animation: scan 3s infinite;
+            opacity: 0;
+        }
+
+        .fingerprint-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            z-index: 4;
+            box-shadow: 
+                0 0 0 6px rgba(110, 69, 226, 0.3),
+                0 0 0 12px rgba(110, 69, 226, 0.2),
+                0 0 30px rgba(110, 69, 226, 0.4);
+            transition: var(--transition);
+        }
+
+        .fingerprint-btn i {
+            font-size: 60px;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .fingerprint-btn.active {
+            transform: translate(-50%, -50%) scale(0.95);
+            box-shadow: 
+                0 0 0 4px rgba(110, 69, 226, 0.4),
+                0 0 0 10px rgba(110, 69, 226, 0.3),
+                0 0 25px rgba(110, 69, 226, 0.5);
+        }
+
+        .fingerprint-btn.active i {
+            transform: scale(0.9);
+        }
+
+        .login-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--on-surface-light);
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-error {
+            color: var(--secondary);
+            margin-top: 10px;
+            font-size: 13px;
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* صفحه اصلی */
+        .app-container {
+            display: none;
+            max-width: 100%;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.3s forwards;
+        }
+
+        /* هدر */
+        .app-header {
+            padding: 20px 16px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 15px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-left: 12px;
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
-            transition: var(--transition);
-            position: relative;
-            z-index: 1;
+            box-shadow: var(--shadow-md);
         }
-        
-        .logo-icon:hover {
-            transform: rotate(15deg) scale(1.1);
-            box-shadow: 
-                0 12px 25px rgba(110, 69, 226, 0.4),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
+
+        .logo-icon i {
+            font-size: 20px;
+            color: white;
         }
-        
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 18px;
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(10px);
-            animation: pulse 3s infinite alternate;
-        }
-        
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 800;
+
+        .logo-text-header {
+            font-size: 20px;
+            font-weight: 700;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            position: relative;
-            text-shadow: var(--neon-shadow);
         }
-        
-        .logo-text::after {
-            content: 'ویرایش ویژه';
-            position: absolute;
-            top: -10px;
-            left: 0;
-            font-size: 0.6rem;
-            background: var(--accent);
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 50px;
-            font-weight: 700;
-            box-shadow: 0 3px 10px rgba(255, 126, 95, 0.3);
-        }
-        
-        /* کادر اعلانات بهبود یافته */
-        .announcement-box {
-            font-size: 0.95rem;
-            color: var(--light);
-            max-width: 90%;
-            margin: 1.5rem auto;
-            background: rgba(30, 30, 50, 0.6);
-            padding: 1rem;
-            border-radius: var(--radius);
-            border: 1px solid rgba(110, 69, 226, 0.3);
-            animation: fadeIn 1s both 0.5s;
-            min-height: 60px;
+
+        /* کنترل موزیک */
+        .music-control-btn {
+            background: transparent;
+            border: none;
+            color: var(--on-surface);
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .music-control-btn::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .music-control-btn.active::after {
+            opacity: 1;
+        }
+
+        .music-control-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* مودال کنترل موزیک */
+        .music-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
             backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .music-content {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 400px;
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .music-modal.active .music-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .close-music {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 24px;
+            color: var(--on-surface-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-music:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .music-title {
+            font-size: 20px;
+            margin-bottom: 24px;
+            color: var(--primary);
+        }
+
+        .music-cover {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 60px;
+            box-shadow: 0 10px 40px rgba(110, 69, 226, 0.5);
             position: relative;
             overflow: hidden;
         }
-        
+
+        .music-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.1), 
+                transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .music-cover:hover::before {
+            opacity: 1;
+        }
+
+        .song-info {
+            margin-bottom: 24px;
+        }
+
+        .song-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .song-artist {
+            font-size: 14px;
+            color: var(--on-surface-light);
+        }
+
+        .music-progress-container {
+            margin-bottom: 20px;
+        }
+
+        .music-progress {
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .music-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: width 0.1s linear;
+        }
+
+        .music-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--on-surface-light);
+        }
+
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            background: var(--surface-light);
+            color: var(--on-surface);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+            background: var(--primary);
+            color: white;
+        }
+
+        .control-btn i {
+            font-size: 20px;
+        }
+
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .play-btn i {
+            font-size: 28px;
+        }
+
+        /* استوری‌های پیشرفته */
+        .stories-container {
+            padding: 16px 8px;
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .stories-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .story-item {
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .story-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .story-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.8;
+            animation: rotateGradient 4s linear infinite;
+        }
+
+        .story-avatar-inner {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .story-item:hover .story-avatar-inner {
+            transform: scale(1.05);
+        }
+
+        .story-avatar-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            border: 3px solid var(--surface);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .story-label {
+            font-size: 13px;
+            color: var(--on-surface);
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .story-item:hover .story-label {
+            color: var(--primary);
+        }
+
+        .story-new {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 3px solid var(--surface);
+            animation: pulse 1.5s infinite;
+        }
+
+        /* مودال استوری */
+        .story-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .story-content {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 400px;
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .story-modal.active .story-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .close-story {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 24px;
+            color: var(--on-surface-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-story:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .story-title {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .story-text {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        /* اعلانات */
+        .announcement-container {
+            padding: 0 16px;
+            margin-bottom: 16px;
+        }
+
+        .announcement-box {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(110, 69, 226, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
         .announcement-box::before {
             content: '';
             position: absolute;
@@ -345,511 +804,106 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(110, 69, 226, 0.1), transparent);
-            z-index: -1;
+            background: linear-gradient(90deg, 
+                rgba(110, 69, 226, 0.1) 0%, 
+                transparent 50%, 
+                rgba(255, 71, 87, 0.1) 100%);
+            z-index: 0;
         }
-        
-        .typing-text {
-            display: inline-block;
-            overflow: hidden;
-            border-right: 2px solid var(--primary);
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 1px;
-            animation: blink-caret 0.75s step-end infinite;
-        }
-        
-        /* استوری‌های بهبود یافته */
-        .stories-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 1.5rem 0;
-            padding: 0 10px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            animation: fadeIn 0.8s both 0.4s;
-        }
-        
-        .stories-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .story-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            flex: 0 0 auto;
-            transition: var(--transition);
-        }
-        
-        .story-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .story-circle {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+
+        .announcement-text {
             position: relative;
-            margin-bottom: 8px;
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
-        }
-        
-        .story-circle::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            z-index: -1;
-            opacity: 0.6;
-            filter: blur(5px);
-        }
-        
-        .story-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--dark-light);
-            border-radius: 50%;
+            z-index: 1;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--on-surface);
+            min-height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: 
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
-        }
-        
-        .story-label {
-            font-size: 0.8rem;
-            color: var(--lighter);
             text-align: center;
         }
-        
-        /* تب‌های اصلی بهبود یافته */
+
+        /* تب‌های اصلی */
         .main-tabs {
             display: flex;
-            margin: 1.5rem 0;
-            background: var(--dark-light);
-            border-radius: var(--radius);
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            margin: 16px;
             overflow: hidden;
-            border: 1px solid rgba(110, 69, 226, 0.2);
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
-            position: relative;
-            animation: fadeIn 0.8s both 0.5s;
+            box-shadow: var(--shadow-sm);
         }
-        
+
         .main-tab {
             flex: 1;
-            padding: 1rem;
-            background: transparent;
+            padding: 12px;
             border: none;
+            background: transparent;
+            font-family: inherit;
+            font-weight: 500;
+            color: var(--on-surface-light);
             cursor: pointer;
-            font-weight: 600;
-            color: var(--lighter);
             transition: var(--transition);
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 5px;
-            position: relative;
+            gap: 6px;
         }
-        
-        .main-tab i {
-            font-size: 1.2rem;
-        }
-        
+
         .main-tab.active {
-            color: white;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            box-shadow: 
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
+            color: var(--on-surface);
         }
-        
-        .main-tab:hover:not(.active) {
-            background: rgba(110, 69, 226, 0.1);
-        }
-        
-        /* محتوای تب‌های اصلی */
-        .main-tab-content {
-            margin: 1rem 0;
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .main-tab-content.active {
-            display: block;
-        }
-        
-        .message {
-            background: rgba(67,97,238,0.2);
-            padding: 1rem;
-            border-radius: var(--radius);
-            margin: 1rem 0;
-            border: 1px solid rgba(110, 69, 226, 0.3);
-            display: flex;
-            align-items: center;
-            color: #e0e0e0;
-            animation: fadeIn 0.8s both 0.6s;
-            box-shadow: 
-                0 5px 15px rgba(0,0,0,0.2),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-            backdrop-filter: blur(5px);
-        }
-        
-        .notice-label {
-            background: var(--primary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            margin-left: 0;
-            margin-right: 10px;
-            box-shadow: 0 3px 10px rgba(110, 69, 226, 0.3);
-        }
-        
-        /* فلگ‌های بهبود یافته */
-        .flag-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            padding: 1rem 0;
-            animation: fadeIn 0.8s both 0.7s;
-        }
-        
-        .flag-item {
-            background: var(--dark-light);
-            padding: 1.5rem 1rem;
-            text-align: center;
-            border-radius: var(--radius);
-            cursor: pointer;
-            border: 1px solid rgba(110, 69, 226, 0.2);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
-        }
-        
-        .flag-item::before {
+
+        .main-tab.active::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
-            z-index: 0;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .flag-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 15px 40px rgba(0,0,0,0.4),
-                inset 2px 2px 5px rgba(255,255,255,0.05),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
-            border-color: var(--primary);
-        }
-        
-        .flag-item:hover::before {
-            opacity: 1;
-        }
-        
-        .flag-item.phone {
-            background: rgba(76, 175, 80, 0.1);
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-        
-        .flag-item.phone::before {
-            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), transparent);
-        }
-        
-        .flag-item.modem {
-            background: rgba(33, 150, 243, 0.1);
-            border: 1px solid rgba(33, 150, 243, 0.3);
-        }
-        
-        .flag-item.modem::before {
-            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), transparent);
-        }
-        
-        .flag-item span {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: var(--transition);
-        }
-        
-        .flag-item:hover span {
-            transform: scale(1.1);
-        }
-        
-        .flag-item p {
-            margin: 0;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #f0f0f0;
-        }
-        
-        .flag-item .flag-description {
-            font-size: 0.8rem;
-            color: var(--lighter);
-            margin-top: 0.8rem;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: var(--transition-slow);
-        }
-        
-        .flag-item:hover .flag-description {
-            opacity: 1;
-            max-height: 100px;
-        }
-        
-        .status-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 0.7rem;
-            padding: 0.3rem 0.6rem;
-            border-radius: 50px;
-            font-weight: 700;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        .status-badge.phone {
-            background: rgba(76,175,80,0.2);
-            color: var(--phone-color);
-            border: 1px solid var(--phone-color);
-        }
-        
-        .status-badge.modem {
-            background: rgba(33, 150, 243, 0.2);
-            color: var(--modem-color);
-            border: 1px solid var(--modem-color);
-        }
-        
-        /* مودال سفارش بهبود یافته */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.95);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        
-        .modal-content {
-            background: var(--dark-light);
-            border-radius: var(--radius);
-            max-width: 95%;
-            width: 100%;
-            margin: 5% auto;
-            overflow: hidden;
-            border: 1px solid rgba(110, 69, 226, 0.3);
-            box-shadow: 
-                0 25px 50px rgba(0,0,0,0.5),
-                inset 2px 2px 5px rgba(255,255,255,0.05),
-                inset -2px -2px 5px rgba(0,0,0,0.5);
-            animation: modalFadeIn 0.3s ease;
-            transform-origin: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .modal-header {
-            padding: 1.5rem;
-            color: white;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .modal-header.phone {
-            background: linear-gradient(90deg, var(--phone-color), var(--phone-dark));
-        }
-        
-        .modal-header.modem {
-            background: linear-gradient(90deg, var(--modem-color), var(--modem-dark));
-        }
-        
-        .modal-header.affiliate {
-            background: linear-gradient(90deg, var(--affiliate-color), var(--affiliate-dark));
-        }
-        
-        .modal-header h2 {
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-header h2 span {
-            margin-left: 10px;
-            font-size: 1.6rem;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: white;
-            transition: var(--transition);
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        
-        .close-modal:hover {
-            transform: rotate(90deg);
-            color: var(--accent);
-        }
-        
-        .modal-body {
-            padding: 1.5rem;
-        }
-        
-        /* تب‌های مودال بهبود یافته */
-        .modal-tabs {
-            display: flex;
-            border-bottom: 1px solid rgba(110, 69, 226, 0.2);
-            margin-bottom: 1.5rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            position: relative;
-        }
-        
-        .modal-tabs::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: rgba(110, 69, 226, 0.1);
-        }
-        
-        .modal-tab {
-            padding: 0.8rem 1.2rem;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--lighter);
-            position: relative;
-            transition: var(--transition);
-            min-width: 100px;
-            text-align: center;
-            background: transparent;
-            border: none;
-            outline: none;
-        }
-        
-        .modal-tab::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            right: 0;
-            width: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
             height: 3px;
-            transition: var(--transition);
+            background: var(--primary);
             border-radius: 3px 3px 0 0;
         }
-        
-        .modal-tab.phone::after {
-            background: var(--phone-color);
+
+        .main-tab i {
+            font-size: 20px;
         }
-        
-        .modal-tab.modem::after {
-            background: var(--modem-color);
-        }
-        
-        .modal-tab.affiliate::after {
-            background: var(--affiliate-color);
-        }
-        
-        .modal-tab.active {
-            color: var(--primary);
-        }
-        
-        .modal-tab.phone.active {
-            color: var(--phone-color);
-        }
-        
-        .modal-tab.modem.active {
-            color: var(--modem-color);
-        }
-        
-        .modal-tab.affiliate.active {
-            color: var(--affiliate-color);
-        }
-        
-        .modal-tab.active::after {
-            width: 100%;
-        }
-        
-        /* محتوای تب‌های مودال با انیمیشن */
-        .modal-tab-content {
+
+        /* محتوای تب‌ها */
+        .tab-content {
             display: none;
-            animation: fadeIn 0.3s ease;
+            padding: 16px;
+            animation: fadeIn 0.4s ease;
         }
-        
-        .modal-tab-content.active {
+
+        .tab-content.active {
             display: block;
         }
-        
-        /* گزینه‌های مدت زمان بهبود یافته */
-        .duration-options {
+
+        /* کارت‌های سرویس */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
         }
-        
-        .duration-option {
-            background: rgba(30,30,50,0.7);
-            padding: 1.2rem 1rem;
-            border-radius: var(--radius-sm);
+
+        .service-card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 20px 16px;
             text-align: center;
-            cursor: pointer;
             transition: var(--transition);
-            border: 1px solid rgba(110, 69, 226, 0.2);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid transparent;
             position: relative;
             overflow: hidden;
-            box-shadow: 
-                0 5px 15px rgba(0,0,0,0.2),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
+            cursor: pointer;
         }
-        
-        .duration-option::before {
+
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -857,801 +911,534 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
-            z-index: 0;
             opacity: 0;
             transition: var(--transition);
         }
-        
-        .duration-option:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
             border-color: var(--primary);
         }
-        
-        .duration-option:hover::before {
+
+        .service-card:hover::before {
             opacity: 1;
         }
-        
-        .duration-option.phone {
-            border-color: rgba(76, 175, 80, 0.3);
-        }
-        
-        .duration-option.modem {
-            border-color: rgba(33, 150, 243, 0.3);
-        }
-        
-        .duration-option.affiliate {
-            border-color: rgba(156, 39, 176, 0.3);
-        }
-        
-        .duration-option.selected {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--primary);
-            box-shadow: 
-                inset 0 0 10px rgba(110, 69, 226, 0.3),
-                0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .duration-option.phone.selected {
-            background: rgba(76, 175, 80, 0.2);
-            border-color: var(--phone-color);
-            box-shadow: 
-                inset 0 0 10px rgba(76, 175, 80, 0.3),
-                0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .duration-option.modem.selected {
-            background: rgba(33, 150, 243, 0.2);
-            border-color: var(--modem-color);
-            box-shadow: 
-                inset 0 0 10px rgba(33, 150, 243, 0.3),
-                0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .duration-option.affiliate.selected {
-            background: rgba(156, 39, 176, 0.2);
-            border-color: var(--affiliate-color);
-            box-shadow: 
-                inset 0 0 10px rgba(156, 39, 176, 0.3),
-                0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .duration-days {
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .duration-price {
-            font-size: 0.9rem;
-            color: var(--lighter);
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* اسلایدر حجم بهبود یافته */
-        .slider-container {
-            margin: 1.5rem 0;
-        }
-        
-        .slider-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .slider-value {
-            font-weight: 700;
-            background: rgba(30,30,50,0.7);
-            padding: 0.4rem 0.8rem;
-            border-radius: 50px;
-            min-width: 100px;
-            text-align: center;
-            box-shadow: 
-                0 3px 10px rgba(0,0,0,0.2),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-        }
-        
-        .slider-value.phone {
-            color: var(--phone-color);
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-        
-        .slider-value.modem {
-            color: var(--modem-color);
-            border: 1px solid rgba(33, 150, 243, 0.3);
-        }
-        
-        .slider-value.affiliate {
-            color: var(--affiliate-color);
-            border: 1px solid rgba(156, 39, 176, 0.3);
-        }
-        
-        .slider-input-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .slider-input {
-            flex: 1;
-        }
-        
-        .volume-input {
-            background: rgba(30,30,50,0.7);
-            border: 1px solid rgba(110, 69, 226, 0.3);
-            color: white;
-            padding: 0.8rem 1rem;
-            border-radius: var(--radius-sm);
-            font-family: inherit;
-            font-size: 1rem;
-            width: 100px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: 
-                0 3px 10px rgba(0,0,0,0.2),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-        }
-        
-        .volume-input.phone {
-            border-color: rgba(76, 175, 80, 0.3);
-        }
-        
-        .volume-input.modem {
-            border-color: rgba(33, 150, 243, 0.3);
-        }
-        
-        .volume-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 
-                0 0 0 2px rgba(110, 69, 226, 0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-        }
-        
-        .volume-input.phone:focus {
-            border-color: var(--phone-color);
-            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
-        }
-        
-        .volume-input.modem:focus {
-            border-color: var(--modem-color);
-            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.3);
-        }
-        
-        .volume-unit {
-            font-size: 0.9rem;
-            color: var(--lighter);
-        }
-        
-        /* اسلایدر سفارشی */
-        .slider {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: var(--dark);
-            outline: none;
-            margin: 1rem 0;
-            transition: var(--transition);
-            box-shadow: 
-                inset 2px 2px 5px rgba(0,0,0,0.5),
-                inset -2px -2px 5px rgba(255,255,255,0.05);
-        }
-        
-        .slider:hover {
-            opacity: 1;
-        }
-        
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: var(--primary);
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 
-                0 4px 10px rgba(0,0,0,0.3),
-                0 0 15px rgba(110, 69, 226, 0.5);
-            transition: var(--transition);
-        }
-        
-        .slider::-webkit-slider-thumb:hover {
-            transform: scale(1.1);
-            box-shadow: 
-                0 6px 15px rgba(0,0,0,0.4),
-                0 0 20px rgba(110, 69, 226, 0.7);
-        }
-        
-        .slider.phone::-webkit-slider-thumb {
-            background: var(--phone-color);
-            box-shadow: 
-                0 4px 10px rgba(0,0,0,0.3),
-                0 0 15px rgba(76, 175, 80, 0.5);
-        }
-        
-        .slider.modem::-webkit-slider-thumb {
-            background: var(--modem-color);
-            box-shadow: 
-                0 4px 10px rgba(0,0,0,0.3),
-                0 0 15px rgba(33, 150, 243, 0.5);
-        }
-        
-        .slider.affiliate::-webkit-slider-thumb {
-            background: var(--affiliate-color);
-            box-shadow: 
-                0 4px 10px rgba(0,0,0,0.3),
-                0 0 15px rgba(156, 39, 176, 0.5);
-        }
-        
-        /* قیمت نهایی بهبود یافته */
-        .final-price {
-            text-align: center;
-            margin: 2rem 0;
-            font-size: 1.3rem;
-            position: relative;
-            animation: fadeIn 0.5s ease;
-            background: rgba(30,30,50,0.7);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            border: 1px solid rgba(110, 69, 226, 0.3);
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-        }
-        
-        .final-price span {
-            font-weight: 800;
-            font-size: 1.8rem;
+
+        .service-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
             display: inline-block;
-            margin-top: 0.5rem;
-            text-shadow: 0 0 10px rgba(110, 69, 226, 0.5);
-        }
-        
-        .final-price.phone span {
-            color: var(--phone-color);
-            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-        }
-        
-        .final-price.modem span {
-            color: var(--modem-color);
-            text-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
-        }
-        
-        .final-price.affiliate span {
-            color: var(--affiliate-color);
-            text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
-        }
-        
-        /* خلاصه سفارش بهبود یافته */
-        .order-summary {
-            background: rgba(30,30,50,0.7);
-            padding: 1.5rem;
-            border-radius: var(--radius-sm);
-            margin: 2rem 0;
-            border-left: 3px solid var(--primary);
-            animation: fadeIn 0.5s ease;
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-        }
-        
-        .order-summary.phone {
-            border-left: 3px solid var(--phone-color);
-        }
-        
-        .order-summary.modem {
-            border-left: 3px solid var(--modem-color);
-        }
-        
-        .order-summary.affiliate {
-            border-left: 3px solid var(--affiliate-color);
-        }
-        
-        .order-summary p {
-            margin-bottom: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            padding: 0.4rem 0;
-            border-bottom: 1px dashed rgba(110, 69, 226, 0.3);
-        }
-        
-        .order-summary .value {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .order-summary.phone .value {
-            color: var(--phone-color);
-        }
-        
-        .order-summary.modem .value {
-            color: var(--modem-color);
-        }
-        
-        .order-summary.affiliate .value {
-            color: var(--affiliate-color);
-        }
-        
-        /* فوتر مودال بهبود یافته */
-        .modal-footer {
-            display: flex;
-            justify-content: space-between;
-            padding: 1.5rem;
-            border-top: 1px solid rgba(110, 69, 226, 0.2);
-            gap: 15px;
-        }
-        
-        /* دکمه‌های بهبود یافته */
-        .btn {
-            padding: 1rem 1.8rem;
-            border-radius: 50px;
-            font-family: inherit;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
             transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .service-description {
+            font-size: 12px;
+            color: var(--on-surface-light);
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition-slow);
+        }
+
+        .service-card:hover .service-description {
+            opacity: 1;
+            max-height: 100px;
+        }
+
+        /* کارت‌های کشورها */
+        .country-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .country-card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid transparent;
             position: relative;
             overflow: hidden;
-            box-shadow: 
-                0 5px 15px rgba(0,0,0,0.2),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.3);
+            cursor: pointer;
         }
-        
-        .btn::before {
+
+        .country-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-            z-index: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
             opacity: 0;
             transition: var(--transition);
         }
-        
-        .btn:hover::before {
+
+        .country-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--info);
+        }
+
+        .country-card:hover::before {
             opacity: 1;
         }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.3);
+
+        .country-flag {
+            width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
-        
-        .btn:active {
-            transform: translateY(1px);
+
+        .country-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 14px;
         }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: 
-                0 8px 20px rgba(110, 69, 226, 0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.3);
-        }
-        
-        .btn-phone {
-            background: linear-gradient(135deg, var(--phone-color), var(--phone-dark));
-            color: white;
-            box-shadow: 
-                0 8px 20px rgba(76, 175, 80, 0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.3);
-        }
-        
-        .btn-modem {
-            background: linear-gradient(135deg, var(--modem-color), var(--modem-dark));
-            color: white;
-            box-shadow: 
-                0 8px 20px rgba(33, 150, 243, 0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.3);
-        }
-        
-        .btn-affiliate {
-            background: linear-gradient(135deg, var(--affiliate-color), var(--affiliate-dark));
-            color: white;
-            box-shadow: 
-                0 8px 20px rgba(156, 39, 176, 0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.1),
-                inset -2px -2px 5px rgba(0,0,0,0.3);
-        }
-        
-        .btn-secondary {
-            background: var(--dark);
-            color: var(--light);
-            border: 1px solid rgba(110, 69, 226, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(110, 69, 226, 0.1);
-            border-color: var(--primary);
-        }
-        
-        /* اعلان‌های بهبود یافته */
-        .notification {
-            position: fixed;
-            bottom: 70px;
-            right: 50%;
-            transform: translateX(50%);
-            background: var(--primary);
-            color: white;
-            padding: 1rem 1.8rem;
-            border-radius: 50px;
-            z-index: 100;
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                0 0 20px rgba(110, 69, 226, 0.5);
-            display: none;
-            max-width: 90%;
-            text-align: center;
-            animation: fadeIn 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* نوار پایینی بهبود یافته */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            background: var(--dark-light);
-            padding: 1rem;
-            border-top: 1px solid rgba(110, 69, 226, 0.3);
-            z-index: 99;
-            box-shadow: 
-                0 -8px 25px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-        }
-        
-        .bottom-nav-btn {
-            flex: 1;
-            max-width: 220px;
-            padding: 1rem;
-            border-radius: 50px;
-            background: var(--dark);
-            color: var(--light);
-            border: none;
-            font-family: inherit;
-            cursor: pointer;
-            border: 1px solid rgba(110, 69, 226, 0.3);
+
+        .country-speed {
+            font-size: 11px;
+            color: var(--on-surface-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: var(--transition);
-            gap: 8px;
-            box-shadow: 
-                0 5px 15px rgba(0,0,0,0.2),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
+            gap: 4px;
         }
-        
-        .bottom-nav-btn:hover {
-            background: rgba(110, 69, 226, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
+
+        .country-speed i {
+            color: var(--success);
+            font-size: 12px;
         }
-        
-        #aboutBtn {
-            color: var(--secondary);
-        }
-        
-        #downloadBtn {
-            color: var(--primary);
-        }
-        
-        /* بخش DNS بهبود یافته */
+
+        /* بخش DNS */
         .dns-container {
-            background: rgba(30,30,50,0.7);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border: 1px solid rgba(110, 69, 226, 0.3);
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-            animation: fadeIn 0.8s both 0.7s;
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-top: 16px;
+            box-shadow: var(--shadow-sm);
         }
-        
+
         .dns-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-            background: rgba(20,20,40,0.5);
+            background: var(--surface-light);
             border-radius: var(--radius-sm);
-            margin-bottom: 1rem;
-            border: 1px solid rgba(110, 69, 226, 0.2);
-            transition: var(--transition);
+            padding: 12px 16px;
+            margin-bottom: 12px;
         }
-        
-        .dns-item:hover {
-            background: rgba(110, 69, 226, 0.1);
-            border-color: var(--primary);
-        }
-        
+
         .dns-label {
-            font-weight: 600;
+            font-size: 12px;
             color: var(--secondary);
+            font-weight: 600;
+            min-width: 70px;
         }
-        
+
         .dns-value {
+            flex: 1;
             font-family: monospace;
-            font-size: 1.1rem;
-            color: var(--light);
+            font-size: 14px;
             direction: ltr;
-            margin: 0 1rem;
-            flex-grow: 1;
             text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        
+
         .copy-btn {
-            background: rgba(110, 69, 226, 0.2);
+            background: rgba(110, 69, 226, 0.1);
             color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 0.5rem 1rem;
+            border: none;
+            padding: 8px 12px;
             border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 12px;
             cursor: pointer;
             transition: var(--transition);
-            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        
+
         .copy-btn:hover {
             background: var(--primary);
             color: white;
-            box-shadow: 0 0 15px rgba(110, 69, 226, 0.3);
         }
-        
-        /* بخش دانلود بهبود یافته */
-        .download-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-            animation: fadeIn 0.8s both 0.7s;
+
+        /* بخش دانلود */
+        .download-list {
+            margin-top: 16px;
         }
-        
+
         .download-item {
-            background: rgba(30,30,50,0.7);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            border: 1px solid rgba(110, 69, 226, 0.3);
-            box-shadow: 
-                0 8px 20px rgba(0,0,0,0.3),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
         }
-        
+
         .download-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 15px 40px rgba(0,0,0,0.4),
-                inset 2px 2px 5px rgba(255,255,255,0.05);
-            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
-        
-        .download-item h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
+
+        .download-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            margin-bottom: 12px;
         }
-        
-        .download-item h3 i {
-            font-size: 1.2rem;
-        }
-        
-        .download-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .meta-item {
-            font-size: 0.8rem;
-            color: var(--lighter);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .meta-item i {
-            font-size: 0.9rem;
-        }
-        
-        .download-item p {
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            flex-grow: 1;
-        }
-        
-        .download-btn {
-            background: rgba(110, 69, 226, 0.2);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
+
+        .download-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-        }
-        
-        .download-btn:hover {
-            background: var(--primary);
+            margin-left: 12px;
             color: white;
-            box-shadow: 0 0 20px rgba(110, 69, 226, 0.3);
         }
-        
-        /* استوری تمام صفحه */
-        .story-modal {
-            display: none;
+
+        .download-title {
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .download-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--on-surface-light);
+        }
+
+        .meta-item i {
+            font-size: 14px;
+        }
+
+        .download-description {
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: var(--on-surface-light);
+        }
+
+        .download-btn {
+            display: block;
+            text-align: center;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(110, 69, 226, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(110, 69, 226, 0.4);
+        }
+
+        /* مودال خرید */
+        .purchase-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--darker);
-            z-index: 1001;
-            overflow: hidden;
-        }
-        
-        .story-content {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            background: rgba(0,0,0,0.8);
+            display: none;
             align-items: center;
-            padding: 2rem;
-            text-align: center;
-            color: white;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
         }
-        
-        .story-close {
+
+        .purchase-content {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .purchase-modal.active .purchase-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .close-purchase {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 2rem;
+            top: 16px;
+            left: 16px;
+            font-size: 24px;
+            color: var(--on-surface-light);
             cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-purchase:hover {
             color: var(--accent);
-            z-index: 10;
+            transform: rotate(90deg);
         }
-        
-        .story-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+
+        .purchase-title {
+            text-align: center;
+            margin-bottom: 24px;
             color: var(--primary);
-            text-shadow: 0 0 15px rgba(110, 69, 226, 0.5);
+            font-size: 24px;
+            font-weight: 700;
         }
-        
-        .story-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-        
-        .story-nav {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 2rem;
-            transform: translateY(-50%);
-            z-index: 5;
-        }
-        
-        .story-nav-btn {
-            background: rgba(255,255,255,0.1);
-            width: 50px;
-            height: 50px;
+
+        .purchase-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem;
+            margin: 0 auto 20px;
+            font-size: 32px;
             color: white;
+            box-shadow: 0 6px 20px rgba(110, 69, 226, 0.4);
+        }
+
+        .purchase-description {
+            line-height: 1.8;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .purchase-plans {
+            margin: 24px 0;
+        }
+
+        .plan-item {
+            background: var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
             transition: var(--transition);
-            backdrop-filter: blur(5px);
+            border: 2px solid transparent;
         }
-        
-        .story-nav-btn:hover {
-            background: var(--primary);
-            transform: scale(1.1);
+
+        .plan-item:hover {
+            border-color: var(--primary);
         }
-        
-        /* انیمیشن‌های جدید */
+
+        .plan-item.active {
+            background: rgba(110, 69, 226, 0.1);
+            border-color: var(--primary);
+        }
+
+        .plan-info {
+            flex: 1;
+        }
+
+        .plan-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .plan-details {
+            font-size: 12px;
+            color: var(--on-surface-light);
+        }
+
+        .plan-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .purchase-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 16px;
+            box-shadow: 0 4px 12px rgba(110, 69, 226, 0.3);
+        }
+
+        .purchase-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(110, 69, 226, 0.4);
+        }
+
+        /* اعلان */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface);
+            color: var(--on-surface);
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* انیمیشن‌ها */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        
-        @keyframes fadeOut {
-            from { opacity: 1; transform: translateY(0); }
-            to { opacity: 0; transform: translateY(10px); }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary); }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
-        
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes loadingShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes scan {
+            0% { top: -20px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(30deg) translate(-30%, -30%); }
+            100% { transform: rotate(30deg) translate(30%, 30%); }
+        }
+
         /* رسپانسیو */
-        @media (max-width: 768px) {
-            .logo-icon {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .logo-text {
-                font-size: 1.5rem;
-            }
-            
-            .flag-item {
-                padding: 1rem 0.8rem;
-            }
-            
-            .flag-item span {
-                font-size: 2rem;
-            }
-            
-            .duration-options {
+        @media (max-width: 480px) {
+            .services-grid, .country-grid {
                 grid-template-columns: 1fr;
             }
             
-            .modal-content {
-                max-width: 98%;
-                margin: 2% auto;
+            .main-tab {
+                font-size: 11px;
             }
             
-            .bottom-nav-btn {
-                padding: 0.8rem;
-                font-size: 0.9rem;
+            .login-container {
+                padding: 30px 20px;
             }
             
-            .download-items {
-                grid-template-columns: 1fr;
+            .fingerprint-container {
+                width: 140px;
+                height: 140px;
             }
             
-            .story-title {
-                font-size: 1.5rem;
+            .fingerprint-btn {
+                width: 110px;
+                height: 110px;
             }
             
-            .story-text {
-                font-size: 1rem;
+            .fingerprint-btn i {
+                font-size: 45px;
+            }
+            
+            .story-avatar {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .story-avatar-inner {
+                width: 74px;
+                height: 74px;
+            }
+            
+            .music-cover {
+                width: 150px;
+                height: 150px;
+                font-size: 50px;
+            }
+            
+            .play-btn {
+                width: 60px;
+                height: 60px;
             }
         }
     </style>
@@ -1660,530 +1447,597 @@
     <!-- صفحه لودینگ -->
     <div class="loading-screen" id="loadingScreen">
         <div class="logo-container">
-            <div class="logo-text">
-                <div class="mr">آقای</div>
-                <div class="xero">ایکسرو</div>
+            <div class="logo-animation">
+                <div class="logo-text">
+                    <span class="x">X</span>
+                    <span class="heart">♥</span>
+                    <span class="x">O</span>
+                </div>
+                <div class="heart-progress" id="heartProgress"></div>
             </div>
         </div>
-        
-        <div class="loading-footer">
-            <div class="waiting-container">
-                <div class="waiting-text">
-                    منتظر باشید
-                    <span class="dot">.</span>
-                    <span class="dot">.</span>
-                    <span class="dot">.</span>
-                </div>
-                <div class="counter" id="counter">0%</div>
-            </div>
-            <div class="loading-bar-container">
-                <div class="loading-bar" id="loadingBar"></div>
-            </div>
+        <div class="loading-progress">
+            <div class="progress-bar" id="progressBar"></div>
         </div>
     </div>
-    
+
+    <!-- صفحه لاگین با اثر انگشت -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <h2 class="login-title">ورود به XRO VPN</h2>
+            <div class="fingerprint-container">
+                <div class="fingerprint-circle">
+                    <div class="fingerprint-progress" id="fingerprintProgress"></div>
+                    <i class="fas fa-fingerprint fingerprint-icon" id="fingerprintIcon"></i>
+                    <div class="fingerprint-scan"></div>
+                </div>
+                <button class="fingerprint-btn" id="fingerprintBtn">
+                    <i class="fas fa-fingerprint"></i>
+                </button>
+            </div>
+            <p class="login-text">برای ورود، انگشت خود را روی دکمه نگه دارید</p>
+            <p class="login-error" id="loginError">احراز هویت ناموفق بود. لطفاً مجدد تلاش کنید.</p>
+        </div>
+    </div>
+
     <!-- صفحه اصلی -->
-    <div class="main-screen" id="mainScreen">
-        <div class="container">
-            <header class="app-header">
+    <div class="app-container" id="appContainer">
+        <!-- هدر -->
+        <header class="app-header">
+            <div class="header-content">
                 <div class="logo">
                     <div class="logo-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <div class="logo-text">XRO VPN</div>
+                    <h1 class="logo-text-header">XRO VPN</h1>
                 </div>
-            </header>
-
-            <!-- بخش استوری‌ها -->
-            <div class="stories-container">
-                <div class="story-item" onclick="openStory('you')">
-                    <div class="story-circle">
-                        <div class="story-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                    <div class="story-label">نظرات کاربران</div>
-                </div>
-                <div class="story-item" onclick="openStory('security')">
-                    <div class="story-circle">
-                        <div class="story-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-                    <div class="story-label">امنیت</div>
-                </div>
-                <div class="story-item" onclick="openStory('guide')">
-                    <div class="story-circle">
-                        <div class="story-icon">
-                            <i class="fas fa-question"></i>
-                        </div>
-                    </div>
-                    <div class="story-label">راهنمای خرید</div>
-                </div>
+                <button class="music-control-btn" id="musicControlBtn">
+                    <i class="fas fa-music"></i>
+                </button>
             </div>
+        </header>
 
-            <!-- کادر اعلانات -->
+        <!-- استوری‌ها -->
+        <div class="stories-container">
+            <a href="#" class="story-item" onclick="openStory('security')">
+                <div class="story-avatar">
+                    <div class="story-avatar-inner">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="story-badge">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                <span class="story-label">امنیت</span>
+            </a>
+            <a href="#" class="story-item" onclick="openStory('speed')">
+                <div class="story-avatar">
+                    <div class="story-avatar-inner">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="story-new"></div>
+                </div>
+                <span class="story-label">سرعت</span>
+            </a>
+            <a href="#" class="story-item" onclick="openStory('support')">
+                <div class="story-avatar">
+                    <div class="story-avatar-inner">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                </div>
+                <span class="story-label">پشتیبانی</span>
+            </a>
+            <a href="#" class="story-item" onclick="openStory('guide')">
+                <div class="story-avatar">
+                    <div class="story-avatar-inner">
+                        <i class="fas fa-book"></i>
+                    </div>
+                </div>
+                <span class="story-label">راهنما</span>
+            </a>
+        </div>
+
+        <!-- اعلانات -->
+        <div class="announcement-container">
             <div class="announcement-box">
-                <div id="typingText" class="typing-text">آقای ایکسرا حامی آزادی است | در بدترین شرایط خدمات ما پیدار می‌ماند | فروش ماهانه +۱۰هزار کانفیگ شد!</div>
+                <div class="announcement-text" id="announcementText">
+                    سرویس‌های جدید XRO VPN با سرعت و پایداری فوق‌العاده
+                </div>
+            </div>
+        </div>
+
+        <!-- تب‌های اصلی -->
+        <div class="main-tabs">
+            <button class="main-tab active" onclick="showTab('services')">
+                <i class="fas fa-store"></i>
+                <span>سرویس‌ها</span>
+            </button>
+            <button class="main-tab" onclick="showTab('dns')">
+                <i class="fas fa-network-wired"></i>
+                <span>DNS</span>
+            </button>
+            <button class="main-tab" onclick="showTab('download')">
+                <i class="fas fa-download"></i>
+                <span>دانلود</span>
+            </button>
+        </div>
+
+        <!-- محتوای تب‌ها -->
+        <div class="tab-content active" id="servicesTab">
+            <div class="services-grid">
+                <div class="service-card" onclick="openPurchaseModal('sim')">
+                    <div class="service-icon">
+                        <i class="fas fa-sim-card"></i>
+                    </div>
+                    <h3 class="service-title">کانفیگ جنگی سیمکارت</h3>
+                    <p class="service-description">
+                        سرویس ویژه برای سیمکارت با حجم نامحدود و اتصال پایدار
+                    </p>
+                </div>
+                <div class="service-card" onclick="openPurchaseModal('modem')">
+                    <div class="service-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3 class="service-title">کانفیگ جنگی مودم</h3>
+                    <p class="service-description">
+                        سرویس ویژه برای مودم با حجم انتخابی و پایداری بالا
+                    </p>
+                </div>
             </div>
 
-            <!-- تب‌های اصلی -->
-            <div class="main-tabs">
-                <button class="main-tab active" onclick="showMainTab('home')">
-                    <i class="fas fa-store"></i>
-                    <span>فروشگاه</span>
-                </button>
-                <button class="main-tab" onclick="showMainTab('dns')">
-                    <i class="fas fa-network-wired"></i>
-                    <span>DNS</span>
-                </button>
-                <button class="main-tab" onclick="showMainTab('download')">
-                    <i class="fas fa-download"></i>
-                    <span>دانلود</span>
-                </button>
-            </div>
-            
-            <!-- محتوای تب‌های اصلی -->
-            <div id="home-tab" class="main-tab-content active">
-                <div class="message">
-                    <span class="notice-label">توجه</span>
-                    <span>این بخش برای سفارش کانفیگ با شرایط ملی هست</span>
-                </div>
-                <div class="flag-grid">
-                    <!-- بخش جنگی گوشی -->
-                    <div class="flag-item phone active" onclick="openPhoneModal('personal')">
-                        <span>📱</span>
-                        <p>جنگی گوشی</p>
-                        <div class="flag-description">
-                            سرویس ویژه برای گوشی با حجم نامحدود و اتصال پایدار
-                            <div style="margin-top: 0.5rem; font-weight: 600; color: var(--phone-color);">
-                                حجم: نامحدود
-                            </div>
-                        </div>
-                        <div class="status-badge phone">ویژه</div>
+            <h3 style="margin: 24px 0 16px; text-align: center; color: var(--primary);">سرورهای مولتی انتخواب کشورها</h3>
+            <div class="country-grid">
+                <div class="country-card" onclick="showNotification('سرویس کشورها در حال حاضر غیرفعال است')">
+                    <img src="https://flagcdn.com/w80/us.png" class="country-flag" alt="آمریکا">
+                    <div class="country-name">آمریکا</div>
+                    <div class="country-speed">
+                        <i class="fas fa-bolt"></i>
+                        سرعت بالا
                     </div>
-                    
-                    <!-- بخش جنگی مودم -->
-                    <div class="flag-item modem active" onclick="openModemModal('personal')">
-                        <span>📡</span>
-                        <p>جنگی مودم</p>
-                        <div class="flag-description">
-                            سرویس ویژه برای مودم با حجم انتخابی و اتصال پایدار
-                            <div style="margin-top: 0.5rem; font-weight: 600; color: var(--modem-color);">
-                                حجم: 1GB تا 1000GB
-                            </div>
-                        </div>
-                        <div class="status-badge modem">ویژه</div>
+                </div>
+                <div class="country-card" onclick="showNotification('سرویس کشورها در حال حاضر غیرفعال است')">
+                    <img src="https://flagcdn.com/w80/gb.png" class="country-flag" alt="انگلیس">
+                    <div class="country-name">انگلیس</div>
+                    <div class="country-speed">
+                        <i class="fas fa-bolt"></i>
+                        سرعت بالا
+                    </div>
+                </div>
+                <div class="country-card" onclick="showNotification('سرویس کشورها در حال حاضر غیرفعال است')">
+                    <img src="https://flagcdn.com/w80/fr.png" class="country-flag" alt="فرانسه">
+                    <div class="country-name">فرانسه</div>
+                    <div class="country-speed">
+                        <i class="fas fa-bolt"></i>
+                        سرعت بالا
+                    </div>
+                </div>
+                <div class="country-card" onclick="showNotification('سرویس کشورها در حال حاضر غیرفعال است')">
+                    <img src="https://flagcdn.com/w80/de.png" class="country-flag" alt="آلمان">
+                    <div class="country-name">آلمان</div>
+                    <div class="country-speed">
+                        <i class="fas fa-bolt"></i>
+                        سرعت بالا
+                    </div>
+                </div>
+                <div class="country-card" onclick="showNotification('سرویس کشورها در حال حاضر غیرفعال است')">
+                    <img src="https://flagcdn.com/w80/tr.png" class="country-flag" alt="ترکیه">
+                    <div class="country-name">ترکیه</div>
+                    <div class="country-speed">
+                        <i class="fas fa-bolt"></i>
+                        سرعت بالا
                     </div>
                 </div>
             </div>
-            
-            <div id="dns-tab" class="main-tab-content">
-                <div class="message">
-                    <span class="notice-label">توجه</span>
-                    <span>این بخش با استفاده از DNS سرعتی، پایدار برای بازی برقرار کنید. کاهش پینگ و جلوگیری از نوسان در بازی‌های آنلاین</span>
+        </div>
+
+        <div class="tab-content" id="dnsTab">
+            <div class="dns-container">
+                <div class="dns-item">
+                    <span class="dns-label">DNS اول:</span>
+                    <span class="dns-value" id="dns1">78.157.42.100</span>
+                    <button class="copy-btn" onclick="copyToClipboard('dns1')">
+                        <i class="fas fa-copy"></i>
+                        کپی
+                    </button>
                 </div>
-                
-                <!-- بخش DNS بهبود یافته -->
-                <div class="dns-container">
-                    <div class="dns-item">
-                        <span class="dns-label">DNS اول:</span>
-                        <span class="dns-value" id="dns1">78.157.42.100</span>
-                        <button class="copy-btn" onclick="copyToClipboard('dns1')">کپی</button>
-                    </div>
-                    <div class="dns-item">
-                        <span class="dns-label">DNS دوم:</span>
-                        <span class="dns-value" id="dns2">78.157.42.101</span>
-                        <button class="copy-btn" onclick="copyToClipboard('dns2')">کپی</button>
-                    </div>
+                <div class="dns-item">
+                    <span class="dns-label">DNS دوم:</span>
+                    <span class="dns-value" id="dns2">78.157.42.101</span>
+                    <button class="copy-btn" onclick="copyToClipboard('dns2')">
+                        <i class="fas fa-copy"></i>
+                        کپی
+                    </button>
                 </div>
             </div>
-            
-            <div id="download-tab" class="main-tab-content">
-                <div class="message">
-                    <span class="notice-label">توجه</span>
-                    <span>این بخش مخصوص دانلود اپلیکیشن هیدیفای برای سیستم شما است</span>
-                </div>
-                
-                <!-- بخش دانلود بهبود یافته -->
-                <div class="download-items">
-                    <div class="download-item">
-                        <h3>
+        </div>
+
+        <div class="tab-content" id="downloadTab">
+            <div class="download-list">
+                <div class="download-item">
+                    <div class="download-header">
+                        <div class="download-icon">
                             <i class="fas fa-mobile-alt"></i>
-                            نسخه اندروید
-                        </h3>
-                        <div class="download-meta">
-                            <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 2.5.1</div>
-                            <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1403/02/15</div>
                         </div>
-                        <p>نرم‌افزار هیدیفای برای دستگاه‌های اندروید. بهترین انتخاب برای کاربران اندروید با رابط کاربری ساده و امکانات پیشرفته.</p>
-                        <a href="https://myket.ir/app/io.github.hid3dclient.hid3d" class="download-btn" target="_blank">
-                            دانلود از مایکت
-                            <i class="fas fa-download"></i>
-                        </a>
+                        <h3 class="download-title">نسخه اندروید</h3>
                     </div>
-                    
-                    <div class="download-item">
-                        <h3>
-                            <i class="fas fa-desktop"></i>
-                            نسخه ویندوز
-                        </h3>
-                        <div class="download-meta">
-                            <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 3.1.0</div>
-                            <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1403/01/28</div>
+                    <div class="download-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-code-branch"></i>
+                            نسخه 2.5.1
                         </div>
-                        <p>نرم‌افزار هیدیفای برای سیستم‌عامل ویندوز. پشتیبانی از ویندوز 7 به بالا با قابلیت‌های مدیریت چند کانفیگ.</p>
-                        <a href="https://github.com/hid3dclient/hid3d/releases" class="download-btn" target="_blank">
-                            دانلود (62MB)
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            1403/02/15
+                        </div>
+                        <div class="meta-item">
                             <i class="fas fa-download"></i>
-                        </a>
+                            45MB
+                        </div>
                     </div>
-                    
-                    <div class="download-item">
-                        <h3>
+                    <p class="download-description">
+                        نرم‌افزار هیدیفای برای دستگاه‌های اندروید. بهترین انتخاب برای کاربران اندروید با رابط کاربری ساده و امکانات پیشرفته.
+                    </p>
+                    <a href="https://play.google.com/store/apps/details?id=io.github.hid3dclient.hid3d" class="download-btn" target="_blank">
+                        دانلود از گوگل پلی
+                    </a>
+                </div>
+                
+                <div class="download-item">
+                    <div class="download-header">
+                        <div class="download-icon">
                             <i class="fas fa-mobile"></i>
-                            نسخه iOS
-                        </h3>
-                        <div class="download-meta">
-                            <div class="meta-item"><i class="fas fa-code-branch"></i> نسخه 1.8.2</div>
-                            <div class="meta-item"><i class="fas fa-calendar-alt"></i> 1402/12/15</div>
                         </div>
-                        <p>نرم‌افزار هیدیفای برای دستگاه‌های iOS. بهترین انتخاب برای کاربران آیفون و آیپد با رابط کاربری ساده.</p>
-                        <a href="https://apps.apple.com/us/app/hid3d/id6472582787" class="download-btn" target="_blank">
-                            دانلود از اپ استور
+                        <h3 class="download-title">نسخه iOS</h3>
+                    </div>
+                    <div class="download-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-code-branch"></i>
+                            نسخه 1.8.2
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            1402/12/15
+                        </div>
+                    </div>
+                    <p class="download-description">
+                        نرم‌افزار هیدیفای برای دستگاه‌های iOS. بهترین انتخاب برای کاربران آیفون و آیپد با رابط کاربری ساده و امکانات کامل.
+                    </p>
+                    <a href="https://apps.apple.com/us/app/hid3d/id6472582787" class="download-btn" target="_blank">
+                        دانلود از اپ استور
+                    </a>
+                </div>
+                
+                <div class="download-item">
+                    <div class="download-header">
+                        <div class="download-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3 class="download-title">نسخه ویندوز</h3>
+                    </div>
+                    <div class="download-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-code-branch"></i>
+                            نسخه 3.1.0
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            1403/01/28
+                        </div>
+                        <div class="meta-item">
                             <i class="fas fa-download"></i>
-                        </a>
+                            62MB
+                        </div>
                     </div>
+                    <p class="download-description">
+                        نرم‌افزار هیدیفای برای سیستم‌عامل ویندوز. پشتیبانی از ویندوز 7 به بالا با قابلیت‌های مدیریت چند کانفیگ.
+                    </p>
+                    <a href="#" class="download-btn" onclick="showNotification('نسخه ویندوز به زودی منتشر می‌شود')">
+                        به زودی...
+                    </a>
                 </div>
             </div>
         </div>
-        
-        <!-- مودال سفارش جنگی گوشی -->
-        <div id="phoneModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header phone">
-                    <span class="close-modal" onclick="closeModal()">×</span>
-                    <h2><span>جنگی گوشی</span> 📱</h2>
+    </div>
+
+    <!-- مودال کنترل موزیک -->
+    <div class="music-modal" id="musicModal">
+        <div class="music-content">
+            <span class="close-music" onclick="closeMusicModal()">×</span>
+            <h2 class="music-title">کنترل موزیک</h2>
+            <div class="music-cover">
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="song-info">
+                <div class="song-name">Kajfusha (Remix)</div>
+                <div class="song-artist">Santiz</div>
+            </div>
+            <div class="music-progress-container">
+                <div class="music-progress">
+                    <div class="music-progress-bar" id="musicProgressBar"></div>
                 </div>
-                <div class="modal-body">
-                    <div class="modal-tabs">
-                        <div class="modal-tab phone active" onclick="showModalTab('type', 'phone')">نوع سفارش</div>
-                        <div class="modal-tab phone" onclick="showModalTab('duration', 'phone')">مدت زمان</div>
-                        <div class="modal-tab phone" onclick="showModalTab('final', 'phone')">نهایی</div>
-                    </div>
-                    
-                    <!-- تب نوع سفارش -->
-                    <div id="typeTab-phone" class="modal-tab-content active">
-                        <div class="duration-options">
-                            <div class="duration-option phone" onclick="selectOrderType('phone', 'personal')">
-                                <div class="duration-days">شخصی</div>
-                                <div class="duration-price">برای استفاده شخصی</div>
-                            </div>
-                            <div class="duration-option affiliate" onclick="selectOrderType('phone', 'affiliate')">
-                                <div class="duration-days">همکاری</div>
-                                <div class="duration-price">برای فروش و همکاری</div>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" onclick="closeModal()">
-                                انصراف
-                            </button>
-                            <button class="btn btn-phone" onclick="showModalTab('duration', 'phone')">
-                                بعدی
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- تب مدت زمان -->
-                    <div id="durationTab-phone" class="modal-tab-content">
-                        <div class="duration-options phone">
-                            <div class="duration-option phone" onclick="selectDuration('phone', 30, 'personal')">
-                                <div class="duration-days">30 روز</div>
-                                <div class="duration-price">
-                                    <span id="personal-30-price">310,000 تومان</span>
-                                </div>
-                            </div>
-                            <div class="duration-option phone" onclick="selectDuration('phone', 90, 'personal')">
-                                <div class="duration-days">90 روز</div>
-                                <div class="duration-price">
-                                    <span id="personal-90-price">683,000 تومان</span>
-                                </div>
-                            </div>
-                            <div class="duration-option phone" onclick="selectDuration('phone', 180, 'personal')">
-                                <div class="duration-days">180 روز</div>
-                                <div class="duration-price">
-                                    <span id="personal-180-price">988,000 تومان</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" onclick="showModalTab('type', 'phone')">
-                                قبلی
-                            </button>
-                            <button class="btn btn-phone" onclick="showModalTab('final', 'phone')">
-                                بعدی
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- تب نهایی -->
-                    <div id="finalTab-phone" class="modal-tab-content">
-                        <div class="final-price phone">
-                            قیمت نهایی: <span id="finalPhonePrice">0</span> تومان
-                        </div>
-                        <div class="order-summary phone">
-                            <p>
-                                <span>نوع سرویس:</span>
-                                <span class="value">جنگی گوشی</span>
-                            </p>
-                            <p>
-                                <span>حجم:</span>
-                                <span class="value">نامحدود</span>
-                            </p>
-                            <p>
-                                <span>مدت:</span>
-                                <span class="value" id="finalPhoneDays">0 روز</span>
-                            </p>
-                            <p>
-                                <span>نوع:</span>
-                                <span class="value" id="finalPhoneType">شخصی</span>
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" onclick="showModalTab('duration', 'phone')">
-                                قبلی
-                            </button>
-                            <button class="btn btn-phone" onclick="submitOrder('phone')">
-                                سفارش
-                            </button>
-                        </div>
-                    </div>
+                <div class="music-time">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">3:45</span>
                 </div>
             </div>
-        </div>
-        
-        <!-- مودال سفارش جنگی مودم -->
-        <div id="modemModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header modem">
-                    <span class="close-modal" onclick="closeModal()">×</span>
-                    <h2><span>جنگی مودم</span> 📡</h2>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-tabs">
-                        <div class="modal-tab modem active" onclick="showModalTab('type', 'modem')">نوع سفارش</div>
-                        <div class="modal-tab modem" onclick="showModalTab('volume', 'modem')">حجم</div>
-                        <div class="modal-tab modem" onclick="showModalTab('days', 'modem')">روز</div>
-                        <div class="modal-tab modem" onclick="showModalTab('final', 'modem')">نهایی</div>
-                    </div>
-                    
-                    <!-- تب نوع سفارش -->
-                    <div id="typeTab-modem" class="modal-tab-content active">
-                        <div class="duration-options">
-                            <div class="duration-option modem" onclick="selectOrderType('modem', 'personal')">
-                                <div class="duration-days">شخصی</div>
-                                <div class="duration-price">برای استفاده شخصی</div>
-                            </div>
-                            <div class="duration-option affiliate" onclick="selectOrderType('modem', 'affiliate')">
-                                <div class="duration-days">همکاری</div>
-                                <div class="duration-price">برای فروش و همکاری</div>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" onclick="closeModal()">
-                                انصراف
-                            </button>
-                            <button class="btn btn-modem" onclick="showModalTab('volume', 'modem')">
-                                بعدی
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- تب حجم -->
-                    <div id="volumeTab-modem" class="modal-tab-content">
-                        <div class="slider-container">
-                            <div class="slider-header">
-                                <span>حجم مورد نیاز:</span>
-                                <span class="slider-value modem" id="volumeValue-modem">1 گیگ</span>
-                            </div>
-                            <div class="slider-input-container">
-                                <input type="range" min="1" max="1000" value="1" class="slider modem" id="volumeSlider-modem" oninput="updateVolume(this.value, 'modem')">
-                                <input type="number" min="1" max="1000" value="1" class="volume-input modem" id="volumeInput-modem" oninput="updateVolumeInput(this.value, 'modem')">
-                                <span class="volume-unit">گیگابایت</span>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" onclick="showModalTab('type', 'modem')">
-                                قبلی
-                            </button>
-                            <button class="btn btn-modem" onclick="showModalTab('days', 'modem')">
-                                بعدی
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- تب روزها -->
-                    <div id="daysTab-modem" class="modal-tab-content">
-                        <div class="slider-container">
-                            <div class="slider-header">
-                                <span>تعداد روز:</span>
-                                <span class="slider-value modem" id="daysValue-modem">2 روز</span>
-                            </div>
-                            <div class="slider-input-container">
-                                <input type="range" min="1" max="30" value="2" class="slider modem" id="daysSlider-modem" oninput="updateDays(this.value, 'modem')">
-                                <input type="number" min="1" max="30" value="2" class="volume-input modem" id="daysInput-modem" oninput="updateDaysInput(this.value, 'modem')">
-                                <span class="volume-unit">روز</span>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" onclick="showModalTab('volume', 'modem')">
-                                قبلی
-                            </button>
-                            <button class="btn btn-modem" onclick="showModalTab('final', 'modem')">
-                                بعدی
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- تب نهایی -->
-                    <div id="finalTab-modem" class="modal-tab-content">
-                        <div class="final-price modem">
-                            قیمت نهایی: <span id="finalModemPrice">0</span> تومان
-                        </div>
-                        <div class="order-summary modem">
-                            <p>
-                                <span>نوع سرویس:</span>
-                                <span class="value">جنگی مودم</span>
-                            </p>
-                            <p>
-                                <span>حجم:</span>
-                                <span class="value" id="finalModemVolume">0 گیگ</span>
-                            </p>
-                            <p>
-                                <span>مدت:</span>
-                                <span class="value" id="finalModemDays">0 روز</span>
-                            </p>
-                            <p>
-                                <span>نوع:</span>
-                                <span class="value" id="finalModemType">شخصی</span>
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" onclick="showModalTab('days', 'modem')">
-                                قبلی
-                            </button>
-                            <button class="btn btn-modem" onclick="submitOrder('modem')">
-                                سفارش
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="music-controls">
+                <button class="control-btn" onclick="prevSong()">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="control-btn play-btn" id="modalPlayBtn" onclick="togglePlay()">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button class="control-btn" onclick="nextSong()">
+                    <i class="fas fa-step-forward"></i>
+                </button>
             </div>
         </div>
-        
-        <!-- استوری تمام صفحه -->
-        <div id="storyModal" class="story-modal">
-            <div class="story-content">
-                <span class="story-close" onclick="closeStory()">×</span>
-                <h2 class="story-title" id="storyTitle">عنوان استوری</h2>
-                <p class="story-text" id="storyText">متن استوری اینجا نمایش داده می‌شود</p>
-                <div class="story-nav">
-                    <div class="story-nav-btn" onclick="prevStory()">❮</div>
-                    <div class="story-nav-btn" onclick="nextStory()">❯</div>
-                </div>
+    </div>
+
+    <!-- مودال استوری -->
+    <div class="story-modal" id="storyModal">
+        <div class="story-content">
+            <span class="close-story" onclick="closeStoryModal()">×</span>
+            <h2 class="story-title" id="storyTitle">امنیت پیشرفته</h2>
+            <div class="story-text" id="storyText">
+                ما از آخرین تکنولوژی‌های رمزنگاری برای محافظت از حریم خصوصی شما استفاده می‌کنیم. تمام ارتباطات شما به صورت end-to-end رمزنگاری می‌شوند.
             </div>
         </div>
-        
-        <!-- اعلان -->
-        <div class="notification" id="notification">
-            این سرویس در حال حاضر غیرفعال می‌باشد
-        </div>
-        
-        <!-- نوار پایینی -->
-        <div class="bottom-nav">
-            <button class="bottom-nav-btn" id="aboutBtn" onclick="showAbout()">
-                <i class="fas fa-info-circle"></i>
-                درباره ما
-            </button>
-            <button class="bottom-nav-btn" id="supportBtn" onclick="showSupport()">
-                <i class="fas fa-headset"></i>
-                پشتیبانی آنلاین
+    </div>
+
+    <!-- مودال خرید -->
+    <div class="purchase-modal" id="purchaseModal">
+        <div class="purchase-content">
+            <span class="close-purchase" onclick="closePurchaseModal()">×</span>
+            <h2 class="purchase-title" id="purchaseTitle">خرید سرویس</h2>
+            <div class="purchase-icon" id="purchaseIcon">
+                <i class="fas fa-wifi"></i>
+            </div>
+            <p class="purchase-description" id="purchaseDescription">
+                انتخاب پلن مناسب برای نیازهای شما
+            </p>
+            
+            <div class="purchase-plans" id="purchasePlans">
+                <!-- Plans will be dynamically inserted here -->
+            </div>
+            
+            <button class="purchase-btn" onclick="requestService()">
+                درخواست این سرویس
             </button>
         </div>
     </div>
 
+    <!-- اعلان -->
+    <div class="notification" id="notification">
+        این سرویس در حال حاضر غیرفعال می‌باشد
+    </div>
+
     <script>
-        // تنظیمات اولیه
-        let currentOrder = {
-            type: '', // 'phone' یا 'modem'
-            orderType: 'personal', // 'personal' یا 'affiliate'
-            volume: 1,
-            days: 1,
-            price: 0
-        };
+        // شبیه‌سازی لودینگ
+        let progress = 0;
+        const progressBar = document.getElementById('progressBar');
+        const heartProgress = document.getElementById('heartProgress');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const loginScreen = document.getElementById('loginScreen');
+        const appContainer = document.getElementById('appContainer');
         
-        // قیمت‌های جنگی گوشی
-        const phonePrices = {
-            personal: {
-                30: 310000,
-                90: 683000,
-                180: 988000
-            },
-            affiliate: {
-                30: 213000,
-                90: 450000,
-                180: 690000
+        const loadingInterval = setInterval(() => {
+            progress += Math.random() * 10;
+            if (progress > 100) progress = 100;
+            progressBar.style.width = `${progress}%`;
+            heartProgress.style.height = `${progress}%`;
+            
+            if (progress >= 100) {
+                clearInterval(loadingInterval);
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        loginScreen.classList.add('active');
+                    }, 300);
+                }, 500);
             }
-        };
+        }, 200);
+
+        // سیستم اثر انگشت
+        const fingerprintBtn = document.getElementById('fingerprintBtn');
+        const fingerprintProgress = document.getElementById('fingerprintProgress');
+        const fingerprintIcon = document.getElementById('fingerprintIcon');
+        const fingerprintScan = document.querySelector('.fingerprint-scan');
+        const loginError = document.getElementById('loginError');
+        let isAuthenticating = false;
+        let progressInterval;
+        let progressValue = 0;
         
-        // قیمت‌های جنگی مودم
-        const modemPrices = {
-            personal: {
-                perGB: 400,
-                perDay: 200
-            },
-            affiliate: {
-                perGB: 170, // 400 - 230
-                perDay: 150
+        fingerprintBtn.addEventListener('mousedown', startAuthentication);
+        fingerprintBtn.addEventListener('touchstart', startAuthentication);
+        
+        fingerprintBtn.addEventListener('mouseup', cancelAuthentication);
+        fingerprintBtn.addEventListener('touchend', cancelAuthentication);
+        fingerprintBtn.addEventListener('mouseleave', cancelAuthentication);
+        
+        function startAuthentication() {
+            if (isAuthenticating) return;
+            
+            isAuthenticating = true;
+            loginError.style.display = 'none';
+            fingerprintBtn.classList.add('active');
+            fingerprintIcon.style.color = 'white';
+            fingerprintScan.style.opacity = '1';
+            
+            // شروع پیشرفت
+            progressValue = 0;
+            progressInterval = setInterval(() => {
+                progressValue += 1;
+                fingerprintProgress.style.background = `conic-gradient(var(--primary) ${progressValue}%, transparent 0%)`;
+                
+                if (progressValue >= 100) {
+                    completeAuthentication();
+                }
+            }, 30);
+        }
+        
+        function cancelAuthentication() {
+            if (!isAuthenticating) return;
+            
+            clearInterval(progressInterval);
+            isAuthenticating = false;
+            fingerprintBtn.classList.remove('active');
+            fingerprintIcon.style.color = 'var(--primary)';
+            fingerprintScan.style.opacity = '0';
+            
+            if (progressValue < 100 && progressValue > 10) {
+                loginError.style.display = 'block';
+                setTimeout(() => {
+                    fingerprintProgress.style.background = 'conic-gradient(var(--primary) 0%, transparent 0%)';
+                }, 500);
+            } else if (progressValue <= 10) {
+                fingerprintProgress.style.background = 'conic-gradient(var(--primary) 0%, transparent 0%)';
             }
-        };
+            
+            progressValue = 0;
+        }
         
-        // داده‌های استوری
-        const stories = {
-            you: {
-                title: "نظرات کاربران",
-                text: "نظرات و تجربیات کاربران XRO VPN. کاربران ما از سرعت و پایداری سرویس‌های ما رضایت کامل دارند."
-            },
-            security: {
-                title: "امنیت پیشرفته",
-                text: "ما از آخرین تکنولوژی‌های رمزنگاری برای محافظت از حریم خصوصی شما استفاده می‌کنیم. تمام ارتباطات شما به صورت end-to-end رمزنگاری می‌شوند."
-            },
-            guide: {
-                title: "راهنمای خرید",
-                text: "1. نوع سرویس مورد نیاز خود را انتخاب کنید\n2. مدت زمان و حجم مورد نیاز را مشخص کنید\n3. سفارش خود را نهایی کرده و کانفیگ را دریافت کنید"
+        function completeAuthentication() {
+            clearInterval(progressInterval);
+            fingerprintProgress.style.background = 'conic-gradient(var(--primary) 100%, transparent 0%)';
+            fingerprintScan.style.opacity = '0';
+            
+            setTimeout(() => {
+                loginScreen.classList.remove('active');
+                setTimeout(() => {
+                    appContainer.style.display = 'block';
+                    startMusicPlayer();
+                }, 500);
+            }, 500);
+        }
+
+        // سیستم پخش موزیک
+        const musicControlBtn = document.getElementById('musicControlBtn');
+        const musicModal = document.getElementById('musicModal');
+        const modalPlayBtn = document.getElementById('modalPlayBtn');
+        const musicProgressBar = document.getElementById('musicProgressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        let isPlaying = false;
+        let audio = new Audio('https://kmuzon.com/uploads/files/2022-01/santiz-kajfusha-swerodo-remix_(kmuzon.com).mp3');
+        
+        function startMusicPlayer() {
+            audio.play();
+            isPlaying = true;
+            updateMusicIcon();
+            updateProgressBar();
+            musicControlBtn.classList.add('active');
+            
+            // تنظیم مدت زمان کل
+            audio.addEventListener('loadedmetadata', function() {
+                const duration = audio.duration;
+                const minutes = Math.floor(duration / 60);
+                const seconds = Math.floor(duration % 60);
+                durationEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            });
+        }
+        
+        function togglePlay() {
+            if (isPlaying) {
+                pauseMusic();
+            } else {
+                playMusic();
             }
-        };
+        }
         
-        let currentStoryIndex = 0;
-        const storyKeys = Object.keys(stories);
+        function playMusic() {
+            audio.play();
+            isPlaying = true;
+            modalPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            updateMusicIcon();
+            updateProgressBar();
+            musicControlBtn.classList.add('active');
+        }
         
-        // نمایش تب‌های اصلی
-        function showMainTab(tabName) {
+        function pauseMusic() {
+            audio.pause();
+            isPlaying = false;
+            modalPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+            updateMusicIcon();
+            musicControlBtn.classList.remove('active');
+        }
+        
+        function prevSong() {
+            showNotification('آهنگ قبلی پخش می‌شود');
+            // در اینجا می‌توانید آهنگ قبلی را پیاده‌سازی کنید
+        }
+        
+        function nextSong() {
+            showNotification('آهنگ بعدی پخش می‌شود');
+            // در اینجا می‌توانید آهنگ بعدی را پیاده‌سازی کنید
+        }
+        
+        function updateProgressBar() {
+            if (!isPlaying) return;
+            
+            const progress = (audio.currentTime / audio.duration) * 100;
+            musicProgressBar.style.width = `${progress}%`;
+            
+            // به روز رسانی زمان فعلی
+            const currentTime = audio.currentTime;
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = Math.floor(currentTime % 60);
+            currentTimeEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            if (audio.currentTime < audio.duration) {
+                requestAnimationFrame(updateProgressBar);
+            } else {
+                isPlaying = false;
+                modalPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+                updateMusicIcon();
+                musicControlBtn.classList.remove('active');
+            }
+        }
+        
+        function updateMusicIcon() {
+            musicControlBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-music"></i>';
+        }
+        
+        musicControlBtn.addEventListener('click', function() {
+            musicModal.style.display = 'flex';
+            setTimeout(() => {
+                musicModal.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        });
+        
+        function closeMusicModal() {
+            musicModal.classList.remove('active');
+            setTimeout(() => {
+                musicModal.style.display = 'none';
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+        
+        // نمایش تب‌ها
+        function showTab(tabId) {
             const tabs = document.querySelectorAll('.main-tab');
-            const tabContents = document.querySelectorAll('.main-tab-content');
+            const tabContents = document.querySelectorAll('.tab-content');
             
             tabs.forEach(tab => tab.classList.remove('active'));
             tabContents.forEach(content => content.classList.remove('active'));
             
-            document.getElementById(`${tabName}-tab`).classList.add('active');
-            document.querySelector(`.main-tab[onclick="showMainTab('${tabName}')"]`).classList.add('active');
+            document.querySelector(`.main-tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(`${tabId}Tab`).classList.add('active');
         }
-        
+
+        // کپی DNS
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('DNS با موفقیت کپی شد');
+            }).catch(err => {
+                console.error('خطا در کپی کردن متن: ', err);
+                showNotification('خطا در کپی کردن DNS');
+            });
+        }
+
         // نمایش اعلان
         function showNotification(message = 'این سرویس در حال حاضر غیرفعال می‌باشد') {
             const notification = document.getElementById('notification');
@@ -2194,338 +2048,210 @@
                 notification.style.display = 'none';
             }, 3000);
         }
-        
-        // نمایش صفحه درباره ما
-        function showAbout() {
-            const aboutContent = `
-                <div style="background: var(--dark-light); padding: 2rem; border-radius: var(--radius); max-width: 90%; margin: 2rem auto; text-align: center;">
-                    <h2 style="color: var(--primary); margin-bottom: 1rem;">درباره XRO VPN</h2>
-                    <p style="line-height: 1.8; margin-bottom: 1.5rem;">
-                        XRO VPN ارائه دهنده سرویس‌های پرسرعت و پایدار برای کاربران ایرانی است. ما با ارائه سرویس‌های ویژه در شرایط مختلف، همیشه در کنار شما هستیم.
-                    </p>
-                    <p style="line-height: 1.8;">
-                        تیم فنی ما همواره در حال بهبود کیفیت سرویس‌ها و ارائه راهکارهای جدید برای دسترسی آزاد به اینترنت است.
-                        <br><br>
-                        <strong>ما پشت مردم هستیم و در سخت‌ترین شرایط نیز خدمات ما پایدار خواهد ماند.</strong>
-                    </p>
-                </div>
-            `;
+
+        // نمایش مودال خرید
+        function openPurchaseModal(serviceType) {
+            const modal = document.getElementById('purchaseModal');
+            const title = document.getElementById('purchaseTitle');
+            const icon = document.getElementById('purchaseIcon');
+            const description = document.getElementById('purchaseDescription');
+            const plansContainer = document.getElementById('purchasePlans');
             
-            alert(aboutContent);
-        }
-        
-        // نمایش پشتیبانی آنلاین
-        function showSupport() {
-            showNotification('پشتیبانی آنلاین در نسخه بعدی فعال خواهد شد');
-        }
-        
-        // باز کردن مودال جنگی گوشی
-        function openPhoneModal(orderType) {
-            currentOrder = {
-                type: 'phone',
-                orderType: orderType,
-                volume: 0,
-                days: 0,
-                price: 0
-            };
-            
-            // تنظیم قیمت‌ها بر اساس نوع سفارش (شخصی/همکاری)
-            updatePhonePrices();
-            
-            document.getElementById('finalPhoneType').textContent = orderType === 'affiliate' ? 'همکاری' : 'شخصی';
-            document.getElementById('phoneModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            showModalTab('type', 'phone');
-        }
-        
-        // باز کردن مودال جنگی مودم
-        function openModemModal(orderType) {
-            currentOrder = {
-                type: 'modem',
-                orderType: orderType,
-                volume: 1,
-                days: 2,
-                price: 0
-            };
-            
-            document.getElementById('finalModemType').textContent = orderType === 'affiliate' ? 'همکاری' : 'شخصی';
-            document.getElementById('modemModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            showModalTab('type', 'modem');
-            
-            // مقداردهی اولیه مقادیر
-            updateVolume(1, 'modem');
-            updateDays(2, 'modem');
-        }
-        
-        // به‌روزرسانی قیمت‌های گوشی بر اساس نوع سفارش
-        function updatePhonePrices() {
-            const prices = currentOrder.orderType === 'affiliate' ? phonePrices.affiliate : phonePrices.personal;
-            
-            document.getElementById('personal-30-price').textContent = prices[30].toLocaleString('fa-IR') + ' تومان';
-            document.getElementById('personal-90-price').textContent = prices[90].toLocaleString('fa-IR') + ' تومان';
-            document.getElementById('personal-180-price').textContent = prices[180].toLocaleString('fa-IR') + ' تومان';
-        }
-        
-        // انتخاب نوع سفارش (شخصی/همکاری)
-        function selectOrderType(modalType, orderType) {
-            currentOrder.orderType = orderType;
-            
-            // حذف کلاس selected از همه گزینه‌ها
-            document.querySelectorAll(`#${modalType}Tab-${modalType} .duration-option`).forEach(option => {
-                option.classList.remove('selected');
-            });
-            
-            // اضافه کردن کلاس selected به گزینه انتخاب شده
-            event.target.closest('.duration-option').classList.add('selected');
-            
-            // به‌روزرسانی نوع سفارش در خلاصه
-            document.getElementById(`final${modalType.charAt(0).toUpperCase() + modalType.slice(1)}Type`).textContent = 
-                orderType === 'affiliate' ? 'همکاری' : 'شخصی';
-            
-            // اگر گوشی است، قیمت‌ها را به‌روزرسانی کن
-            if (modalType === 'phone') {
-                updatePhonePrices();
+            switch(serviceType) {
+                case 'sim':
+                    title.textContent = 'خرید کانفیگ جنگی سیمکارت';
+                    icon.innerHTML = '<i class="fas fa-sim-card"></i>';
+                    description.textContent = 'سرویس ویژه برای سیمکارت با حجم نامحدود و اتصال پایدار';
+                    
+                    // پلن‌های سیمکارت
+                    plansContainer.innerHTML = `
+                        <div class="plan-item" onclick="selectPlan(this)">
+                            <div class="plan-info">
+                                <div class="plan-name">پلن یک ماهه</div>
+                                <div class="plan-details">حجم نامحدود - پشتیبانی 24/7</div>
+                            </div>
+                            <div class="plan-price">310,000 تومان</div>
+                        </div>
+                        <div class="plan-item active" onclick="selectPlan(this)">
+                            <div class="plan-info">
+                                <div class="plan-name">پلن سه ماهه</div>
+                                <div class="plan-details">حجم نامحدود - پشتیبانی VIP</div>
+                            </div>
+                            <div class="plan-price">628,000 تومان</div>
+                        </div>
+                        <div class="plan-item" onclick="selectPlan(this)">
+                            <div class="plan-info">
+                                <div class="plan-name">پلن شش ماهه</div>
+                                <div class="plan-details">حجم نامحدود - سرعت اختصاصی</div>
+                            </div>
+                            <div class="plan-price">914,000 تومان</div>
+                        </div>
+                    `;
+                    break;
+                case 'modem':
+                    title.textContent = 'خرید کانفیگ جنگی مودم';
+                    icon.innerHTML = '<i class="fas fa-wifi"></i>';
+                    description.textContent = 'سرویس ویژه برای مودم با حجم انتخابی و پایداری بالا';
+                    
+                    // پلن‌های مودم
+                    plansContainer.innerHTML = `
+                        <div class="plan-item" onclick="selectPlan(this)">
+                            <div class="plan-info">
+                                <div class="plan-name">پلن یک ماهه</div>
+                                <div class="plan-details">حجم نامحدود - پشتیبانی 24/7</div>
+                            </div>
+                            <div class="plan-price">120,000 تومان</div>
+                        </div>
+                        <div class="plan-item active" onclick="selectPlan(this)">
+                            <div class="plan-info">
+                                <div class="plan-name">پلن سه ماهه</div>
+                                <div class="plan-details">حجم نامحدود - پشتیبانی VIP</div>
+                            </div>
+                            <div class="plan-price">300,000 تومان</div>
+                        </div>
+                        <div class="plan-item" onclick="selectPlan(this)">
+                            <div class="plan-info">
+                                <div class="plan-name">پلن شش ماهه</div>
+                                <div class="plan-details">حجم نامحدود - سرعت اختصاصی</div>
+                            </div>
+                            <div class="plan-price">540,000 تومان</div>
+                        </div>
+                    `;
+                    break;
             }
+            
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
         }
-        
-        // انتخاب مدت زمان برای جنگی گوشی
-        function selectDuration(modalType, days, orderType) {
-            currentOrder.days = days;
-            currentOrder.orderType = orderType;
-            
-            const prices = orderType === 'affiliate' ? phonePrices.affiliate : phonePrices.personal;
-            currentOrder.price = prices[days];
-            
-            // حذف کلاس selected از همه گزینه‌ها
-            document.querySelectorAll(`#durationTab-${modalType} .duration-option`).forEach(option => {
-                option.classList.remove('selected');
+
+        function closePurchaseModal() {
+            document.getElementById('purchaseModal').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('purchaseModal').style.display = 'none';
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectPlan(planElement) {
+            document.querySelectorAll('.plan-item').forEach(item => {
+                item.classList.remove('active');
             });
+            planElement.classList.add('active');
+        }
+
+        function requestService() {
+            const modal = document.getElementById('purchaseModal');
+            const serviceType = modal.querySelector('.purchase-title').textContent.includes('سیمکارت') ? 'سیمکارت' : 'مودم';
+            const selectedPlan = modal.querySelector('.plan-item.active .plan-name').textContent;
+            const price = modal.querySelector('.plan-item.active .plan-price').textContent;
             
-            // اضافه کردن کلاس selected به گزینه انتخاب شده
-            event.target.closest('.duration-option').classList.add('selected');
+            let duration = '';
+            if (selectedPlan.includes('یک ماهه')) duration = '30 روزه';
+            else if (selectedPlan.includes('سه ماهه')) duration = '90 روزه';
+            else if (selectedPlan.includes('شش ماهه')) duration = '180 روزه';
             
-            // به‌روزرسانی خلاصه سفارش
-            document.getElementById(`final${modalType.charAt(0).toUpperCase() + modalType.slice(1)}Days`).textContent = `${days} روز`;
-            document.getElementById(`final${modalType.charAt(0).toUpperCase() + modalType.slice(1)}Price`).textContent = 
-                currentOrder.price.toLocaleString('fa-IR');
-        }
-        
-        // به‌روزرسانی حجم برای جنگی مودم
-        function updateVolume(value, modalType) {
-            currentOrder.volume = parseInt(value);
-            document.getElementById('volumeValue-modem').textContent = `${currentOrder.volume} گیگ`;
-            document.getElementById('volumeInput-modem').value = currentOrder.volume;
-            document.getElementById('finalModemVolume').textContent = `${currentOrder.volume} گیگ`;
-            updateModemPrice();
-        }
-        
-        // به‌روزرسانی دستی حجم برای جنگی مودم
-        function updateVolumeInput(value, modalType) {
-            let volume = parseInt(value);
-            if (isNaN(volume)) volume = 1;
-            if (volume < 1) volume = 1;
-            if (volume > 1000) volume = 1000;
+            const telegramUrl = `https://t.me/u0v0n?text=${encodeURIComponent(
+                `سلام ادمین رسمی ایکسرو!\n\n` +
+                `سرویس: ${serviceType}\n` +
+                `نوع: ${selectedPlan}\n` +
+                `زمان: ${duration}\n` +
+                `حجم: نامحدود\n\n` +
+                `قیمت: ${price}\n\n` +
+                `برای بنده فعال و اطلاعات لازم رو به بنده دهید ، با تشکر .`
+            )}`;
             
-            document.getElementById('volumeSlider-modem').value = volume;
-            updateVolume(volume, modalType);
+            window.open(telegramUrl, '_blank');
+            closePurchaseModal();
+            showNotification('درخواست شما ارسال شد. لطفاً در تلگرام پیام دهید.');
         }
-        
-        // به‌روزرسانی روزها برای جنگی مودم
-        function updateDays(value, modalType) {
-            currentOrder.days = parseInt(value);
-            document.getElementById('daysValue-modem').textContent = `${currentOrder.days} روز`;
-            document.getElementById('daysInput-modem').value = currentOrder.days;
-            document.getElementById('finalModemDays').textContent = `${currentOrder.days} روز`;
-            updateModemPrice();
-        }
-        
-        // به‌روزرسانی دستی روزها برای جنگی مودم
-        function updateDaysInput(value, modalType) {
-            let days = parseInt(value);
-            if (isNaN(days)) days = 1;
-            if (days < 1) days = 1;
-            if (days > 30) days = 30;
+
+        // باز کردن استوری
+        function openStory(storyId) {
+            const modal = document.getElementById('storyModal');
+            const title = document.getElementById('storyTitle');
+            const text = document.getElementById('storyText');
             
-            document.getElementById('daysSlider-modem').value = days;
-            updateDays(days, 'modem');
-        }
-        
-        // محاسبه قیمت نهایی جنگی مودم
-        function updateModemPrice() {
-            const prices = currentOrder.orderType === 'affiliate' ? modemPrices.affiliate : modemPrices.personal;
-            const totalPrice = (currentOrder.volume * prices.perGB) + (currentOrder.days * prices.perDay);
-            currentOrder.price = totalPrice;
-            document.getElementById('finalModemPrice').textContent = totalPrice.toLocaleString('fa-IR');
-        }
-        
-        // نمایش تب‌های مودال با انیمیشن
-        function showModalTab(tabName, modalType) {
-            const currentActiveTab = document.querySelector(`.modal-tab.${modalType}.active`);
-            const currentActiveContent = document.querySelector(`.modal-tab-content.active#${currentActiveTab.getAttribute('onclick').match(/'([^']+)'/)[1]}Tab-${modalType}`);
+            switch(storyId) {
+                case 'security':
+                    title.textContent = 'امنیت پیشرفته';
+                    text.textContent = 'ما از آخرین تکنولوژی‌های رمزنگاری برای محافظت از حریم خصوصی شما استفاده می‌کنیم. تمام ارتباطات شما به صورت end-to-end رمزنگاری می‌شوند.';
+                    break;
+                case 'speed':
+                    title.textContent = 'سرعت فوق‌العاده';
+                    text.textContent = 'با استفاده از سرورهای پرسرعت در نقاط مختلف جهان، بهترین تجربه وبگردی را برای شما فراهم می‌کنیم.';
+                    break;
+                case 'support':
+                    title.textContent = 'پشتیبانی 24/7';
+                    text.textContent = 'تیم پشتیبانی ما به صورت 24 ساعته و 7 روز هفته آماده پاسخگویی به سوالات و مشکلات شماست.';
+                    break;
+                case 'guide':
+                    title.textContent = 'راهنمای استفاده';
+                    text.textContent = '1. اپلیکیشن را دانلود و نصب کنید\n2. حساب کاربری ایجاد کنید\n3. از سرویس‌های ما لذت ببرید';
+                    break;
+                default:
+                    title.textContent = 'XRO VPN';
+                    text.textContent = 'به XRO VPN خوش آمدید';
+            }
             
-            // انیمیشن fade-out برای تب فعلی
-            currentActiveContent.style.animation = 'fadeOut 0.3s ease forwards';
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStoryModal() {
+            document.getElementById('storyModal').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('storyModal').style.display = 'none';
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        // شبیه‌سازی اعلانات متوالی
+        const announcements = [
+            "آقای ایکسرا حامی آزادی است",
+            "در بدترین شرایط خدمات ما پایدار می‌ماند",
+            "فروش ماهانه +۱۰هزار کانفیگ شد!",
+            "سرویس‌های جدید با سرعت فوق‌العاده"
+        ];
+        
+        let currentAnnouncement = 0;
+        const announcementText = document.getElementById('announcementText');
+        
+        function rotateAnnouncements() {
+            announcementText.style.opacity = '0';
             
             setTimeout(() => {
-                // مخفی کردن تب فعلی
-                currentActiveTab.classList.remove('active');
-                currentActiveContent.classList.remove('active');
-                currentActiveContent.style.animation = '';
-                
-                // نمایش تب جدید
-                const newTab = document.querySelector(`.modal-tab.${modalType}[onclick="showModalTab('${tabName}', '${modalType}')"]`);
-                const newContent = document.getElementById(`${tabName}Tab-${modalType}`);
-                
-                newTab.classList.add('active');
-                newContent.classList.add('active');
-                newContent.style.animation = 'fadeIn 0.3s ease forwards';
-            }, 300);
+                currentAnnouncement = (currentAnnouncement + 1) % announcements.length;
+                announcementText.textContent = announcements[currentAnnouncement];
+                announcementText.style.opacity = '1';
+            }, 500);
         }
         
-        // بستن مودال
-        function closeModal() {
-            document.getElementById('phoneModal').style.display = 'none';
-            document.getElementById('modemModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        // ارسال سفارش
-        function submitOrder(modalType) {
-            let message = '';
-            
-            if (modalType === 'phone') {
-                message = `سفارش جدید XRO VPN (جنگی گوشی):\nمدت: ${currentOrder.days} روز\nحجم: نامحدود\nنوع: ${currentOrder.orderType === 'affiliate' ? 'همکاری' : 'شخصی'}\nقیمت: ${currentOrder.price.toLocaleString('fa-IR')} تومان`;
-            } else {
-                message = `سفارش جدید XRO VPN (جنگی مودم):\nمدت: ${currentOrder.days} روز\nحجم: ${currentOrder.volume} گیگ\nنوع: ${currentOrder.orderType === 'affiliate' ? 'همکاری' : 'شخصی'}\nقیمت: ${currentOrder.price.toLocaleString('fa-IR')} تومان`;
-            }
-            
-            window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
-            closeModal();
-        }
-        
-        // کپی DNS
-        function copyToClipboard(id) {
-            const text = document.getElementById(id).textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('DNS با موفقیت کپی شد');
-            }).catch(err => {
-                console.error('خطا در کپی کردن متن: ', err);
-                showNotification('خطا در کپی کردن DNS');
-            });
-        }
-        
-        // باز کردن استوری
-        function openStory(type) {
-            const storyModal = document.getElementById('storyModal');
-            const storyTitle = document.getElementById('storyTitle');
-            const storyText = document.getElementById('storyText');
-            
-            currentStoryIndex = storyKeys.indexOf(type);
-            const story = stories[type];
-            
-            storyTitle.textContent = story.title;
-            storyText.textContent = story.text;
-            
-            storyModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // بستن استوری
-        function closeStory() {
-            document.getElementById('storyModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        // استوری قبلی
-        function prevStory() {
-            currentStoryIndex = (currentStoryIndex - 1 + storyKeys.length) % storyKeys.length;
-            const story = stories[storyKeys[currentStoryIndex]];
-            
-            document.getElementById('storyTitle').textContent = story.title;
-            document.getElementById('storyText').textContent = story.text;
-        }
-        
-        // استوری بعدی
-        function nextStory() {
-            currentStoryIndex = (currentStoryIndex + 1) % storyKeys.length;
-            const story = stories[storyKeys[currentStoryIndex]];
-            
-            document.getElementById('storyTitle').textContent = story.title;
-            document.getElementById('storyText').textContent = story.text;
-        }
-        
+        setInterval(rotateAnnouncements, 3000);
+
         // بستن با کلید ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                closeModal();
-                closeStory();
+                closePurchaseModal();
+                closeMusicModal();
+                closeStoryModal();
             }
         });
-        
-        // شمارنده و تغییر صفحه
-        const loadingScreen = document.getElementById('loadingScreen');
-        const mainScreen = document.getElementById('mainScreen');
-        const loadingBar = document.getElementById('loadingBar');
-        const counter = document.getElementById('counter');
-        const mrText = document.querySelector('.mr');
-        const xeroText = document.querySelector('.xero');
-        const loadingFooter = document.querySelector('.loading-footer');
-        
-        let count = 0;
-        const interval = setInterval(() => {
-            if (count < 100) {
-                count++;
-                loadingBar.style.width = `${count}%`;
-                counter.textContent = `${count}%`;
-                
-                const glowIntensity = count/3;
-                loadingBar.style.boxShadow = `0 0 ${glowIntensity}px rgba(110, 69, 226, 0.7)`;
-            } else {
-                clearInterval(interval);
-                
-                // انیمیشن خروج بخش پایین
-                loadingFooter.style.animation = 'fadeOut 0.8s forwards';
-                
-                // تاخیر قبل از انیمیشن خروج متن
-                setTimeout(() => {
-                    // انیمیشن خروج متن‌ها به جهت مخالف
-                    mrText.style.animation = 'slideOutRight 0.8s forwards';
-                    xeroText.style.animation = 'slideOutLeft 0.8s forwards';
-                    
-                    // نمایش صفحه اصلی پس از اتمام انیمیشن‌ها
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                        mainScreen.style.display = 'block';
-                        mainScreen.style.opacity = '1';
-                        
-                        // مقداردهی اولیه تب‌ها
-                        showMainTab('home');
-                        
-                        // متن تایپ شونده
-                        const typingText = document.getElementById('typingText');
-                        const text = "آقای ایکسرا حامی آزادی است | در بدترین شرایط خدمات ما پیدار می‌ماند | فروش ماهانه +۱۰هزار کانفیگ شد!";
-                        let i = 0;
-                        
-                        function typeWriter() {
-                            if (i < text.length) {
-                                typingText.textContent += text.charAt(i);
-                                i++;
-                                setTimeout(typeWriter, 100);
-                            } else {
-                                setTimeout(() => {
-                                    typingText.textContent = '';
-                                    i = 0;
-                                    typeWriter();
-                                }, 3000);
-                            }
-                        }
-                        
-                        typeWriter();
-                    }, 800);
-                }, 300);
-            }
-        }, 40);
+
+        // جلوگیری از زوم صفحه
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+
+        // جلوگیری از انتخاب متن
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
