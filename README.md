@@ -53,11 +53,72 @@
             color: var(--on-surface);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(110, 69, 226, 0.15) 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(255, 71, 87, 0.15) 0%, transparent 30%);
             touch-action: manipulation;
             overscroll-behavior-y: contain;
+        }
+
+        /* پس زمینه جدید با انیمیشن فضایی */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, #000000 0%, #111111 100%);
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent 0%, white 50%, transparent 100%);
+            filter: drop-shadow(0 0 5px white);
+            transform: rotate(-45deg);
+            animation: shooting 10s linear infinite;
+            opacity: 0;
+        }
+
+        .galaxy {
+            position: absolute;
+            top: 30%;
+            left: 20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at center, transparent 40%, rgba(100, 100, 255, 0.1) 100%);
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: 0.3;
+            z-index: 0;
+            animation: galaxy-spin 60s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        .galaxy-arm {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 60%, rgba(100, 150, 255, 0.2) 100%);
+            border-radius: 50%;
+            animation: inherit;
+            transform-origin: center;
         }
 
         /* صفحه لودینگ پیشرفته */
@@ -168,7 +229,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--background);
+            background: rgba(0,0,0,0.9);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -177,6 +238,7 @@
             opacity: 0;
             pointer-events: none;
             transition: var(--transition-slow);
+            backdrop-filter: blur(5px);
         }
 
         .login-screen.active {
@@ -1508,6 +1570,24 @@
             75% { transform: skewY(-2deg) scale(1.02); }
         }
 
+        /* انیمیشن‌های پس زمینه فضایی */
+        @keyframes twinkle {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+
+        @keyframes shooting {
+            0% { transform: translateX(-100px) translateY(-100px) rotate(-45deg); opacity: 0; }
+            10% { opacity: 1; }
+            20% { transform: translateX(100px) translateY(100px) rotate(-45deg); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes galaxy-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         /* رسپانسیو */
         @media (max-width: 480px) {
             .services-grid, .country-grid {
@@ -1560,6 +1640,18 @@
     </style>
 </head>
 <body>
+    <!-- پس زمینه فضایی جدید -->
+    <div class="space-background">
+        <div class="stars" id="stars"></div>
+        <div class="galaxy">
+            <div class="galaxy-arm" style="transform: rotate(0deg)"></div>
+            <div class="galaxy-arm" style="transform: rotate(72deg)"></div>
+            <div class="galaxy-arm" style="transform: rotate(144deg)"></div>
+            <div class="galaxy-arm" style="transform: rotate(216deg)"></div>
+            <div class="galaxy-arm" style="transform: rotate(288deg)"></div>
+        </div>
+    </div>
+
     <!-- صفحه لودینگ -->
     <div class="loading-screen" id="loadingScreen">
         <div class="logo-container">
@@ -1623,14 +1715,14 @@
                 </div>
                 <span class="story-label">راهنما</span>
             </a>
-            <a href="#" class="story-item" onclick="openStory('ads')">
+            <a href="#" class="story-item" onclick="showNotification('درحال اپدیت آخر هستیم ...')">
                 <div class="story-avatar">
                     <div class="story-avatar-inner">
                         <i class="fas fa-ad"></i>
                     </div>
                     <div class="story-new"></div>
                 </div>
-                <span class="story-label">تبلیغات</span>
+                <span class="story-label">کانفیگ رایگان</span>
             </a>
             <a href="#" class="story-item" onclick="openStory('team')">
                 <div class="story-avatar">
@@ -1649,7 +1741,7 @@
         <div class="announcement-container">
             <div class="announcement-box">
                 <div class="announcement-text" id="announcementText">
-                    سرویس‌های جدید XRO VPN با سرعت و پایداری فوق‌العاده
+                    ویرایش ۱۲ سایت اعمال شد
                 </div>
             </div>
         </div>
@@ -1677,7 +1769,7 @@
                     <div class="service-icon">
                         <i class="fas fa-sim-card"></i>
                     </div>
-                    <h3 class="service-title">کانفیگ جنگی سیمکارت</h3>
+                    <h3 class="service-title">کانفیگ شخصی سیمکارت</h3>
                     <p class="service-description">
                         سرویس ویژه برای سیمکارت با حجم نامحدود و اتصال پایدار
                     </p>
@@ -1686,7 +1778,7 @@
                     <div class="service-icon">
                         <i class="fas fa-wifi"></i>
                     </div>
-                    <h3 class="service-title">کانفیگ جنگی مودم</h3>
+                    <h3 class="service-title">کانفیگ خانوادگی مودم</h3>
                     <p class="service-description">
                         سرویس ویژه برای مودم با حجم انتخابی و پایداری بالا
                     </p>
@@ -1856,7 +1948,7 @@
                 <i class="fas fa-music"></i>
             </div>
             <div class="song-info">
-                <div class="song-name">Kajfusha (Remix)</div>
+                <div class="song-name">شرویس (آزاد)</div>
                 <div class="song-artist">Santiz</div>
             </div>
             <div class="music-progress-container">
@@ -1926,6 +2018,31 @@
     </div>
 
     <script>
+        // ایجاد ستاره‌ها و شهاب‌سنگ‌ها برای پس زمینه
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            star.style.opacity = `${Math.random() * 0.7 + 0.3}`;
+            starsContainer.appendChild(star);
+            
+            // ایجاد شهاب‌سنگ‌ها
+            if (i % 30 === 0) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = `${Math.random() * 100}%`;
+                shootingStar.style.top = `${Math.random() * 100}%`;
+                shootingStar.style.animationDelay = `${Math.random() * 10}s`;
+                starsContainer.appendChild(shootingStar);
+            }
+        }
+
         // شبیه‌سازی لودینگ
         let progress = 0;
         const progressBar = document.getElementById('progressBar');
@@ -2034,7 +2151,7 @@
         const durationEl = document.getElementById('duration');
         const musicCover = document.getElementById('musicCover');
         let isPlaying = false;
-        let audio = new Audio('https://kmuzon.com/uploads/files/2022-01/santiz-kajfusha-swerodo-remix_(kmuzon.com).mp3');
+        let audio = new Audio('https://uploadkon.ir/uploads/16da29_25snapinstaapp-video-ad462bd606d813d96640394e87e42da-online-audio-converter-com-1-.mp3');
         
         function startMusicPlayer() {
             audio.play();
@@ -2183,7 +2300,7 @@
             
             switch(serviceType) {
                 case 'sim':
-                    title.textContent = 'خرید کانفیگ جنگی سیمکارت';
+                    title.textContent = 'خرید کانفیگ شخصی سیمکارت';
                     icon.innerHTML = '<i class="fas fa-sim-card"></i>';
                     description.textContent = 'سرویس ویژه برای سیمکارت با حجم نامحدود و اتصال پایدار';
                     
@@ -2191,54 +2308,54 @@
                     plansContainer.innerHTML = `
                         <div class="plan-item" onclick="selectPlan(this)">
                             <div class="plan-info">
-                                <div class="plan-name">پلن یک ماهه</div>
-                                <div class="plan-details">حجم نامحدود - پشتیبانی 24/7</div>
+                                <div class="plan-name">ساب ۳۰روزه</div>
+                                <div class="plan-details">حجم نامحدود - تک کاربره</div>
                             </div>
-                            <div class="plan-price">310,000 تومان</div>
+                            <div class="plan-price">260,000 تومان</div>
                         </div>
                         <div class="plan-item active" onclick="selectPlan(this)">
                             <div class="plan-info">
-                                <div class="plan-name">پلن سه ماهه</div>
-                                <div class="plan-details">حجم نامحدود - پشتیبانی VIP</div>
+                                <div class="plan-name">ساب ۹۰روزه</div>
+                                <div class="plan-details">حجم نامحدود - تک کاربره</div>
                             </div>
-                            <div class="plan-price">628,000 تومان</div>
+                            <div class="plan-price">528,000 تومان</div>
                         </div>
                         <div class="plan-item" onclick="selectPlan(this)">
                             <div class="plan-info">
-                                <div class="plan-name">پلن شش ماهه</div>
-                                <div class="plan-details">حجم نامحدود - سرعت اختصاصی</div>
+                                <div class="plan-name">ساب ۱۸۰روزه</div>
+                                <div class="plan-details">حجم نامحدود - تک کاربره</div>
                             </div>
-                            <div class="plan-price">914,000 تومان</div>
+                            <div class="plan-price">810,000 تومان</div>
                         </div>
                     `;
                     break;
                 case 'modem':
-                    title.textContent = 'خرید کانفیگ جنگی مودم';
+                    title.textContent = 'خرید کانفیگ خانوادگی مودم';
                     icon.innerHTML = '<i class="fas fa-wifi"></i>';
                     description.textContent = 'سرویس ویژه برای مودم با حجم انتخابی و پایداری بالا';
                     
-                    // پلن‌های مودم (به‌روزرسانی شده)
+                    // پلن‌های مودم
                     plansContainer.innerHTML = `
                         <div class="plan-item" onclick="selectPlan(this)">
                             <div class="plan-info">
-                                <div class="plan-name">ساب ۱۰روزه</div>
-                                <div class="plan-details">حجم ۱۰ گیگ - تست</div>
+                                <div class="plan-name">ساب ۳۰روزه</div>
+                                <div class="plan-details">۱۰۵گیگ - خانواده کوچک</div>
                             </div>
-                            <div class="plan-price">25,000 تومان</div>
+                            <div class="plan-price">260,000 تومان</div>
                         </div>
                         <div class="plan-item active" onclick="selectPlan(this)">
                             <div class="plan-info">
-                                <div class="plan-name">ساب ۶۰روزه</div>
-                                <div class="plan-details">حجم ۱۰۰ گیگ - خانواده کوچک</div>
+                                <div class="plan-name">ساب ۹۰روزه</div>
+                                <div class="plan-details">۲۰۱گیگ - خانواده متوسط</div>
                             </div>
-                            <div class="plan-price">189,000 تومان</div>
+                            <div class="plan-price">528,000 تومان</div>
                         </div>
                         <div class="plan-item" onclick="selectPlan(this)">
                             <div class="plan-info">
-                                <div class="plan-name">ساب ۱۲۰روزه</div>
-                                <div class="plan-details">حجم ۲۸۰گیگ - خانواده بزرگ</div>
+                                <div class="plan-name">ساب ۱۸۰روزه</div>
+                                <div class="plan-details">۳۱۷گیگ - خانواده بزرگ</div>
                             </div>
-                            <div class="plan-price">540,000 تومان</div>
+                            <div class="plan-price">810,000 تومان</div>
                         </div>
                     `;
                     break;
@@ -2273,9 +2390,9 @@
             const price = modal.querySelector('.plan-item.active .plan-price').textContent;
             
             let duration = '';
-            if (selectedPlan.includes('۱۰روزه') || selectedPlan.includes('یک ماهه')) duration = '30 روزه';
-            else if (selectedPlan.includes('۶۰روزه') || selectedPlan.includes('سه ماهه')) duration = '90 روزه';
-            else if (selectedPlan.includes('۱۲۰روزه') || selectedPlan.includes('شش ماهه')) duration = '180 روزه';
+            if (selectedPlan.includes('۳۰روزه')) duration = '30 روزه';
+            else if (selectedPlan.includes('۹۰روزه')) duration = '90 روزه';
+            else if (selectedPlan.includes('۱۸۰روزه')) duration = '180 روزه';
             
             const telegramUrl = `https://t.me/u0v0n?text=${encodeURIComponent(
                 `سلام ادمین رسمی ایکسرو!\n\n` +
@@ -2309,10 +2426,6 @@
                             <li>پرداخت و دریافت اشتراک در کمترین زمان</li>
                         </ol>
                     `;
-                    break;
-                case 'ads':
-                    title.textContent = 'تبلیغات';
-                    text.textContent = 'در نسخه بعدی این قفل باز می‌شه منتظر باشید!';
                     break;
                 case 'team':
                     title.textContent = 'تیم ما';
