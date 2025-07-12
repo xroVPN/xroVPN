@@ -4,154 +4,321 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>VPN Manager - ایکسرو</title>
     <style>
-        /* فونت و متغیرهای اصلی */
         :root {
-            --primary-color: #6e8efb;
-            --primary-dark: #5a7df8;
-            --secondary-color: #4CAF50;
-            --danger-color: #e74c3c;
-            --warning-color: #f39c12;
-            --text-color: #2c3e50;
-            --text-light: #7f8c8d;
-            --bg-color: #f8f9fa;
-            --card-bg: white;
-            --border-color: #e0e0e0;
-            --shadow-color: rgba(0,0,0,0.1);
-            --overlay-color: rgba(0,0,0,0.3);
-            --transition-theme: all 0.3s ease;
-            --gradient-primary: linear-gradient(135deg, #6e8efb, #4a6cf7);
-            --gradient-danger: linear-gradient(135deg, #ff7675, #d63031);
-            --gradient-success: linear-gradient(135deg, #55efc4, #00b894);
-            --gradient-warning: linear-gradient(135deg, #ffeaa7, #fbc2eb);
-            --gradient-purple: linear-gradient(135deg, #a29bfe, #6c5ce7);
-            --gradient-orange: linear-gradient(135deg, #fab1a0, #e17055);
-            --gradient-blue: linear-gradient(135deg, #74b9ff, #0984e3);
-            --gradient-pink: linear-gradient(135deg, #fd79a8, #e84393);
-            --gradient-teal: linear-gradient(135deg, #00cec9, #0984e3);
-            --gradient-gaming: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            --gradient-social: linear-gradient(135deg, #4facfe, #00f2fe);
-            --gradient-combo: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            --primary-color: #6e45e2;
+            --primary-light: #9c64ff;
+            --primary-dark: #4a1fb8;
+            --secondary-color: #3dc8d5;
+            --danger-color: #ff4e64;
+            --success-color: #4ce1b6;
+            --warning-color: #ffb54a;
+            --text-color: #f0f4ff;
+            --text-light: #c5d0e8;
+            --bg-color: #0a0e1a;
+            --card-bg: #151a2d;
+            --card-hover: #1d2442;
+            --border-color: rgba(110, 69, 226, 0.3);
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --overlay-color: rgba(0, 0, 0, 0.85);
+            --gradient-primary: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), #2a9fd8);
+            --gradient-danger: linear-gradient(135deg, var(--danger-color), #ff6b6b);
+            --gradient-success: linear-gradient(135deg, var(--success-color), #3dcc91);
+            --gradient-warning: linear-gradient(135deg, var(--warning-color), #ff8a3d);
+            --glass-effect: linear-gradient(135deg, rgba(21, 26, 45, 0.8), rgba(33, 40, 70, 0.6));
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-medium: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .dark-mode {
-            --primary-color: #7d9eff;
-            --primary-dark: #6a8eff;
-            --secondary-color: #5cb85c;
-            --danger-color: #ff6b6b;
-            --warning-color: #ffbe76;
-            --text-color: #ecf0f1;
-            --text-light: #bdc3c7;
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --border-color: #333333;
-            --shadow-color: rgba(0,0,0,0.5);
-            --overlay-color: rgba(0,0,0,0.7);
-            --gradient-primary: linear-gradient(135deg, #7d9eff, #5a7dff);
-            --gradient-gaming: linear-gradient(135deg, #ff4757, #ff6b81);
-            --gradient-social: linear-gradient(135deg, #3a7bd5, #00d2ff);
-            --gradient-combo: linear-gradient(135deg, #8e2de2, #4a00e0);
-        }
-        
-        /* ریست استایل‌ها و فونت */
+
+        /* Base Styles */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            -webkit-tap-highlight-color: transparent;
         }
-        
+
         body {
-            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+            font-family: 'Vazirmatn', 'Segoe UI', system-ui, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             height: 100vh;
             overflow: hidden;
-            -webkit-user-select: none;
             user-select: none;
             touch-action: manipulation;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(110, 69, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(61, 200, 213, 0.15) 0%, transparent 50%),
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.9), rgba(15, 20, 40, 0.95));
+            background-attachment: fixed;
+            background-size: 200% 200%;
+            animation: gradientAnimation 15s ease infinite;
         }
-        
-        /* صفحه لودینگ */
-        .loading-screen {
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Particle Background */
+        .particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gradient-primary);
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+        }
+
+        /* Biometric Auth Screen */
+        .biometric-auth {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 2000;
-            transition: opacity 0.5s ease;
+            background: radial-gradient(ellipse at center, rgba(10, 14, 26, 0.95), rgba(5, 7, 15, 0.98));
+            backdrop-filter: blur(5px);
+            transition: var(--transition-slow);
         }
-        
-        .loading-logo {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 30px;
-            animation: pulse 2s infinite;
+
+        .scanner-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
         }
-        
-        .loading-text {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
+
+        .scanner-border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(110, 69, 226, 0.3);
+            box-shadow: 
+                0 0 30px rgba(110, 69, 226, 0.3),
+                inset 0 0 20px rgba(110, 69, 226, 0.2);
+            animation: borderPulse 4s infinite ease-in-out;
         }
-        
-        .loading-bar-container {
+
+        @keyframes borderPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 30px rgba(110, 69, 226, 0.3),
+                    inset 0 0 20px rgba(110, 69, 226, 0.2);
+                border-color: rgba(110, 69, 226, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 50px rgba(110, 69, 226, 0.5),
+                    inset 0 0 30px rgba(110, 69, 226, 0.3);
+                border-color: rgba(110, 69, 226, 0.6);
+            }
+        }
+
+        .scanner-surface {
+            position: relative;
             width: 80%;
-            max-width: 300px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            height: 80%;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(21, 26, 45, 0.8), rgba(15, 20, 40, 0.9));
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.8),
+                0 10px 50px rgba(110, 69, 226, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: var(--transition-medium);
+            transform-style: preserve-3d;
+            backdrop-filter: blur(5px);
+        }
+
+        .scanner-surface.active {
+            box-shadow: 
+                inset 0 0 40px rgba(0, 0, 0, 0.9),
+                0 15px 70px rgba(110, 69, 226, 0.7);
+            transform: translateZ(20px) scale(1.05);
+        }
+
+        .fingerprint-icon {
+            font-size: 120px;
+            color: rgba(110, 69, 226, 0.8);
+            transition: var(--transition-medium);
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 20px rgba(110, 69, 226, 0.5);
+        }
+
+        .scanner-surface.active .fingerprint-icon {
+            color: rgba(255, 255, 255, 0.95);
+            filter: drop-shadow(0 0 20px rgba(110, 69, 226, 0.9));
+            animation: iconPulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+        }
+
+        .progress-ring {
+            position: absolute;
+            width: 110%;
+            height: 110%;
+        }
+
+        .progress-ring-circle {
+            stroke: rgba(110, 69, 226, 0.2);
+            stroke-width: 4;
+            fill: transparent;
+        }
+
+        .progress-ring-fill {
+            stroke: var(--primary-color);
+            stroke-width: 4;
+            fill: transparent;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transform-origin: center;
+            transform: rotate(-90deg);
+            transition: stroke-dashoffset 0.1s linear;
+            filter: drop-shadow(0 0 5px rgba(110, 69, 226, 0.7));
+        }
+
+        .success-check {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: var(--transition-medium);
+            z-index: 3;
+        }
+
+        .success-check.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .check-icon {
+            font-size: 120px;
+            color: var(--success-color);
+            filter: drop-shadow(0 0 20px rgba(76, 225, 182, 0.8));
+            animation: checkPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes checkPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+        }
+
+        /* Main App Styles */
+        #mainApp {
+            display: none;
+            height: 100vh;
             overflow: hidden;
         }
-        
-        .loading-bar {
-            height: 100%;
-            width: 0;
-            background: white;
-            border-radius: 10px;
-            transition: width 0.1s linear;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        /* استایل‌های اصلی */
+
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 2px 10px var(--shadow-color);
+            padding: 18px 25px;
+            background: var(--glass-effect);
+            border-bottom: var(--glass-border);
+            box-shadow: var(--glass-shadow);
             position: relative;
-            z-index: 10;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
-        
+
         .logo {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--primary-color);
-            padding: 8px 12px;
-            border-radius: 10px;
+            color: var(--text-color);
+            padding: 10px 15px;
+            border-radius: 12px;
             cursor: pointer;
-            background: rgba(110, 142, 251, 0.1);
+            background: rgba(110, 69, 226, 0.15);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            transition: var(--transition-medium);
+            border: 1px solid rgba(110, 69, 226, 0.2);
         }
-        
+
+        .logo:hover {
+            background: rgba(110, 69, 226, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.3);
+        }
+
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 12px;
+            transition: var(--transition-medium);
+            background: rgba(110, 69, 226, 0.1);
+            border: 1px solid rgba(110, 69, 226, 0.2);
+        }
+
+        .menu-btn:hover {
+            background: rgba(110, 69, 226, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .menu-line {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-color);
+            border-radius: 2px;
+            transition: var(--transition-medium);
+        }
+
+        .menu-btn:hover .menu-line {
+            background-color: var(--primary-color);
+        }
+
         .content {
-            height: calc(100vh - 60px);
+            height: calc(100vh - 70px);
             display: flex;
             flex-direction: column;
             padding: 20px;
@@ -159,14 +326,14 @@
             overflow-y: auto;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: var(--transition-medium);
         }
-        
+
         .content.show {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .welcome-container {
             display: flex;
             flex-direction: column;
@@ -174,235 +341,161 @@
             justify-content: center;
             flex: 1;
         }
-        
-        .emoji-container {
-            width: 140px;
-            height: 140px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(110, 142, 251, 0.3);
-            border: 3px solid var(--primary-color);
-            overflow: hidden;
-        }
-        
-        .emoji {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-            border-radius: 50%;
-        }
-        
-        .creator {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-top: 15px;
+
+        .news-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--glass-effect);
+            border-radius: 18px;
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(10px);
             text-align: center;
-            height: 24px;
+            line-height: 1.8;
         }
-        
-        /* دکمه‌ها و منوها */
+
+        .news-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .news-content {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .creator {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-top: 20px;
+            text-align: center;
+            height: 25px;
+            text-shadow: 0 0 10px rgba(110, 69, 226, 0.3);
+        }
+
+        /* Floating Action Button */
         .floating-btn {
             position: fixed;
             bottom: 25px;
             left: 25px;
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             background: var(--gradient-primary);
-            border-radius: 20px;
+            border-radius: 18px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
+            font-size: 28px;
             color: white;
-            box-shadow: 0 8px 25px rgba(110, 142, 251, 0.4);
+            box-shadow: 0 10px 30px rgba(110, 69, 226, 0.5);
             cursor: pointer;
             z-index: 100;
             border: none;
             outline: none;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: var(--transition-medium);
         }
-        
+
         .floating-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(110, 142, 251, 0.5);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(110, 69, 226, 0.7);
         }
-        
-        .menu-btn {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        
-        .menu-btn:hover {
-            background: rgba(110, 142, 251, 0.1);
-        }
-        
-        .menu-line {
-            width: 100%;
-            height: 3px;
-            background-color: var(--text-color);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-        
-        .menu-btn:hover .menu-line {
-            background-color: var(--primary-color);
-        }
-        
-        /* پنجره‌های مدال */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--overlay-color);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
-        }
-        
-        .overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-        
+
+        /* Modal Windows */
         .modal-window {
             position: fixed;
-            background: var(--card-bg);
+            background: var(--glass-effect);
             z-index: 1000;
-            transition: all 0.3s ease-out;
-            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: var(--transition-medium);
+            box-shadow: var(--glass-shadow);
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            border: var(--glass-border);
+            backdrop-filter: blur(20px);
+            border-radius: 18px;
         }
-        
-        /* پنجره منو اصلی */
+
         .main-menu {
             top: -100%;
             right: 0;
             width: 100%;
             height: auto;
-            max-height: 70%;
-            border-radius: 0 0 20px 20px;
+            max-height: 65%;
+            border-radius: 0 0 18px 18px;
         }
-        
+
         .main-menu.open {
             top: 0;
         }
-        
-        /* پنجره منو سریع */
+
         .quick-menu {
-            bottom: -50%;
+            bottom: -60%;
             left: 0;
             width: 100%;
             height: auto;
-            max-height: 60%;
-            border-radius: 20px 20px 0 0;
+            max-height: 55%;
+            border-radius: 18px 18px 0 0;
         }
-        
+
         .quick-menu.open {
             bottom: 0;
         }
-        
-        /* پنجره فروشگاه */
+
         .shop-menu {
             bottom: -100%;
             left: 0;
             width: 100%;
-            height: 80%;
-            max-height: 650px;
-            border-radius: 20px 20px 0 0;
+            height: 75%;
+            max-height: 600px;
+            border-radius: 18px 18px 0 0;
         }
-        
+
         .shop-menu.open {
             bottom: 0;
         }
-        
-        /* پنجره راهنما */
-        .help-window {
-            top: -100%;
-            right: 0;
-            width: 100%;
-            height: 75%;
-            max-height: 650px;
-            border-radius: 0 0 20px 20px;
-        }
-        
-        .help-window.open {
-            top: 0;
-        }
-        
-        /* پنجره چالش و گیم */
+
         .challenge-window {
             top: -100%;
             right: 0;
             width: 100%;
-            height: 55%;
-            max-height: 550px;
-            border-radius: 0 0 20px 20px;
+            height: 50%;
+            max-height: 500px;
+            border-radius: 0 0 18px 18px;
         }
-        
+
         .challenge-window.open {
             top: 0;
         }
-        
-        /* پنجره بکاپ */
-        .backup-window {
-            top: -100%;
-            right: 0;
-            width: 100%;
-            height: 65%;
-            max-height: 550px;
-            border-radius: 0 0 20px 20px;
-        }
-        
-        .backup-window.open {
-            top: 0;
-        }
-        
-        /* پنجره وایرگارد */
-        .wireguard-window {
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            height: 65%;
-            max-height: 550px;
-            border-radius: 20px 20px 0 0;
-        }
-        
-        .wireguard-window.open {
-            bottom: 0;
-        }
-        
-        /* پنجره تنظیمات */
+
         .settings-panel {
             top: -100%;
             right: 0;
             width: 100%;
-            height: 35%;
-            border-radius: 0 0 20px 20px;
+            height: 55%;
+            border-radius: 0 0 18px 18px;
         }
-        
+
         .settings-panel.open {
             top: 0;
         }
-        
-        /* پنجره تایید */
+
         .confirm-window {
             position: fixed;
             top: 50%;
@@ -410,1079 +503,1759 @@
             transform: translate(-50%, -50%) scale(0.9);
             width: 90%;
             max-width: 350px;
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 18px;
+            padding: 20px;
             z-index: 1007;
             opacity: 0;
             visibility: hidden;
-            border: 1px solid var(--border-color);
-            background: var(--card-bg);
-            box-shadow: 0 15px 40px var(--shadow-color);
+            border: var(--glass-border);
+            background: var(--glass-effect);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(20px);
         }
-        
+
         .confirm-window.open {
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
             visibility: visible;
         }
-        
-        /* استایل‌های داخلی پنجره‌ها */
+
+        .help-window {
+            top: -100%;
+            right: 0;
+            width: 100%;
+            height: 70%;
+            max-height: 700px;
+            border-radius: 0 0 18px 18px;
+        }
+
+        .help-window.open {
+            top: 0;
+        }
+
+        .wireguard-window {
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 75%;
+            max-height: 750px;
+            border-radius: 18px 18px 0 0;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .wireguard-window.open {
+            transform: translateY(0);
+            bottom: 0;
+        }
+
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            padding: 18px;
+            padding-bottom: 12px;
+            border-bottom: var(--glass-border);
         }
-        
+
         .modal-title {
             font-weight: 700;
             color: var(--text-color);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
         }
-        
+
         .close-btn {
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--text-color);
-            transition: all 0.3s;
-            width: 40px;
-            height: 40px;
+            transition: var(--transition-medium);
+            width: 38px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            position: relative;
         }
-        
+
         .close-btn:hover {
-            background: var(--bg-color);
+            background: rgba(110, 69, 226, 0.1);
             transform: rotate(90deg);
             color: var(--primary-color);
         }
-        
+
+        .close-btn::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f0f4ff'%3E%3Cpath d='M12 2L10 0L6 4L2 0L0 2L4 6L0 10L2 12L6 8L10 12L12 10L8 6L12 2Z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+            transition: var(--transition-medium);
+        }
+
+        .close-btn:hover::before {
+            transform: rotate(180deg);
+        }
+
+        .close-btn span {
+            display: none;
+        }
+
         .modal-content {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 18px;
         }
-        
-        /* آیتم‌های منو */
+
+        /* Menu Items */
         .menu-item {
             padding: 18px;
             margin-bottom: 12px;
-            background: var(--bg-color);
-            border-radius: 12px;
+            background: rgba(21, 26, 45, 0.6);
+            border-radius: 14px;
             cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 3px 10px var(--shadow-color);
+            transition: var(--transition-medium);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
         }
-        
+
         .menu-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--shadow-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             border-color: var(--primary-color);
+            background: var(--card-hover);
         }
-        
+
         .menu-item-title {
             font-weight: 700;
             margin-bottom: 8px;
             color: var(--text-color);
-            font-size: 1.125rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
+
         .menu-item-title i {
             color: var(--primary-color);
+            font-size: 1.3rem;
         }
-        
+
         .menu-item-desc {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: var(--text-light);
             line-height: 1.6;
         }
-        
-        /* تب‌ها */
+
+        /* Tabs */
         .tabs {
             display: flex;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            border-bottom: var(--glass-border);
+            margin-bottom: 15px;
             gap: 5px;
             overflow-x: auto;
-            padding: 0 20px;
+            padding: 0 18px;
         }
-        
+
         .tab {
-            padding: 12px 20px;
+            padding: 10px 20px;
             cursor: pointer;
             border-bottom: 3px solid transparent;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: var(--transition-medium);
             border-radius: 8px 8px 0 0;
             white-space: nowrap;
+            font-size: 0.9rem;
         }
-        
+
         .tab:hover {
-            background: var(--bg-color);
+            background: rgba(110, 69, 226, 0.1);
         }
-        
+
         .tab.active {
             border-bottom: 3px solid var(--primary-color);
             color: var(--primary-color);
             font-weight: 700;
+            background: rgba(110, 69, 226, 0.1);
         }
-        
+
         .tab-content {
             display: none;
         }
-        
+
         .tab-content.active {
             display: block;
         }
-        
-        /* اشتراک‌ها */
+
+        /* Subscription Options */
         .subscription-option {
             padding: 18px;
             margin-bottom: 15px;
-            background: var(--bg-color);
-            border-radius: 15px;
+            background: rgba(21, 26, 45, 0.6);
+            border-radius: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 3px 10px var(--shadow-color);
+            transition: var(--transition-medium);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            flex-wrap: wrap;
+            gap: 12px;
         }
-        
+
         .subscription-option:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--shadow-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-color);
+            background: var(--card-hover);
         }
-        
+
         .subscription-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            flex: 1;
+            min-width: 220px;
         }
-        
+
         .subscription-icon {
-            font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
+            font-size: 1.6rem;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 14px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
         }
-        
-        /* رنگ‌بندی آیکون‌های اشتراک */
-        .gaming1 { background: var(--gradient-gaming); color: white; }
-        .gaming2 { background: var(--gradient-gaming); color: white; }
-        .gaming3 { background: var(--gradient-gaming); color: white; }
-        .gaming4 { background: var(--gradient-gaming); color: white; }
-        .gaming5 { background: var(--gradient-gaming); color: white; }
-        .gaming6 { background: var(--gradient-gaming); color: white; }
-        
-        .social1 { background: var(--gradient-social); color: white; }
-        .social2 { background: var(--gradient-social); color: white; }
-        .social3 { background: var(--gradient-social); color: white; }
-        .social4 { background: var(--gradient-social); color: white; }
-        .social5 { background: var(--gradient-social); color: white; }
-        .social6 { background: var(--gradient-social); color: white; }
-        
-        .combo1 { background: var(--gradient-combo); color: white; }
-        .combo2 { background: var(--gradient-combo); color: white; }
-        .combo3 { background: var(--gradient-combo); color: white; }
-        .combo4 { background: var(--gradient-combo); color: white; }
-        .combo5 { background: var(--gradient-combo); color: white; }
-        .combo6 { background: var(--gradient-combo); color: white; }
-        
+
+        .gaming1 { background: var(--gradient-primary); }
+        .gaming2 { background: var(--gradient-primary); }
+        .gaming3 { background: var(--gradient-primary); }
+        .gaming4 { background: var(--gradient-primary); }
+        .gaming5 { background: var(--gradient-primary); }
+        .gaming6 { background: var(--gradient-primary); }
+
+        .social1 { background: var(--gradient-secondary); }
+        .social2 { background: var(--gradient-secondary); }
+        .social3 { background: var(--gradient-secondary); }
+        .social4 { background: var(--gradient-secondary); }
+        .social5 { background: var(--gradient-secondary); }
+        .social6 { background: var(--gradient-secondary); }
+
+        .combo1 { background: var(--gradient-warning); }
+        .combo2 { background: var(--gradient-warning); }
+        .combo3 { background: var(--gradient-warning); }
+        .combo4 { background: var(--gradient-warning); }
+        .combo5 { background: var(--gradient-warning); }
+        .combo6 { background: var(--gradient-warning); }
+
         .subscription-details {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
+            flex: 1;
         }
-        
+
         .subscription-name {
             font-weight: 700;
             color: var(--text-color);
             font-size: 1rem;
         }
-        
+
         .subscription-features {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-light);
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
-        
-        .subscription-features i {
-            margin-left: 3px;
+
+        .subscription-features span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
-        
+
+        .subscription-features i {
+            color: var(--primary-color);
+        }
+
         .subscription-price {
             font-weight: 800;
             color: var(--primary-color);
-            font-size: 1.125rem;
+            font-size: 1.2rem;
             white-space: nowrap;
-            margin-left: 10px;
+            margin-left: 12px;
         }
-        
-        /* دکمه‌ها */
+
+        /* Buttons */
         .btn {
             padding: 10px 20px;
             border-radius: 10px;
             font-family: inherit;
             cursor: pointer;
             font-weight: 700;
-            font-size: 0.875rem;
-            transition: all 0.3s;
+            font-size: 0.9rem;
+            transition: var(--transition-medium);
             display: flex;
             align-items: center;
             gap: 8px;
             justify-content: center;
             border: none;
+            outline: none;
         }
-        
+
         .btn-primary {
             background: var(--gradient-primary);
             color: white;
-            box-shadow: 0 3px 10px rgba(110, 142, 251, 0.3);
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.4);
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+            box-shadow: 0 8px 20px rgba(110, 69, 226, 0.6);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
         }
-        
+
         .btn-secondary {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            background: var(--gradient-success);
             color: white;
-            box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 5px 15px rgba(76, 225, 182, 0.4);
         }
-        
+
         .btn-secondary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 8px 20px rgba(76, 225, 182, 0.6);
+            background: linear-gradient(135deg, #3dcc91, var(--success-color));
         }
-        
+
         .btn-large {
-            padding: 18px;
+            padding: 15px;
             font-size: 1rem;
             width: 100%;
         }
-        
-        /* نوتیفیکیشن */
+
+        /* Notification */
         .notification {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             background: var(--card-bg);
-            border-radius: 15px;
-            padding: 18px 25px;
-            box-shadow: 0 8px 25px var(--shadow-color);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 10px 30px var(--shadow-color);
             z-index: 1100;
             transform: translateY(100px);
             opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition-medium);
             display: flex;
             align-items: center;
-            gap: 15px;
-            border: 1px solid var(--border-color);
-            max-width: 350px;
+            gap: 12px;
+            border: var(--glass-border);
+            max-width: 320px;
+            backdrop-filter: blur(10px);
         }
-        
+
         .notification.show {
             transform: translateY(0);
             opacity: 1;
         }
-        
+
         .notification-icon {
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
+            font-size: 1.6rem;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
         }
-        
+
         .notification-success {
-            background: rgba(76, 175, 80, 0.1);
-            color: #4CAF50;
+            background: rgba(76, 225, 182, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(76, 225, 182, 0.3);
         }
-        
+
         .notification-info {
-            background: rgba(110, 142, 251, 0.1);
+            background: rgba(110, 69, 226, 0.1);
             color: var(--primary-color);
+            border: 1px solid rgba(110, 69, 226, 0.3);
         }
-        
+
         .notification-error {
-            background: rgba(231, 76, 60, 0.1);
-            color: #e74c3c;
+            background: rgba(255, 78, 100, 0.1);
+            color: var(--danger-color);
+            border: 1px solid rgba(255, 78, 100, 0.3);
         }
-        
+
         .notification-message {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             font-weight: 500;
+            flex: 1;
         }
-        
-        /* راهنما */
+
+        /* Usage Guide */
         .usage-guide {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: var(--text-light);
-            line-height: 1.8;
+            line-height: 1.7;
             margin-top: 20px;
-            padding: 15px;
-            background: var(--bg-color);
-            border-radius: 15px;
-            border: 1px solid var(--border-color);
+            padding: 18px;
+            background: rgba(21, 26, 45, 0.6);
+            border-radius: 14px;
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
         }
-        
+
         .usage-guide h4 {
             color: var(--primary-color);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 8px;
         }
+
+        .usage-guide ol {
+            padding-right: 18px;
+            margin-bottom: 8px;
+        }
+
+        .usage-guide li {
+            margin-bottom: 8px;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            background: rgba(110, 69, 226, 0.1);
+            border-radius: 18px;
+            padding: 4px;
+            display: flex;
+            border: var(--glass-border);
+            margin: 12px 0;
+        }
+
+        .language-btn {
+            padding: 6px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition-medium);
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+        }
+
+        .language-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.3);
+        }
+
+        /* Download Buttons */
+        .download-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .download-card {
+            background: rgba(21, 26, 45, 0.6);
+            border-radius: 14px;
+            padding: 20px;
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: var(--transition-medium);
+            text-align: center;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .download-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .download-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        /* About Section */
+        .about-content {
+            padding: 18px;
+            text-align: center;
+        }
         
-        /* انیمیشن‌ها */
+        .about-logo {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 18px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(110, 69, 226, 0.5);
+        }
+        
+        .about-logo i {
+            font-size: 45px;
+            color: white;
+        }
+        
+        .about-text {
+            margin-bottom: 18px;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        
+        .social-link {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(21, 26, 45, 0.6);
+            color: var(--text-color);
+            transition: var(--transition-medium);
+            box-shadow: var(--glass-shadow);
+            border: var(--glass-border);
+            font-size: 1.1rem;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 25px rgba(110, 69, 226, 0.4);
+        }
+
+        /* Important Notice */
+        .important-notice {
+            background: #000;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .important-notice i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Theme Options */
+        .theme-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .theme-option {
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            border: var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-option::after {
+            content: "✓";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: var(--transition-medium);
+        }
+
+        .theme-option.active::after {
+            opacity: 1;
+        }
+
+        .theme-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-name {
+            font-weight: 600;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes slideIn {
             from { transform: translateY(-30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        
+
         .fade-in {
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.5s ease-out forwards;
         }
-        
+
         .slide-in {
-            animation: slideIn 0.5s ease-out;
+            animation: slideIn 0.5s ease-out forwards;
         }
-        
-        /* اسکرول بار سفارشی */
+
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
         }
-        
+
         ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-            border-radius: 10px;
+            background: transparent;
+            border-radius: 8px;
         }
-        
+
         ::-webkit-scrollbar-thumb {
             background: var(--primary-color);
-            border-radius: 10px;
+            border-radius: 8px;
         }
-        
-        /* حالت شب - ستاره‌ها */
-        .dark-mode::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(white 1px, transparent 1px),
-                radial-gradient(white 1px, transparent 1px);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
-            opacity: 0.1;
-            pointer-events: none;
-            z-index: -1;
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
         }
-        
-        /* ریسپانسیو برای موبایل */
+
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .scanner-container {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .fingerprint-icon {
+                font-size: 100px;
+            }
+            
+            .news-container {
+                padding: 15px;
+                max-width: 90%;
+            }
+            
+            .modal-window {
+                max-height: 75vh;
+            }
+            
             .subscription-option {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+                align-items: stretch;
             }
             
-            .subscription-info {
-                width: 100%;
-            }
-            
-            .order-btn {
-                width: 100%;
-            }
-            
-            .shop-menu, .wireguard-window {
-                height: 80%;
-                max-height: none;
-            }
-            
-            .tabs {
-                overflow-x: auto;
-                padding-bottom: 5px;
-            }
-            
-            .tab {
-                padding: 10px 15px;
-                font-size: 0.875rem;
-            }
-            
-            .modal-content {
-                padding: 15px;
+            .subscription-price {
+                margin-left: 0;
+                margin-top: 8px;
             }
             
             .floating-btn {
-                width: 60px;
-                height: 60px;
-                font-size: 25px;
-                bottom: 20px;
-                left: 20px;
+                width: 65px;
+                height: 65px;
+                font-size: 24px;
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            .tabs {
+                padding-bottom: 4px;
+            }
+            
+            .tab {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+
+            .download-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-options {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
-
-        /* استایل‌های جدید برای دکمه‌های دانلود */
-        .download-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
     </style>
-    <!-- بارگذاری فونت با پیش‌بارگذاری -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- صفحه لودینگ -->
-    <div class="loading-screen" id="loadingScreen">
-        <img src="https://uploadkon.ir/uploads/78d303_25InShot-۲۰۲۵۰۷۰۳-۰۹۲۶۱۸۶۷۵.png" class="loading-logo" alt="Logo">
-        <div class="loading-text">در حال بارگذاری...</div>
-        <div class="loading-bar-container">
-            <div class="loading-bar" id="loadingBar"></div>
-        </div>
-    </div>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
     
-    <!-- نوار بالایی -->
-    <div class="top-bar">
-        <div class="logo" id="helpBtn">
-            <i class="fas fa-question-circle"></i>
-            راهنمای سایت
-        </div>
-        <div class="menu-btn" id="mainMenuBtn">
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-        </div>
-    </div>
-    
-    <!-- محتوای اصلی -->
-    <div class="content" id="mainContent">
-        <div class="welcome-container" id="welcomeContainer">
-            <div class="emoji-container">
-                <img src="https://uploadkon.ir/uploads/78d303_25InShot-۲۰۲۵۰۷۰۳-۰۹۲۶۱۸۶۷۵.png" class="emoji" alt="Logo" loading="lazy">
-            </div>
-            <div class="creator" id="todayDate"></div>
-        </div>
-    </div>
-    
-    <!-- دکمه شناور -->
-    <button class="floating-btn" id="quickMenuBtn">
-        <i class="fas fa-plus"></i>
-    </button>
-    
-    <!-- منوی اصلی -->
-    <div class="modal-window main-menu" id="mainMenu">
-        <div class="modal-header">
-            <div class="modal-title">منوی اصلی</div>
-            <div class="close-btn" id="closeMainMenu">×</div>
-        </div>
-        <div class="modal-content">
-            <div class="menu-item" id="challengeItem">
-                <div class="menu-item-title">
-                    <i class="fas fa-gamepad"></i>
-                    چالش و گیم
-                </div>
-                <div class="menu-item-desc">با شرکت در چالش‌ها سرویس رایگان ببر</div>
-            </div>
-            <div class="menu-item" id="backupItem">
-                <div class="menu-item-title">
-                    <i class="fas fa-database"></i>
-                    بکاپ تونل‌ها
-                </div>
-                <div class="menu-item-desc">تهیه بکاپ یا بازیابی اطلاعات قبلی</div>
-            </div>
-            <div class="menu-item" id="themeItem">
-                <div class="menu-item-title">
-                    <i class="fas fa-cog"></i>
-                    تنظیمات
-                </div>
-                <div class="menu-item-desc">شخصی‌سازی سیستم مطابق سلیقه شما</div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- تنظیمات -->
-    <div class="modal-window settings-panel" id="settingsPanel">
-        <div class="modal-header">
-            <div class="modal-title">تنظیمات کاربری</div>
-            <div class="close-btn" id="closeSettings">×</div>
-        </div>
-        <div class="modal-content">
-            <div class="setting-item">
-                <div class="setting-label">حالت شب / روز</div>
-                <label class="theme-switch">
-                    <input type="checkbox" id="themeToggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </div>
-    </div>
-    
-    <!-- منوی سریع -->
-    <div class="modal-window quick-menu" id="quickMenu">
-        <div class="modal-content">
-            <div class="menu-item" id="quickShopItem">
-                <div class="menu-item-title">
-                    <i class="fas fa-shopping-bag"></i>
-                    فروشگاه سرویس
-                </div>
-                <div class="menu-item-desc">خرید اشتراک جدید یا تمدید اشتراک فعلی</div>
-            </div>
-            <div class="menu-item" id="quickWireguardItem">
-                <div class="menu-item-title">
-                    <i class="fas fa-download"></i>
-                    دانلود اپلیکیشن
-                </div>
-                <div class="menu-item-desc">دانلود کلاینت رسمی برای دستگاه‌های مختلف</div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- فروشگاه -->
-    <div class="modal-window shop-menu" id="shopWindow">
-        <div class="modal-header">
-            <div class="modal-title">فروشگاه سرویس</div>
-            <div class="close-btn" id="closeShop">×</div>
-        </div>
-        <div class="tabs">
-            <div class="tab active" data-tab="gaming">گیمینگ</div>
-            <div class="tab" data-tab="social">اجتمائی</div>
-            <div class="tab" data-tab="combo">گیمینگ و اجتمائی</div>
-        </div>
-        <div class="modal-content">
-            <div class="tab-content active" id="gaming-tab">
-                <!--  گیمینگ -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon gaming1"><i class="fas fa-gamepad"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۱ ماهه گیمینگ</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-hdd"></i> حجم ۵۰ گیگ</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> ۱ کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۹۹,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(1, 'gaming')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش و تست سرویس کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 2 ماهه گیمینگ -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon gaming2"><i class="fas fa-gamepad"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۱ ماهه گیمینگ</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> ۱ کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۲۸۹,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(2, 'gaming')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 3 ماهه گیمینگ -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon gaming3"><i class="fas fa-gamepad"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۲ ماهه گیمینگ</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> ۱ کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۴۵۹,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(3, 'gaming')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 4 ماهه گیمینگ -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon gaming4"><i class="fas fa-gamepad"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۳ ماهه گیمینگ</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> ۱ کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۶۲۴,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(4, 'gaming')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 5 ماهه گیمینگ -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon gaming5"><i class="fas fa-gamepad"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۴ ماهه گیمینگ</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> ۱ کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۷۸۶,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(5, 'gaming')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 6 ماهه گیمینگ -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon gaming6"><i class="fas fa-gamepad"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۵ ماهه گیمینگ</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> ۱ کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۹۶۱,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(6, 'gaming')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-            </div>
+    <!-- Biometric Auth Screen -->
+    <div class="biometric-auth" id="authContainer">
+        <div class="scanner-container">
+            <svg class="progress-ring" viewBox="0 0 100 100">
+                <circle class="progress-ring-circle" cx="50" cy="50" r="45" />
+                <circle class="progress-ring-fill" cx="50" cy="50" r="45" />
+            </svg>
             
-            <div class="tab-content" id="social-tab">
-                <!-- اشتراک 1 ماهه اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon social1"><i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک 1 ماهه اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-hdd"></i> حجم ۵۰ گیگ</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۹۸,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(1, 'social')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش و تست سرویس کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 2 ماهه اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon social2"><i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۱ ماهه اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۲۲۷,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(2, 'social')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 3 ماهه اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon social3"><i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۲ ماهه اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۴۱۸,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(3, 'social')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید 
-                    </button>
-                </div>
-                
-                <!-- اشتراک 4 ماهه اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon social4"><i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۳ ماهه اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۵۸۰,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(4, 'social')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 5 ماهه اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon social5"><i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۴ ماهه اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۷۲۹,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(5, 'social')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 6 ماهه اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon social6"><i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک ۵ ماهه اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> ۱ کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۹۱۱,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(6, 'social')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-            </div>
+            <div class="scanner-border"></div>
             
-            <div class="tab-content" id="combo-tab">
-                <!-- اشتراک 1 ماهه گیمینگ و اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon combo1"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک 1 ماهه گیمینگ و اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۳۵۰,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(1, 'combo')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
+            <div class="scanner-surface" id="scannerSurface">
+                <i class="fas fa-fingerprint fingerprint-icon" id="fingerprintIcon"></i>
+                <div class="scan-animation" id="scanAnimation"></div>
                 
-                <!-- اشتراک 2 ماهه گیمینگ و اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon combo2"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک 2 ماهه گیمینگ و اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۶۵۰,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(2, 'combo')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 3 ماهه گیمینگ و اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon combo3"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک 3 ماهه گیمینگ و اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۹۵۰,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(3, 'combo')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 4 ماهه گیمینگ و اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon combo4"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک 4 ماهه گیمینگ و اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۱,۲۵۰,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(4, 'combo')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 5 ماهه گیمینگ و اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon combo5"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک 5 ماهه گیمینگ و اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۱,۵۵۰,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(5, 'combo')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-                
-                <!-- اشتراک 6 ماهه گیمینگ و اجتمائی -->
-                <div class="subscription-option">
-                    <div class="subscription-info">
-                        <div class="subscription-icon combo6"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
-                        <div class="subscription-details">
-                            <div class="subscription-name">اشتراک 6 ماهه گیمینگ و اجتمائی</div>
-                            <div class="subscription-features">
-                                <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
-                                <span><i class="fas fa-bolt"></i> سرعت بالا</span>
-                                <span><i class="fas fa-user"></i> 1 کاربر</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscription-price">۱,۸۵۰,۰۰۰ تومان</div>
-                    <button class="btn btn-primary" onclick="orderSubscription(6, 'combo')">
-                        <i class="fas fa-shopping-cart"></i>
-                        برای سفارش کلیک کنید
-                    </button>
-                </div>
-            </div>
-            
-            <div class="usage-guide">
-                <h4><i class="fas fa-info-circle"></i> راهنمای استفاده از سرویس</h4>
-                <ol>
-                    <li>دریافت فایل از پشتیبانی فروش</li>
-                    <li>وارد کردن در برنامه وایرگارد</li>
-                    <li>اتصال سرویس و تمام</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-    
-    <!-- راهنما -->
-    <div class="modal-window help-window" id="helpWindow">
-        <div class="modal-header">
-            <div class="modal-title">راهنمای کامل سایت</div>
-            <div class="close-btn" id="closeHelp">×</div>
-        </div>
-        <div class="modal-content">
-            <div style="text-align: center; margin: 20px 0;">
-                <div class="emoji-container" style="width: 100px; height: 100px; margin: 0 auto 20px;">
-                    <i class="fas fa-question-circle" style="font-size: 40px;"></i>
-                </div>
-            </div>
-            <div class="help-items">
-                <div class="menu-item">
-                    <h3 class="menu-item-title"><i class="fas fa-shopping-bag"></i> فروشگاه سرویس</h3>
-                    <p class="menu-item-desc">در این بخش می‌توانید اشتراک‌های مختلف را مشاهده و خریداری کنید. دو نوع سرویس گیمینگ و اجتمائی موجود است که هر کدام ویژگی‌های خاص خود را دارند.</p>
-                </div>
-                <div class="menu-item">
-                    <h3 class="menu-item-title"><i class="fas fa-download"></i> دانلود اپلیکیشن</h3>
-                    <p class="menu-item-desc">در این بخش می‌توانید نسخه‌های رسمی اپلیکیشن را برای دستگاه‌های مختلف دانلود کنید. اپلیکیشن‌های ارائه شده کاملا بهینه شده هستند.</p>
+                <div class="success-check" id="successCheck">
+                    <i class="fas fa-check-circle check-icon"></i>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- چالش و گیم -->
-    <div class="modal-window challenge-window" id="challengeWindow">
-        <div class="modal-header">
-            <div class="modal-title">چالش و گیم</div>
-            <div class="close-btn" id="closeChallenge">×</div>
-        </div>
-        <div class="modal-content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px;">
-            <div class="emoji-container" style="width: 100px; height: 100px; background: var(--gradient-primary); margin-bottom: 20px;">
-                <i class="fas fa-gamepad" style="font-size: 40px; color: white;"></i>
+    <!-- Main App -->
+    <div id="mainApp">
+        <div class="top-bar">
+            <div class="logo" id="helpBtn">
+                <i class="fas fa-question-circle"></i>
+                <span class="lang-fa">راهنمای سایت</span>
+                <span class="lang-en" style="display:none">Help</span>
             </div>
-            <h3 style="margin-bottom: 10px;">با شرکت در چالش‌ها سرویس رایگان ببر</h3>
-            <p style="color: var(--text-light); margin-bottom: 30px;">در چالش‌های ما شرکت کنید و شانس برنده شدن سرویس رایگان را داشته باشید</p>
-            <button class="btn btn-primary" onclick="showComingSoonNotification()">
-                <i class="fas fa-play"></i>
-                شروع چالش
-            </button>
+            <div class="menu-btn" id="mainMenuBtn">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
         </div>
-    </div>
-    
-    <!-- بکاپ -->
-    <div class="modal-window backup-window" id="backupWindow">
-        <div class="modal-header">
-            <div class="modal-title">مدیریت بکاپ تونل‌ها</div>
-            <div class="close-btn" id="closeBackup">×</div>
+        
+        <div class="content" id="mainContent">
+            <div class="welcome-container" id="welcomeContainer">
+                <div class="news-container">
+                    <div class="news-title">
+                        <i class="fas fa-bullhorn"></i>
+                        <span class="lang-fa">اطلاعیه مهم</span>
+                        <span class="lang-en" style="display:none">Important Announcement</span>
+                    </div>
+                    <div class="news-content lang-fa">
+                        از این پس اخبار، نسخه‌ها و به‌روزرسانی‌های سرویس در این کادر نمایش داده خواهد شد. برای دریافت آخرین اخبار و اطلاعیه‌ها، این بخش را به‌صورت منظم چک کنید.
+                    </div>
+                    <div class="news-content lang-en" style="display:none">
+                        From now on, news, versions and service updates will be displayed in this panel. Check this section regularly for the latest news and announcements.
+                    </div>
+                    <div class="news-footer">
+                        <span class="lang-fa">بازدیدکنندگان: بزودی</span>
+                        <span class="lang-en" style="display:none">Visitors: Coming Soon</span>
+                        <span id="publishTime">زمان نشر: 12:30</span>
+                    </div>
+                </div>
+                <div class="creator" id="todayDate"></div>
+            </div>
         </div>
-        <div class="modal-content" style="display: flex; flex-direction: column; justify-content: center; gap: 20px; padding: 20px;">
-            <button class="btn btn-primary btn-large" id="exportBackup">
-                <i class="fas fa-file-export"></i>
-                گرفتن بکاپ از تونل‌ها
-            </button>
-            <button class="btn btn-secondary btn-large" id="importBackup">
-                <i class="fas fa-file-import"></i>
-                بازیابی تونل‌ها از فایل
-            </button>
-            <input type="file" id="backupFileInput" accept=".json" style="display: none;">
+        
+        <button class="floating-btn" id="quickMenuBtn">
+            <i class="fas fa-pencil-alt"></i>
+        </button>
+        
+        <!-- Main Menu -->
+        <div class="modal-window main-menu" id="mainMenu">
+            <div class="modal-header">
+                <div class="modal-title lang-fa">منوی اصلی</div>
+                <div class="modal-title lang-en" style="display:none">Main Menu</div>
+                <div class="close-btn" id="closeMainMenu"><span>×</span></div>
+            </div>
+            <div class="modal-content">
+                <div class="menu-item" id="challengeItem">
+                    <div class="menu-item-title">
+                        <i class="fas fa-gamepad"></i>
+                        <span class="lang-fa">چالش و گیم</span>
+                        <span class="lang-en" style="display:none">Challenges & Games</span>
+                    </div>
+                    <div class="menu-item-desc lang-fa">با شرکت در چالش‌ها سرویس رایگان ببر</div>
+                    <div class="menu-item-desc lang-en" style="display:none">Win free services by participating in challenges</div>
+                </div>
+                <div class="menu-item" id="settingsItem">
+                    <div class="menu-item-title">
+                        <i class="fas fa-cog"></i>
+                        <span class="lang-fa">تنظیمات</span>
+                        <span class="lang-en" style="display:none">Settings</span>
+                    </div>
+                    <div class="menu-item-desc lang-fa">تغییر تنظیمات برنامه</div>
+                    <div class="menu-item-desc lang-en" style="display:none">Change application settings</div>
+                </div>
+                <div class="menu-item" id="aboutItem">
+                    <div class="menu-item-title">
+                        <i class="fas fa-info-circle"></i>
+                        <span class="lang-fa">درباره ما</span>
+                        <span class="lang-en" style="display:none">About Us</span>
+                    </div>
+                    <div class="menu-item-desc lang-fa">اطلاعات درباره سرویس و تیم پشتیبانی</div>
+                    <div class="menu-item-desc lang-en" style="display:none">Information about service and support team</div>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <!-- دانلود وایرگارد -->
-    <div class="modal-window wireguard-window" id="wireguardWindow">
-        <div class="modal-header">
-            <div class="modal-title">دانلود اپلیکیشن رسمی</div>
-            <div class="close-btn" id="closeWireguard">×</div>
+        
+        <!-- Settings Panel -->
+        <div class="modal-window settings-panel" id="settingsPanel">
+            <div class="modal-header">
+                <div class="modal-title lang-fa">تنظیمات کاربری</div>
+                <div class="modal-title lang-en" style="display:none">User Settings</div>
+                <div class="close-btn" id="closeSettings"><span>×</span></div>
+            </div>
+            <div class="modal-content">
+                <div class="setting-item" style="margin-bottom: 20px;">
+                    <div class="setting-label lang-fa" style="margin-bottom: 12px; font-weight: 600;">تغییر زبان</div>
+                    <div class="setting-label lang-en" style="margin-bottom: 12px; font-weight: 600; display: none;">Change Language</div>
+                    <div class="language-switcher">
+                        <button class="language-btn active" data-lang="fa">فارسی</button>
+                        <button class="language-btn" data-lang="en">English</button>
+                    </div>
+                </div>
+                
+                <div class="setting-item" style="margin-bottom: 20px;">
+                    <div class="setting-label lang-fa" style="margin-bottom: 12px; font-weight: 600;">تم سایت</div>
+                    <div class="setting-label lang-en" style="margin-bottom: 12px; font-weight: 600; display: none;">Site Theme</div>
+                    <div class="theme-options">
+                        <div class="theme-option active" data-theme="default" style="background: var(--gradient-primary);">
+                            <div class="theme-name lang-fa">پیش فرض</div>
+                            <div class="theme-name lang-en" style="display:none">Default</div>
+                        </div>
+                        <div class="theme-option" data-theme="dark" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
+                            <div class="theme-name lang-fa">تیره</div>
+                            <div class="theme-name lang-en" style="display:none">Dark</div>
+                        </div>
+                        <div class="theme-option" data-theme="ocean" style="background: linear-gradient(135deg, #4ca1af, #2c3e50);">
+                            <div class="theme-name lang-fa">اقیانوسی</div>
+                            <div class="theme-name lang-en" style="display:none">Ocean</div>
+                        </div>
+                        <div class="theme-option" data-theme="sunset" style="background: linear-gradient(135deg, #ff7e5f, #feb47b);">
+                            <div class="theme-name lang-fa">غروب</div>
+                            <div class="theme-name lang-en" style="display:none">Sunset</div>
+                        </div>
+                        <div class="theme-option" data-theme="forest" style="background: linear-gradient(135deg, #5a8f3d, #3a6b1f);">
+                            <div class="theme-name lang-fa">جنگلی</div>
+                            <div class="theme-name lang-en" style="display:none">Forest</div>
+                        </div>
+                        <div class="theme-option" data-theme="midnight" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);">
+                            <div class="theme-name lang-fa">نیمه شب</div>
+                            <div class="theme-name lang-en" style="display:none">Midnight</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary btn-large lang-fa" style="margin-top: 15px;">ذخیره تنظیمات</button>
+                <button class="btn btn-primary btn-large lang-en" style="margin-top: 15px; display: none;">Save Settings</button>
+            </div>
         </div>
-        <div class="modal-content">
-            <div class="download-buttons">
-                <button class="btn btn-primary btn-large" onclick="downloadWireguard('windows')">
-                    <i class="fab fa-windows"></i>
-                    دانلود برای ویندوز
+        
+        <!-- Help Window -->
+        <div class="modal-window help-window" id="helpWindow">
+            <div class="modal-header">
+                <div class="modal-title lang-fa">راهنمای جامع استفاده</div>
+                <div class="modal-title lang-en" style="display:none">Comprehensive User Guide</div>
+                <div class="close-btn" id="closeHelp"><span>×</span></div>
+            </div>
+            <div class="modal-content">
+                <div class="important-notice">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span class="lang-fa">راهنمای جامع شامل تمام جزئیات استفاده از سرویس</span>
+                    <span class="lang-en" style="display:none">Comprehensive guide covering all service details</span>
+                </div>
+                
+                <div class="usage-guide">
+                    <h4><i class="fas fa-shopping-cart"></i> <span class="lang-fa">راهنمای خرید اشتراک</span><span class="lang-en" style="display:none">Subscription Guide</span></h4>
+                    <div class="guide-content">
+                        <div class="guide-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content lang-fa">به بخش فروشگاه سرویس بروید</div>
+                            <div class="step-content lang-en" style="display:none">Go to the service shop section</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content lang-fa">نوع اشتراک مورد نظر خود را انتخاب کنید</div>
+                            <div class="step-content lang-en" style="display:none">Select your desired subscription type</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content lang-fa">روی دکمه سفارش کلیک کنید</div>
+                            <div class="step-content lang-en" style="display:none">Click on the order button</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content lang-fa">پیام پیش‌نویس شده را ارسال کنید</div>
+                            <div class="step-content lang-en" style="display:none">Send the pre-written message</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content lang-fa">منتظر پاسخ پشتیبانی بمانید</div>
+                            <div class="step-content lang-en" style="display:none">Wait for support response</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">6</div>
+                            <div class="step-content lang-fa">پس از پرداخت، فایل پیکربندی را دریافت خواهید کرد</div>
+                            <div class="step-content lang-en" style="display:none">After payment, you'll receive the configuration file</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">7</div>
+                            <div class="step-content lang-fa">فایل را در برنامه WireGuard وارد کنید</div>
+                            <div class="step-content lang-en" style="display:none">Import the file into WireGuard app</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="usage-guide">
+                    <h4><i class="fas fa-download"></i> <span class="lang-fa">راهنمای نصب و راه‌اندازی</span><span class="lang-en" style="display:none">Installation Guide</span></h4>
+                    <div class="guide-content">
+                        <div class="guide-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content lang-fa">برنامه WireGuard را برای دستگاه خود دانلود کنید</div>
+                            <div class="step-content lang-en" style="display:none">Download WireGuard for your device</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content lang-fa">برنامه را نصب و اجرا نمایید</div>
+                            <div class="step-content lang-en" style="display:none">Install and run the application</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content lang-fa">فایل پیکربندی را از پشتیبانی دریافت کنید</div>
+                            <div class="step-content lang-en" style="display:none">Get the configuration file from support</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content lang-fa">فایل را در برنامه وارد کنید</div>
+                            <div class="step-content lang-en" style="display:none">Import the file into the app</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content lang-fa">اتصال را فعال نمایید</div>
+                            <div class="step-content lang-en" style="display:none">Activate the connection</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">6</div>
+                            <div class="step-content lang-fa">برای اتصال خودکار، گزینه "اتصال هنگام راه‌اندازی" را فعال کنید</div>
+                            <div class="step-content lang-en" style="display:none">Enable "Connect on startup" for automatic connection</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">7</div>
+                            <div class="step-content lang-fa">در صورت نیاز به تغییر سرور، با پشتیبانی تماس بگیرید</div>
+                            <div class="step-content lang-en" style="display:none">Contact support if you need to change servers</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="usage-guide">
+                    <h4><i class="fas fa-shield-alt"></i> <span class="lang-fa">امنیت و حریم خصوصی</span><span class="lang-en" style="display:none">Security & Privacy</span></h4>
+                    <div class="guide-content">
+                        <div class="guide-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content lang-fa">از رمزهای عبور قوی استفاده کنید</div>
+                            <div class="step-content lang-en" style="display:none">Use strong passwords</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content lang-fa">اطلاعات حساب خود را با دیگران به اشتراک نگذارید</div>
+                            <div class="step-content lang-en" style="display:none">Don't share your account information</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content lang-fa">به صورت دوره‌ای رمز عبور خود را تغییر دهید</div>
+                            <div class="step-content lang-en" style="display:none">Change your password periodically</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content lang-fa">از اتصال به شبکه‌های ناشناس خودداری کنید</div>
+                            <div class="step-content lang-en" style="display:none">Avoid connecting to unknown networks</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content lang-fa">فایل پیکربندی را در دستگاه امن نگه دارید</div>
+                            <div class="step-content lang-en" style="display:none">Keep configuration files secure on your device</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">6</div>
+                            <div class="step-content lang-fa">برای امنیت بیشتر از احراز هویت دو مرحله‌ای استفاده کنید</div>
+                            <div class="step-content lang-en" style="display:none">Use two-factor authentication for extra security</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">7</div>
+                            <div class="step-content lang-fa">در صورت گم شدن دستگاه، سریعاً با پشتیبانی تماس بگیرید</div>
+                            <div class="step-content lang-en" style="display:none">Contact support immediately if your device is lost</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="usage-guide">
+                    <h4><i class="fas fa-tools"></i> <span class="lang-fa">عیب‌یابی و پشتیبانی</span><span class="lang-en" style="display:none">Troubleshooting</span></h4>
+                    <div class="guide-content">
+                        <div class="guide-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content lang-fa">اتصال اینترنت خود را بررسی کنید</div>
+                            <div class="step-content lang-en" style="display:none">Check your internet connection</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content lang-fa">برنامه را مجددا راه‌اندازی کنید</div>
+                            <div class="step-content lang-en" style="display:none">Restart the application</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content lang-fa">در صورت نیاز با پشتیبانی تماس بگیرید</div>
+                            <div class="step-content lang-en" style="display:none">Contact support if needed</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content lang-fa">اطمینان حاصل کنید که آخرین نسخه برنامه را دارید</div>
+                            <div class="step-content lang-en" style="display:none">Make sure you have the latest app version</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content lang-fa">تنظیمات فایروال خود را بررسی کنید</div>
+                            <div class="step-content lang-en" style="display:none">Check your firewall settings</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">6</div>
+                            <div class="step-content lang-fa">در صورت تغییر IP، ممکن است نیاز به فایل جدید داشته باشید</div>
+                            <div class="step-content lang-en" style="display:none">If your IP changes, you may need a new file</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">7</div>
+                            <div class="step-content lang-fa">لاگ‌های اتصال را برای تشخیص مشکل بررسی کنید</div>
+                            <div class="step-content lang-en" style="display:none">Check connection logs to diagnose issues</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Menu -->
+        <div class="modal-window quick-menu" id="quickMenu">
+            <div class="modal-content">
+                <div class="menu-item" id="quickShopItem">
+                    <div class="menu-item-title">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="lang-fa">فروشگاه سرویس</span>
+                        <span class="lang-en" style="display:none">Service Shop</span>
+                    </div>
+                    <div class="menu-item-desc lang-fa">خرید اشتراک جدید یا تمدید اشتراک فعلی</div>
+                    <div class="menu-item-desc lang-en" style="display:none">Buy new subscription or renew current one</div>
+                </div>
+                <div class="menu-item" id="quickWireguardItem">
+                    <div class="menu-item-title">
+                        <i class="fas fa-download"></i>
+                        <span class="lang-fa">دانلود اپلیکیشن</span>
+                        <span class="lang-en" style="display:none">Download App</span>
+                    </div>
+                    <div class="menu-item-desc lang-fa">دانلود کلاینت رسمی برای دستگاه‌های مختلف</div>
+                    <div class="menu-item-desc lang-en" style="display:none">Download official client for different devices</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Shop Window -->
+        <div class="modal-window shop-menu" id="shopWindow">
+            <div class="modal-header">
+                <div class="modal-title lang-fa">فروشگاه سرویس</div>
+                <div class="modal-title lang-en" style="display:none">Service Shop</div>
+                <div class="close-btn" id="closeShop"><span>×</span></div>
+            </div>
+            <div class="tabs">
+                <div class="tab active" data-tab="gaming">
+                    <span class="lang-fa">گیمینگ</span>
+                    <span class="lang-en" style="display:none">Gaming</span>
+                </div>
+                <div class="tab" data-tab="social">
+                    <span class="lang-fa">اجتمائی</span>
+                    <span class="lang-en" style="display:none">Social</span>
+                </div>
+                <div class="tab" data-tab="combo">
+                    <span class="lang-fa">گیمینگ و اجتمائی</span>
+                    <span class="lang-en" style="display:none">Gaming & Social</span>
+                </div>
+            </div>
+            <div class="modal-content">
+                <div class="tab-content active" id="gaming-tab">
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon gaming1"><i class="fas fa-gamepad"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۱ ماهه گیمینگ (تست)</div>
+                                <div class="subscription-name lang-en" style="display:none">1 Month Gaming Subscription (Test)</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-hdd"></i> <span class="lang-fa">حجم ۵۰ گیگ</span><span class="lang-en" style="display:none">50GB Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۹۹,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(1, 'gaming', true)">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش و تست سرویس کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order and test service</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon gaming2"><i class="fas fa-gamepad"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۱ ماهه گیمینگ</div>
+                                <div class="subscription-name lang-en" style="display:none">1 Month Gaming Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fa">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۲۸۹,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(1, 'gaming')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon gaming3"><i class="fas fa-gamepad"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۲ ماهه گیمینگ</div>
+                                <div class="subscription-name lang-en" style="display:none">2 Months Gaming Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fa">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۴۵۹,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(2, 'gaming')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon gaming4"><i class="fas fa-gamepad"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۳ ماهه گیمینگ</div>
+                                <div class="subscription-name lang-en" style="display:none">3 Months Gaming Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۶۲۵,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(3, 'gaming')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon gaming5"><i class="fas fa-gamepad"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۴ ماهه گیمینگ</div>
+                                <div class="subscription-name lang-en" style="display:none">4 Months Gaming Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۷۸۸,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(4, 'gaming')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon gaming6"><i class="fas fa-gamepad"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۵ ماهه گیمینگ</div>
+                                <div class="subscription-name lang-en" style="display:none">5 Months Gaming Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۹۶۱,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(5, 'gaming')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="social-tab">
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon social1"><i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک 1 ماهه اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">1 Month Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-hdd"></i> <span class="lang-fا">حجم ۵۰ گیگ</span><span class="lang-en" style="display:none">50GB Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۹۸,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(1, 'social')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon social2"><i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک 1 ماهه اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">1 Month Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۲۳۷,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(1, 'social')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon social3"><i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۲ ماهه اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">2 Months Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۴۲۸,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(2, 'social')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon social4"><i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۳ ماهه اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">3 Months Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۵۹۰,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(3, 'social')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon social5"><i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۴ ماهه اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">4 Months Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۷۳۹,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(4, 'social')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon social6"><i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک ۵ ماهه اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">5 Months Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۹۲۱,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(5, 'social')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="combo-tab">
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon combo1"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک 1 ماهه گیمینگ و اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">1 Month Gaming & Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۳۵۰,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(1, 'combo')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon combo2"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک 2 ماهه گیمینگ و اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">2 Months Gaming & Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۶۵۰,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(2, 'combo')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon combo3"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک 3 ماهه گیمینگ و اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">3 Months Gaming & Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۹۵۰,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(3, 'combo')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon combo4"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک 4 ماهه گیمینگ و اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">4 Months Gaming & Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۱,۲۵۰,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(4, 'combo')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon combo5"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک 5 ماهه گیمینگ و اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">5 Months Gaming & Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۱,۵۵۰,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(5, 'combo')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                    
+                    <div class="subscription-option">
+                        <div class="subscription-info">
+                            <div class="subscription-icon combo6"><i class="fas fa-gamepad"></i> <i class="fas fa-users"></i></div>
+                            <div class="subscription-details">
+                                <div class="subscription-name lang-fa">اشتراک 6 ماهه گیمینگ و اجتمائی</div>
+                                <div class="subscription-name lang-en" style="display:none">6 Months Gaming & Social Subscription</div>
+                                <div class="subscription-features">
+                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fa">1 کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-price">۱,۸۵۰,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <button class="btn btn-primary" onclick="orderSubscription(6, 'combo')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-en" style="display:none">Click to order</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Challenge Window -->
+        <div class="modal-window challenge-window" id="challengeWindow">
+            <div class="modal-header">
+                <div class="modal-title lang-fa">چالش و گیم</div>
+                <div class="modal-title lang-en" style="display:none">Challenges & Games</div>
+                <div class="close-btn" id="closeChallenge"><span>×</span></div>
+            </div>
+            <div class="modal-content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 35px;">
+                <div class="emoji-container" style="width: 110px; height: 110px; background: var(--gradient-primary); border-radius: 50%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(110, 69, 226, 0.5);">
+                    <i class="fas fa-gamepad" style="font-size: 45px; color: white;"></i>
+                </div>
+                <h3 style="margin-bottom: 12px; font-size: 1.4rem;" class="lang-fa">با شرکت در چالش‌ها سرویس رایگان ببر</h3>
+                <h3 style="margin-bottom: 12px; font-size: 1.4rem; display: none;" class="lang-en">Win free services by participating in challenges</h3>
+                <p style="color: var(--text-light); margin-bottom: 25px; font-size: 0.95rem; max-width: 80%;" class="lang-fa">در چالش‌های ما شرکت کنید و شانس برنده شدن سرویس رایگان را داشته باشید</p>
+                <p style="color: var(--text-light); margin-bottom: 25px; font-size: 0.95rem; max-width: 80%; display: none;" class="lang-en">Participate in our challenges and have a chance to win free service</p>
+                <button class="btn btn-primary" onclick="showComingSoonNotification()" style="padding: 12px 25px; font-size: 1rem;">
+                    <i class="fas fa-play"></i>
+                    <span class="lang-fa">شروع چالش</span>
+                    <span class="lang-en" style="display:none">Start Challenge</span>
                 </button>
-                <button class="btn btn-primary btn-large" onclick="downloadWireguard('mac')">
-                    <i class="fab fa-apple"></i>
-                    دانلود برای مک
-                </button>
-                <button class="btn btn-primary btn-large" onclick="downloadWireguard('ios')">
-                    <i class="fab fa-apple"></i>
-                    دانلود برای iOS
-                </button>
-                <button class="btn btn-primary btn-large" onclick="downloadWireguard('android')">
-                    <i class="fab fa-android"></i>
-                    دانلود برای اندروید
-                </button>
-            </div>
-            <div class="usage-guide">
-                <h4>راهنمای نصب:</h4>
-                <ol>
-                    <li>فایل مربوط به سیستم عامل خود را دانلود کنید</li>
-                    <li>برنامه را نصب و اجرا کنید</li>
-                    <li>فایل پیکربندی را وارد برنامه کنید</li>
-                    <li>اتصال را فعال کنید</li>
-                </ol>
             </div>
         </div>
-    </div>
-    
-    <!-- پنجره تایید -->
-    <div class="modal-window confirm-window" id="confirmWindow">
-        <div class="modal-title">تایید عملیات</div>
-        <div class="menu-item-desc" style="margin: 15px 0 25px; text-align: center;">آیا از انجام این عملیات مطمئن هستید؟ این عمل غیرقابل بازگشت است.</div>
-        <div style="display: flex; justify-content: center; gap: 15px;">
-            <button class="btn btn-primary" id="confirmYes" style="flex: 1; max-width: 120px;">تایید</button>
-            <button class="btn" id="confirmNo" style="flex: 1; max-width: 120px; background: var(--bg-color); border: 1px solid var(--border-color);">انصراف</button>
+        
+        <!-- WireGuard Download Window -->
+        <div class="modal-window wireguard-window" id="wireguardWindow">
+            <div class="modal-header">
+                <div class="modal-title lang-fa">دانلود اپلیکیشن رسمی</div>
+                <div class="modal-title lang-en" style="display:none">Download Official App</div>
+                <div class="close-btn" id="closeWireguard"><span>×</span></div>
+            </div>
+            <div class="modal-content">
+                <div class="download-buttons">
+                    <div class="download-card" onclick="downloadWireguard('windows')">
+                        <i class="fab fa-windows download-icon"></i>
+                        <div class="download-title lang-fa">ویندوز</div>
+                        <div class="download-title lang-en" style="display:none">Windows</div>
+                        <div class="download-desc lang-fa">نسخه 64 بیتی - سازگار با ویندوز 10 و 11</div>
+                        <div class="download-desc lang-en" style="display:none">64-bit version - Compatible with Windows 10 & 11</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            <span class="lang-fa">دانلود (25MB)</span>
+                            <span class="lang-en" style="display:none">Download (25MB)</span>
+                        </button>
+                    </div>
+                    
+                    <div class="download-card" onclick="downloadWireguard('mac')">
+                        <i class="fab fa-apple download-icon"></i>
+                        <div class="download-title lang-fa">مک</div>
+                        <div class="download-title lang-en" style="display:none">Mac</div>
+                        <div class="download-desc lang-fa">نسخه اپل سیلیکون و اینتل - مک اواس 11+</div>
+                        <div class="download-desc lang-en" style="display:none">Apple Silicon & Intel - macOS 11+</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            <span class="lang-fa">دانلود (18MB)</span>
+                            <span class="lang-en" style="display:none">Download (18MB)</span>
+                        </button>
+                    </div>
+                    
+                    <div class="download-card" onclick="downloadWireguard('ios')">
+                        <i class="fab fa-apple download-icon"></i>
+                        <div class="download-title lang-fa">iOS</div>
+                        <div class="download-title lang-en" style="display:none">iOS</div>
+                        <div class="download-desc lang-fa">آیفون و آیپد - iOS 12.2 و بالاتر</div>
+                        <div class="download-desc lang-en" style="display:none">iPhone & iPad - iOS 12.2+</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span class="lang-fa">رفتن به اپ استور</span>
+                            <span class="lang-en" style="display:none">Go to App Store</span>
+                        </button>
+                    </div>
+                    
+                    <div class="download-card" onclick="downloadWireguard('android')">
+                        <i class="fab fa-android download-icon"></i>
+                        <div class="download-title lang-fa">اندروید</div>
+                        <div class="download-title lang-en" style="display:none">Android</div>
+                        <div class="download-desc lang-fa">اندروید 5.0 و بالاتر - سازگار با تمام دستگاه‌ها</div>
+                        <div class="download-desc lang-en" style="display:none">Android 5.0+ - Compatible with all devices</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span class="lang-fa">رفتن به گوگل پلی</span>
+                            <span class="lang-en" style="display:none">Go to Play Store</span>
+                        </button>
+                    </div>
+                    
+                    <div class="download-card" onclick="downloadWireguard('linux')">
+                        <i class="fab fa-linux download-icon"></i>
+                        <div class="download-title lang-fa">لینوکس</div>
+                        <div class="download-title lang-en" style="display:none">Linux</div>
+                        <div class="download-desc lang-fa">دبیان، اوبونتو، فدورا، آرچ و سایر توزیع‌ها</div>
+                        <div class="download-desc lang-en" style="display:none">Debian, Ubuntu, Fedora, Arch and other distros</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            <span class="lang-fa">دانلود (12MB)</span>
+                            <span class="lang-en" style="display:none">Download (12MB)</span>
+                        </button>
+                    </div>
+                    
+                    <div class="download-card" onclick="downloadWireguard('router')">
+                        <i class="fas fa-wifi download-icon"></i>
+                        <div class="download-title lang-fa">روتر</div>
+                        <div class="download-title lang-en" style="display:none">Router</div>
+                        <div class="download-desc lang-fa">پیکربندی برای روترهای DD-WRT، OpenWRT و Tomato</div>
+                        <div class="download-desc lang-en" style="display:none">Configuration for DD-WRT, OpenWRT & Tomato routers</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            <span class="lang-fa">دانلود راهنما</span>
+                            <span class="lang-en" style="display:none">Download Guide</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="usage-guide">
+                    <h4 class="lang-fa">راهنمای نصب و استفاده:</h4>
+                    <h4 class="lang-en" style="display:none">Installation & Usage Guide:</h4>
+                    <div class="guide-content">
+                        <div class="guide-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content lang-fa">فایل مربوط به سیستم عامل خود را دانلود کنید</div>
+                            <div class="step-content lang-en" style="display:none">Download the file for your operating system</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content lang-fa">برنامه را نصب و اجرا کنید (نیاز به دسترسی روت/ادمین ندارد)</div>
+                            <div class="step-content lang-en" style="display:none">Install and run the application (no root/admin required)</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content lang-fa">فایل پیکربندی را از پشتیبانی دریافت کنید</div>
+                            <div class="step-content lang-en" style="display:none">Get the configuration file from support</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content lang-fa">فایل را در برنامه وارد کنید (از طریق دکمه Import یا کشیدن و رها کردن)</div>
+                            <div class="step-content lang-en" style="display:none">Import the file into the app (via Import button or drag & drop)</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content lang-fa">اتصال را فعال کنید</div>
+                            <div class="step-content lang-en" style="display:none">Activate the connection</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">6</div>
+                            <div class="step-content lang-fa">برای اتصال خودکار، گزینه "اتصال هنگام راه‌اندازی" را فعال کنید</div>
+                            <div class="step-content lang-en" style="display:none">Enable "Connect on startup" for automatic connection</div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">7</div>
+                            <div class="step-content lang-fa">در صورت مشکل، راهنمای کامل در بخش راهنما موجود است</div>
+                            <div class="step-content lang-en" style="display:none">Full guide available in Help section if you encounter issues</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        
+        <!-- About Window -->
+        <div class="modal-window about-window" id="aboutWindow">
+            <div class="modal-header">
+                <div class="modal-title lang-fa">درباره ما</div>
+                <div class="modal-title lang-en" style="display:none">About Us</div>
+                <div class="close-btn" id="closeAbout"><span>×</span></div>
+            </div>
+            <div class="modal-content">
+                <div class="about-content">
+                    <div class="about-logo">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="lang-fa" style="margin-bottom: 12px; color: var(--primary-color);">VPN Manager - ایکسرو</h3>
+                    <h3 class="lang-en" style="margin-bottom: 12px; color: var(--primary-color); display: none;">VPN Manager - XServ</h3>
+                    <div class="about-text lang-fa">
+                        سرویس VPN ایکسرو با بیش از 5 سال سابقه در زمینه ارائه خدمات اینترنت پرسرعت و ایمن، همواره در تلاش است تا بهترین تجربه کاربری را برای مشتریان خود فراهم کند. تیم پشتیبانی ما 24 ساعته آماده پاسخگویی به سوالات و حل مشکلات شماست.
+                    </div>
+                    <div class="about-text lang-en" style="display: none;">
+                        XServ VPN service with more than 5 years of experience in providing high-speed and secure internet services, always strives to provide the best user experience for its customers. Our support team is available 24/7 to answer your questions and solve your problems.
+                    </div>
+                    <div class="social-links">
+                        <a href="https://t.me/u0v0n" target="_blank" class="social-link">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Confirm Window -->
+        <div class="modal-window confirm-window" id="confirmWindow">
+            <div class="modal-title lang-fa">تایید عملیات</div>
+            <div class="modal-title lang-en" style="display:none">Confirm Action</div>
+            <div class="menu-item-desc" style="margin: 18px 0 25px; text-align: center;" class="lang-fa">آیا از انجام این عملیات مطمئن هستید؟ این عمل غیرقابل بازگشت است.</div>
+            <div class="menu-item-desc" style="margin: 18px 0 25px; text-align: center; display: none;" class="lang-en">Are you sure you want to perform this action? This action is irreversible.</div>
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <button class="btn btn-primary" id="confirmYes" style="flex: 1; max-width: 140px;" class="lang-fa">تایید</button>
+                <button class="btn btn-primary" id="confirmYes" style="flex: 1; max-width: 140px; display: none;" class="lang-en">Confirm</button>
+                <button class="btn" id="confirmNo" style="flex: 1; max-width: 140px; background: var(--card-bg); border: var(--glass-border); color: var(--text-color);" class="lang-fa">انصراف</button>
+                <button class="btn" id="confirmNo" style="flex: 1; max-width: 140px; background: var(--card-bg); border: var(--glass-border); color: var(--text-color); display: none;" class="lang-en">Cancel</button>
+            </div>
+        </div>
+        
+        <!-- Notification -->
+        <div class="notification" id="notification">
+            <div class="notification-icon" id="notificationIcon"></div>
+            <div class="notification-message" id="notificationMessage"></div>
+        </div>
+        
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
     </div>
-    
-    <!-- نوتیفیکیشن -->
-    <div class="notification" id="notification">
-        <div class="notification-icon" id="notificationIcon"></div>
-        <div class="notification-message" id="notificationMessage"></div>
-    </div>
-    
-    <!-- overlay -->
-    <div class="overlay" id="overlay"></div>
-    
+
     <script>
-        // مدیریت حالت‌های برنامه
+        // Particle System
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 30 : 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * window.innerWidth;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 10;
+                const opacity = Math.random() * 0.5 + 0.1;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.bottom = `-10px`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.opacity = opacity;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // App State
         const state = {
-            darkMode: localStorage.getItem('darkMode') === 'true',
+            language: localStorage.getItem('language') || 'fa',
+            theme: localStorage.getItem('theme') || 'default',
+            isAuthenticated: false,
+            authState: {
+                isScanning: false,
+                scanStartTime: 0,
+                scanTimer: null,
+                progressInterval: null,
+                progress: 0,
+                scanDuration: 4000,
+                lastScanTime: 0,
+                cooldown: 1000
+            },
             activityLogs: JSON.parse(localStorage.getItem('activityLogs')) || [
                 {
                     title: 'ورود به سیستم',
@@ -1495,52 +2268,78 @@
             typingInterval: null
         };
 
-        // عناصر DOM
+        // DOM Elements
         const elements = {
-            loadingScreen: document.getElementById('loadingScreen'),
-            loadingBar: document.getElementById('loadingBar'),
+            authContainer: document.getElementById('authContainer'),
+            scannerSurface: document.getElementById('scannerSurface'),
+            fingerprintIcon: document.getElementById('fingerprintIcon'),
+            scanAnimation: document.getElementById('scanAnimation'),
+            successCheck: document.getElementById('successCheck'),
+            progressRing: document.querySelector('.progress-ring-fill'),
+            mainApp: document.getElementById('mainApp'),
             mainContent: document.getElementById('mainContent'),
             mainMenuBtn: document.getElementById('mainMenuBtn'),
             quickMenuBtn: document.getElementById('quickMenuBtn'),
             mainMenu: document.getElementById('mainMenu'),
             quickMenu: document.getElementById('quickMenu'),
             shopWindow: document.getElementById('shopWindow'),
-            helpWindow: document.getElementById('helpWindow'),
             challengeWindow: document.getElementById('challengeWindow'),
-            backupWindow: document.getElementById('backupWindow'),
             wireguardWindow: document.getElementById('wireguardWindow'),
+            aboutWindow: document.getElementById('aboutWindow'),
             confirmWindow: document.getElementById('confirmWindow'),
             settingsPanel: document.getElementById('settingsPanel'),
+            helpWindow: document.getElementById('helpWindow'),
             notification: document.getElementById('notification'),
             overlay: document.getElementById('overlay'),
             todayDate: document.getElementById('todayDate'),
-            themeToggle: document.getElementById('themeToggle'),
-            exportBackup: document.getElementById('exportBackup'),
-            importBackup: document.getElementById('importBackup'),
-            backupFileInput: document.getElementById('backupFileInput')
+            publishTime: document.getElementById('publishTime')
         };
 
-        // رویدادهای کلیک
-        const setupEventListeners = () => {
-            // منوها و پنجره‌ها
+        // Initialize the app
+        function init() {
+            createParticles();
+            setupEventListeners();
+            applyTheme(state.theme);
+            changeLanguage(state.language);
+            setInterval(checkForDayChange, 60000);
+            checkForDayChange();
+            
+            // Set current time
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            elements.publishTime.textContent = `زمان نشر: ${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Main menu buttons
             elements.mainMenuBtn.addEventListener('click', () => toggleModal(elements.mainMenu));
             elements.quickMenuBtn.addEventListener('click', () => toggleModal(elements.quickMenu));
             elements.overlay.addEventListener('click', closeAllModals);
             
-            // آیتم‌های منو
+            // Fingerprint scanner events
+            elements.scannerSurface.addEventListener('mousedown', startFingerprintScan);
+            elements.scannerSurface.addEventListener('touchstart', startFingerprintScan, { passive: true });
+            elements.scannerSurface.addEventListener('mouseup', cancelFingerprintScan);
+            elements.scannerSurface.addEventListener('mouseleave', cancelFingerprintScan);
+            elements.scannerSurface.addEventListener('touchend', cancelFingerprintScan);
+            elements.scannerSurface.addEventListener('touchcancel', cancelFingerprintScan);
+            
+            // Menu items
             document.getElementById('helpBtn').addEventListener('click', () => toggleModal(elements.helpWindow));
             document.getElementById('challengeItem').addEventListener('click', () => toggleModal(elements.challengeWindow));
-            document.getElementById('backupItem').addEventListener('click', () => toggleModal(elements.backupWindow));
-            document.getElementById('themeItem').addEventListener('click', () => toggleModal(elements.settingsPanel));
+            document.getElementById('settingsItem').addEventListener('click', () => toggleModal(elements.settingsPanel));
+            document.getElementById('aboutItem').addEventListener('click', () => toggleModal(elements.aboutWindow));
             document.getElementById('quickShopItem').addEventListener('click', () => toggleModal(elements.shopWindow));
             document.getElementById('quickWireguardItem').addEventListener('click', () => toggleModal(elements.wireguardWindow));
             
-            // دکمه‌های بستن
+            // Close buttons
             document.querySelectorAll('.close-btn').forEach(btn => {
                 btn.addEventListener('click', closeAllModals);
             });
             
-            // تب‌ها
+            // Tabs
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.addEventListener('click', () => {
                     const tabId = tab.dataset.tab;
@@ -1549,27 +2348,35 @@
                 });
             });
             
-            // مدیریت حالت شب/روز
-            elements.themeToggle.addEventListener('change', toggleDarkMode);
-            
-            // مدیریت بکاپ
-            elements.exportBackup.addEventListener('click', exportBackupData);
-            elements.importBackup.addEventListener('click', () => elements.backupFileInput.click());
-            elements.backupFileInput.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    importBackupData(e.target.files[0]);
-                }
+            // Language switcher
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    changeLanguage(lang);
+                });
             });
             
-            // بستن با کلید ESC
+            // Theme switcher
+            document.querySelectorAll('.theme-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const theme = btn.dataset.theme;
+                    applyTheme(theme);
+                });
+            });
+            
+            // Confirm buttons
+            document.getElementById('confirmYes').addEventListener('click', confirmAction);
+            document.getElementById('confirmNo').addEventListener('click', closeConfirmWindow);
+            
+            // Escape key to close modals
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     closeAllModals();
                 }
             });
-        };
+        }
 
-        // توابع کمکی
+        // Helper functions
         function getFormattedTime() {
             const now = new Date();
             const hours = now.getHours();
@@ -1577,15 +2384,99 @@
             return `امروز - ${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
         }
 
-        function getMonthName(monthIndex) {
-            const months = [
-                'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
-                'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
-            ];
-            return months[monthIndex];
+        function changeLanguage(lang) {
+            state.language = lang;
+            localStorage.setItem('language', lang);
+            
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.lang-fa').forEach(el => {
+                el.style.display = lang === 'fa' ? 'inline' : 'none';
+            });
+            
+            document.querySelectorAll('.lang-en').forEach(el => {
+                el.style.display = lang === 'en' ? 'inline' : 'none';
+            });
+            
+            document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+            
+            showNotification(
+                lang === 'fa' ? 'زبان به فارسی تغییر کرد' : 'Language changed to English',
+                'info'
+            );
         }
 
-        // مدیریت پنجره‌ها
+        function applyTheme(theme) {
+            state.theme = theme;
+            localStorage.setItem('theme', theme);
+            
+            document.querySelectorAll('.theme-option').forEach(btn => {
+                if (btn.dataset.theme === theme) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Apply theme-specific styles
+            const root = document.documentElement;
+            
+            switch(theme) {
+                case 'dark':
+                    root.style.setProperty('--primary-color', '#2c3e50');
+                    root.style.setProperty('--primary-light', '#34495e');
+                    root.style.setProperty('--primary-dark', '#1a252f');
+                    root.style.setProperty('--bg-color', '#121212');
+                    root.style.setProperty('--card-bg', '#1e1e1e');
+                    break;
+                case 'ocean':
+                    root.style.setProperty('--primary-color', '#4ca1af');
+                    root.style.setProperty('--primary-light', '#2c3e50');
+                    root.style.setProperty('--primary-dark', '#2c3e50');
+                    root.style.setProperty('--bg-color', '#0f2027');
+                    root.style.setProperty('--card-bg', '#203a43');
+                    break;
+                case 'sunset':
+                    root.style.setProperty('--primary-color', '#ff7e5f');
+                    root.style.setProperty('--primary-light', '#feb47b');
+                    root.style.setProperty('--primary-dark', '#ff6b6b');
+                    root.style.setProperty('--bg-color', '#2c3e50');
+                    root.style.setProperty('--card-bg', '#34495e');
+                    break;
+                case 'forest':
+                    root.style.setProperty('--primary-color', '#5a8f3d');
+                    root.style.setProperty('--primary-light', '#3a6b1f');
+                    root.style.setProperty('--primary-dark', '#2c5e1a');
+                    root.style.setProperty('--bg-color', '#0a1f0a');
+                    root.style.setProperty('--card-bg', '#1a3a1a');
+                    break;
+                case 'midnight':
+                    root.style.setProperty('--primary-color', '#0f2027');
+                    root.style.setProperty('--primary-light', '#203a43');
+                    root.style.setProperty('--primary-dark', '#2c5364');
+                    root.style.setProperty('--bg-color', '#000000');
+                    root.style.setProperty('--card-bg', '#0a0e1a');
+                    break;
+                default: // default theme
+                    root.style.setProperty('--primary-color', '#6e45e2');
+                    root.style.setProperty('--primary-light', '#9c64ff');
+                    root.style.setProperty('--primary-dark', '#4a1fb8');
+                    root.style.setProperty('--bg-color', '#0a0e1a');
+                    root.style.setProperty('--card-bg', '#151a2d');
+            }
+            
+            showNotification(
+                state.language === 'fa' ? 'تم سایت تغییر کرد' : 'Site theme changed',
+                'info'
+            );
+        }
+
         function toggleModal(modal) {
             if (modal.classList.contains('open')) {
                 modal.classList.remove('open');
@@ -1607,11 +2498,127 @@
             document.body.style.overflow = 'auto';
         }
 
-        // تغییر تب‌ها
+        function closeConfirmWindow() {
+            elements.confirmWindow.classList.remove('open');
+            elements.overlay.classList.remove('open');
+        }
+
+        function confirmAction() {
+            // Add your confirmation logic here
+            closeConfirmWindow();
+            showNotification(
+                state.language === 'fa' ? 'عملیات با موفقیت انجام شد' : 'Action completed successfully',
+                'success'
+            );
+        }
+
+        function showConfirmDialog() {
+            elements.confirmWindow.classList.add('open');
+            elements.overlay.classList.add('open');
+        }
+
+        // Fingerprint scanner functions
+        function startFingerprintScan(event) {
+            const now = Date.now();
+            if (now - state.authState.lastScanTime < state.authState.cooldown) {
+                return;
+            }
+            
+            if (state.authState.isScanning) return;
+            
+            state.authState.isScanning = true;
+            state.authState.scanStartTime = now;
+            state.authState.lastScanTime = now;
+            state.authState.progress = 0;
+            
+            elements.scannerSurface.classList.add('active');
+            elements.fingerprintIcon.style.transform = 'scale(1.1)';
+            elements.scanAnimation.classList.add('active');
+            
+            updateProgress();
+            state.authState.progressInterval = setInterval(updateProgress, 50);
+            
+            state.authState.scanTimeout = setTimeout(() => {
+                completeFingerprintScan();
+            }, state.authState.scanDuration);
+        }
+
+        function updateProgress() {
+            const elapsed = Date.now() - state.authState.scanStartTime;
+            state.authState.progress = Math.min(elapsed / state.authState.scanDuration * 100, 100);
+            
+            const circumference = 2 * Math.PI * 45;
+            const offset = circumference - (state.authState.progress / 100 * circumference);
+            elements.progressRing.style.strokeDashoffset = offset;
+            
+            if (state.authState.progress >= 100) {
+                clearInterval(state.authState.progressInterval);
+            }
+        }
+
+        function completeFingerprintScan() {
+            if (!state.authState.isScanning) return;
+            
+            clearInterval(state.authState.progressInterval);
+            clearTimeout(state.authState.scanTimeout);
+            
+            elements.fingerprintIcon.style.opacity = '0';
+            elements.successCheck.classList.add('show');
+            
+            showNotification(
+                state.language === 'fa' ? 'احراز هویت موفق' : 'Authentication successful',
+                state.language === 'fa' ? 'هویت شما با موفقیت تایید شد' : 'Your identity has been successfully verified',
+                'success'
+            );
+            
+            setTimeout(() => {
+                elements.authContainer.style.opacity = '0';
+                setTimeout(() => {
+                    elements.authContainer.style.display = 'none';
+                    elements.mainApp.style.display = 'block';
+                    elements.mainContent.classList.add('show');
+                    state.isAuthenticated = true;
+                    
+                    startTypingAnimation();
+                }, 500);
+            }, 1500);
+        }
+
+        function cancelFingerprintScan() {
+            if (!state.authState.isScanning) return;
+            
+            clearInterval(state.authState.progressInterval);
+            clearTimeout(state.authState.scanTimeout);
+            state.authState.isScanning = false;
+            
+            elements.progressRing.style.strokeDashoffset = 283;
+            
+            elements.scannerSurface.classList.remove('active');
+            elements.fingerprintIcon.style.transform = 'scale(1)';
+            elements.fingerprintIcon.style.opacity = '1';
+            elements.successCheck.classList.remove('show');
+            
+            if (state.authState.progress < 90) {
+                showNotification(
+                    state.language === 'fa' ? 'اسکن ناتمام' : 'Scan incomplete',
+                    state.language === 'fa' ? 'لطفا انگشت خود را تا پایان اسکن نگه دارید' : 'Please keep your finger until scan completes',
+                    'error'
+                );
+            }
+            
+            elements.scanAnimation.classList.remove('active');
+            setTimeout(() => {
+                elements.scanAnimation.style.animation = 'none';
+                setTimeout(() => {
+                    elements.scanAnimation.style.animation = '';
+                }, 10);
+            }, 300);
+        }
+
+        // Tab functions
         function changeTab(tabId, tabType) {
             const prefix = tabType === 'shop' ? 'shop' : 'wireguard';
             
-            // غیرفعال کردن همه تب‌های مربوطه
             document.querySelectorAll(`.${prefix}-menu .tab`).forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -1620,45 +2627,17 @@
                 content.classList.remove('active');
             });
             
-            // فعال کردن تب انتخاب شده
             document.querySelector(`.${prefix}-menu .tab[data-tab="${tabId}"]`).classList.add('active');
             document.getElementById(`${tabId}-tab`).classList.add('active');
             
             addActivityLog(
-                `تغییر تب ${tabType === 'shop' ? 'فروشگاه' : 'دانلود'}`,
-                `تب ${tabId === 'gaming' ? 'گیمینگ' : tabId === 'social' ? 'اجتمائی' : 'ترکیبی'} انتخاب شد`
+                state.language === 'fa' ? `تغییر تب ${tabType === 'shop' ? 'فروشگاه' : 'دانلود'}` : `Changed ${tabType === 'shop' ? 'shop' : 'download'} tab`,
+                state.language === 'fa' ? `تب ${tabId === 'gaming' ? 'گیمینگ' : tabId === 'social' ? 'اجتمائی' : 'ترکیبی'} انتخاب شد` : `${tabId === 'gaming' ? 'Gaming' : tabId === 'social' ? 'Social' : 'Combo'} tab selected`
             );
         }
 
-        // مدیریت حالت شب/روز
-        function toggleDarkMode() {
-            state.darkMode = !state.darkMode;
-            applyTheme();
-            
-            showNotification(
-                `حالت ${state.darkMode ? 'شب' : 'روز'} فعال شد`,
-                'info'
-            );
-        }
-
-        function applyTheme() {
-            if (state.darkMode) {
-                document.body.classList.add('dark-mode');
-                elements.themeToggle.checked = true;
-            } else {
-                document.body.classList.remove('dark-mode');
-                elements.themeToggle.checked = false;
-            }
-            localStorage.setItem('darkMode', state.darkMode);
-            
-            addActivityLog(
-                'تغییر حالت نمایش',
-                state.darkMode ? 'حالت شب فعال شد' : 'حالت روز فعال شد'
-            );
-        }
-
-        // نمایش نوتیفیکیشن
-        function showNotification(message, type) {
+        // Notification system
+        function showNotification(message, type, duration = 3000) {
             elements.notification.className = 'notification';
             document.getElementById('notificationIcon').className = 'notification-icon';
             
@@ -1679,19 +2658,25 @@
             
             setTimeout(() => {
                 elements.notification.classList.remove('show');
-            }, 3000);
+            }, duration);
+            
+            addActivityLog(
+                type === 'success' ? (state.language === 'fa' ? 'اعلان موفقیت' : 'Success notification') :
+                type === 'info' ? (state.language === 'fa' ? 'اعلان اطلاعات' : 'Info notification') :
+                (state.language === 'fa' ? 'اعلان خطا' : 'Error notification'),
+                message
+            );
         }
 
-        // نمایش نوتیفیکیشن نسخه بعدی
         function showComingSoonNotification() {
             closeAllModals();
             showNotification(
-                'در نسخه بعدی اضافه خواهد شد',
+                state.language === 'fa' ? 'در نسخه بعدی اضافه خواهد شد' : 'Coming in next version',
                 'info'
             );
         }
 
-        // مدیریت گزارش فعالیت
+        // Activity log
         function addActivityLog(title, desc) {
             state.activityLogs.unshift({
                 title: title,
@@ -1710,117 +2695,65 @@
             localStorage.setItem('activityLogs', JSON.stringify(state.activityLogs));
         }
 
-        // مدیریت بکاپ
-        function exportBackupData() {
-            const backupData = {
-                timestamp: new Date().toISOString(),
-                version: '1.0',
-                tunnels: []
-            };
+        function checkForDayChange() {
+            const now = new Date();
+            const currentDay = now.getDate();
             
-            const dataStr = JSON.stringify(backupData, null, 2);
-            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            
-            const exportFileName = `xserv-backup-${new Date().toISOString().slice(0,10)}.json`;
-            
-            const link = document.createElement('a');
-            link.setAttribute('href', dataUri);
-            link.setAttribute('download', exportFileName);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            closeAllModals();
-            
-            addActivityLog(
-                'تهیه بکاپ',
-                'بکاپ از تونل‌ها با موفقیت تهیه شد'
-            );
-            
-            showNotification(
-                'بکاپ از تونل‌ها با موفقیت دانلود شد',
-                'success'
-            );
-        }
-
-        function importBackupData(file) {
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                try {
-                    const backupData = JSON.parse(e.target.result);
-                    console.log('Backup data loaded:', backupData);
-                    
-                    closeAllModals();
-                    
-                    addActivityLog(
-                        'بازیابی بکاپ',
-                        'فایل بکاپ با موفقیت بارگذاری شد'
-                    );
-                    
-                    showNotification(
-                        'فایل بکاپ با موفقیت بارگذاری شد',
-                        'success'
-                    );
-                } catch (error) {
-                    console.error('Error parsing backup file:', error);
-                    showNotification(
-                        'خطا در پردازش فایل بکاپ',
-                        'error'
-                    );
-                }
-            };
-            
-            reader.onerror = function() {
-                showNotification(
-                    'خطا در خواندن فایل بکاپ',
-                    'error'
+            if (currentDay !== state.lastDayChecked) {
+                state.lastDayChecked = currentDay;
+                state.activityLogs = [];
+                saveActivityLogs();
+                
+                addActivityLog(
+                    state.language === 'fa' ? 'شروع روز جدید' : 'New day started',
+                    state.language === 'fa' ? 'گزارشات روز قبل پاک شد و روز جدید شروع شد.' : 'Previous day logs cleared and new day started.'
                 );
-            };
-            
-            reader.readAsText(file);
+            }
         }
 
-        // سفارش اشتراک
-        function orderSubscription(months, type = 'gaming') {
+        // Subscription functions
+        function orderSubscription(months, type = 'gaming', isTest = false) {
             let price;
             let typeName;
             
             if (type === 'gaming') {
-                price = getGamingSubscriptionPrice(months);
-                typeName = 'گیمینگ';
+                price = getGamingSubscriptionPrice(months, isTest);
+                typeName = state.language === 'fa' ? 'گیمینگ' : 'Gaming';
             } else if (type === 'social') {
                 price = getSocialSubscriptionPrice(months);
-                typeName = 'اجتمائی';
+                typeName = state.language === 'fa' ? 'اجتمائی' : 'Social';
             } else if (type === 'combo') {
                 price = getComboSubscriptionPrice(months);
-                typeName = 'گیمینگ و اجتمائی';
+                typeName = state.language === 'fa' ? 'گیمینگ و اجتمائی' : 'Gaming & Social';
             }
             
-            const message = `درود آقای ایکسرو!\n\nپروتکل سرویس: ${typeName}\nحجم سرویس: ${months === 1 && type === 'gaming' ? '50 گیگ' : type === 'social' && months === 1 ? '50 گیگ' : 'نامحدود'}\nتعداد کاربر سرویس: 1\nانقضا سرویس: ${months} ماه\n\nقیمت نهایی: ${price} تومان\n\nاطلاعات لازم همراه شماره کارت برای بنده ارسال کنید ، باتشکر`;
+            const message = state.language === 'fa' 
+                ? `درود آقای ایکسرو!\n\nپروتکل سرویس: ${typeName}\nحجم سرویس: ${isTest ? '50 گیگ' : 'نامحدود'}\nتعداد کاربر سرویس: 1\nانقضا سرویس: ${months} ماه\n\nقیمت نهایی: ${price} تومان\n\nاطلاعات لازم همراه شماره کارت برای بنده ارسال کنید ، باتشکر`
+                : `Hello XServ!\n\nService Protocol: ${typeName}\nTraffic: ${isTest ? '50GB' : 'Unlimited'}\nUsers: 1\nExpiration: ${months} months\n\nFinal Price: ${price} IRR\n\nPlease send me the required information along with the card number, Thank you`;
             
             window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
             closeAllModals();
             
             addActivityLog(
-                'درخواست اشتراک',
-                `درخواست اشتراک ${months} ماهه ${typeName} ارسال شد`
+                state.language === 'fa' ? 'درخواست اشتراک' : 'Subscription request',
+                state.language === 'fa' ? `درخواست اشتراک ${months} ماهه ${typeName} ارسال شد` : `${months} month ${typeName} subscription request sent`
             );
             
             showNotification(
-                `درخواست اشتراک ${months} ماهه با موفقیت ارسال شد`,
+                state.language === 'fa' ? `درخواست اشتراک ${months} ماهه با موفقیت ارسال شد` : `${months} month subscription request sent successfully`,
                 'success'
             );
         }
 
-        function getGamingSubscriptionPrice(months) {
+        function getGamingSubscriptionPrice(months, isTest = false) {
+            if (isTest) return '۹۹,۰۰۰';
+            
             const prices = {
-                1: '۹۹,۰۰۰',
-                2: '۲۸۹,۰۰۰',
-                3: '۴۵۹,۰۰۰',
-                4: '۶۱۹,۰۰۰',
-                5: '۷۷۹,۰۰۰',
-                6: '۹۳۹,۰۰۰'
+                1: '۲۸۹,۰۰۰',
+                2: '۴۵۹,۰۰۰',
+                3: '۶۲۵,۰۰۰',
+                4: '۷۸۸,۰۰۰',
+                5: '۹۶۱,۰۰۰'
             };
             
             return prices[months] || 'نامشخص';
@@ -1828,12 +2761,11 @@
 
         function getSocialSubscriptionPrice(months) {
             const prices = {
-                1: '۸۹,۰۰۰',
-                2: '۱۸۹,۰۰۰',
-                3: '۲۷۹,۰۰۰',
-                4: '۳۶۹,۰۰۰',
-                5: '۴۵۹,۰۰۰',
-                6: '۵۴۹,۰۰۰'
+                1: '۲۳۷,۰۰۰',
+                2: '۴۲۸,۰۰۰',
+                3: '۵۹۰,۰۰۰',
+                4: '۷۳۹,۰۰۰',
+                5: '۹۲۱,۰۰۰'
             };
             
             return prices[months] || 'نامشخص';
@@ -1849,10 +2781,10 @@
                 6: '۱,۸۵۰,۰۰۰'
             };
             
-            return prices[months] || 'نامشخص';
+             return prices[months] || 'نامشخص';
         }
 
-        // دانلود وایرگارد
+        // WireGuard download
         function downloadWireguard(platform) {
             let downloadUrl = '';
             let fileName = '';
@@ -1872,8 +2804,19 @@
                 case 'android':
                     downloadUrl = 'https://play.google.com/store/apps/details?id=com.wireguard.android';
                     break;
+                case 'linux':
+                    downloadUrl = 'https://www.wireguard.com/install/';
+                    fileName = 'wireguard-linux-install.html';
+                    break;
+                case 'router':
+                    downloadUrl = 'https://www.wireguard.com/install/';
+                    fileName = 'wireguard-router-install.html';
+                    break;
                 default:
-                    showNotification('پلتفرم انتخاب شده نامعتبر است', 'error');
+                    showNotification(
+                        state.language === 'fa' ? 'پلتفرم انتخاب شده نامعتبر است' : 'Selected platform is invalid',
+                        'error'
+                    );
                     return;
             }
             
@@ -1891,24 +2834,28 @@
             closeAllModals();
             
             addActivityLog(
-                'درخواست دانلود',
-                `دانلود کلاینت برای ${platform} آغاز شد`
+                state.language === 'fa' ? 'درخواست دانلود' : 'Download request',
+                state.language === 'fa' ? `دانلود کلاینت برای ${platform} آغاز شد` : `Download client for ${platform} started`
             );
             
             showNotification(
-                `دانلود برای ${platform} با موفقیت آغاز شد`,
+                state.language === 'fa' ? `دانلود برای ${platform} با موفقیت آغاز شد` : `Download for ${platform} started successfully`,
                 'success'
             );
         }
 
-        // انیمیشن تایپ متن
+        // Typing animation
         function startTypingAnimation() {
-            const messages = [
-                "درحال انجام سفارشات هستیم...",
-                "آقای ایکسرو با نسخه جدید برگشت!",
-                "سرویس گیمینگ برای گیمر ها اضافه شده :)",
-                "پشتیبانی آنلاین 24 ساعته در دسترس است",
+            const messages = state.language === 'fa' ? [
+                "XServ با نسخه جدید بازگشت!",
+                "سرویس گیمینگ برای گیمرها اضافه شد :)",
+                "پشتیبانی 24 ساعته آنلاین آماده خدمت است",
                 "سرورهای جدید در اروپا و آمریکا اضافه شد"
+            ] : [
+                "XServ is back with a new version!",
+                "Gaming service added for gamers :)",
+                "24/7 online support is available",
+                "New servers added in Europe and America"
             ];
             
             let currentCharIndex = 0;
@@ -1950,70 +2897,7 @@
             typeWriter();
         }
 
-        // نمایش تاریخ امروز
-        function showTodayDate() {
-            const days = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
-            const today = new Date();
-            const dayName = days[today.getDay()];
-            const dateStr = `${dayName}، ${today.getDate()} ${getMonthName(today.getMonth())} ${today.getFullYear()}`;
-            
-            startTypingAnimation();
-        }
-
-        // بررسی تغییر روز برای ریست گزارشات
-        function checkForDayChange() {
-            const now = new Date();
-            const currentDay = now.getDate();
-            
-            if (currentDay !== state.lastDayChecked) {
-                state.lastDayChecked = currentDay;
-                state.activityLogs = [];
-                saveActivityLogs();
-                
-                addActivityLog(
-                    'شروع روز جدید',
-                    'گزارشات روز قبل پاک شد و روز جدید شروع شد.'
-                );
-            }
-        }
-
-        // صفحه لودینگ
-        function showLoadingScreen() {
-            let progress = 0;
-            const duration = 4000; // 4 ثانیه
-            const interval = 50; // هر 50 میلی‌ثانیه
-            const increment = (interval / duration) * 100;
-            
-            const loadingInterval = setInterval(() => {
-                progress += increment;
-                elements.loadingBar.style.width = `${Math.min(progress, 100)}%`;
-                
-                if (progress >= 100) {
-                    clearInterval(loadingInterval);
-                    setTimeout(() => {
-                        elements.loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            elements.loadingScreen.style.display = 'none';
-                            elements.mainContent.classList.add('show');
-                        }, 500);
-                    }, 300);
-                }
-            }, interval);
-        }
-
-        // مقداردهی اولیه
-        function init() {
-            showLoadingScreen();
-            setupEventListeners();
-            showTodayDate();
-            applyTheme();
-            
-            // بررسی تغییر روز هر دقیقه
-            setInterval(checkForDayChange, 60000);
-            checkForDayChange();
-        }
-
-        // اجرای برنامه
+        // Initialize the app when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
