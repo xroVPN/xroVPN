@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -244,11 +245,25 @@
             50% { transform: scale(1.1); opacity: 0.9; }
         }
 
-        /* Main App Styles */
-        #mainApp {
+        /* Content Window */
+        #contentWindow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
             display: none;
-            height: 100vh;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-medium);
             overflow: hidden;
+        }
+
+        #contentWindow.show {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
         }
 
         .top-bar {
@@ -324,14 +339,6 @@
             padding: 20px;
             position: relative;
             overflow-y: auto;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition-medium);
-        }
-
-        .content.show {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .welcome-container {
@@ -1291,8 +1298,8 @@
         </div>
     </div>
     
-    <!-- Main App -->
-    <div id="mainApp">
+    <!-- Content Window (Replaces mainApp) -->
+    <div id="contentWindow">
         <div class="top-bar">
             <div class="logo" id="helpBtn">
                 <i class="fas fa-question-circle"></i>
@@ -1642,11 +1649,11 @@
                     <span class="lang-en" style="display:none">Volumetric</span>
                 </div>
                 <div class="tab" data-tab="unlimited">
-                    <span class="lang-fa">نامحدود</span>
+                    <span class="lang-fا">نامحدود</span>
                     <span class="lang-en" style="display:none">Unlimited</span>
                 </div>
                 <div class="tab" data-tab="free">
-                    <span class="lang-fa">رایگان</span>
+                    <span class="lang-fا">رایگان</span>
                     <span class="lang-en" style="display:none">Free</span>
                 </div>
             </div>
@@ -1656,12 +1663,12 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric1"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fa">اشتراک ۱ ماهه وایرگارد</div>
+                                <div class="subscription-name lang-fا">اشتراک ۱ ماهه وایرگارد</div>
                                 <div class="subscription-name lang-en" style="display:none">1 Month WireGuard Subscription</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-user"></i> <span class="lang-fa">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-headset"></i> <span class="lang-fa">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
                                 </div>
                             </div>
                         </div>
@@ -1671,10 +1678,10 @@
                             <div class="volume-btn" data-volume="100" data-price="235000">100 گیگ</div>
                             <div class="volume-btn" data-volume="200" data-price="471000">200 گیگ</div>
                         </div>
-                        <div class="subscription-price">۹۸,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۹۸,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
                         <button class="btn btn-primary" onclick="orderVolumetricSubscription(1, 30)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-fا">برای سفارش کلیک کنید</span>
                             <span class="lang-en" style="display:none">Click to order</span>
                         </button>
                     </div>
@@ -1683,12 +1690,12 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric2"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fa">اشتراک ۲ ماهه وایرگارد</div>
+                                <div class="subscription-name lang-fا">اشتراک ۲ ماهه وایرگارد</div>
                                 <div class="subscription-name lang-en" style="display:none">2 Months WireGuard Subscription</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-user"></i> <span class="lang-fa">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-headset"></i> <span class="lang-fa">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
+                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
                                 </div>
                             </div>
                         </div>
@@ -1698,10 +1705,10 @@
                             <div class="volume-btn" data-volume="100" data-price="266000">100 گیگ</div>
                             <div class="volume-btn" data-volume="200" data-price="519000">200 گیگ</div>
                         </div>
-                        <div class="subscription-price">۱۱۶,۰۰۰ <span class="lang-fa">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱۱۶,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
                         <button class="btn btn-primary" onclick="orderVolumetricSubscription(2, 30)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fa">برای سفارش کلیک کنید</span>
+                            <span class="lang-fا">برای سفارش کلیک کنید</span>
                             <span class="lang-en" style="display:none">Click to order</span>
                         </button>
                     </div>
@@ -1710,11 +1717,11 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric3"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fa">اشتراک ۳ ماهه وایرگارد</div>
+                                <div class="subscription-name lang-fا">اشتراک ۳ ماهه وایرگارد</div>
                                 <div class="subscription-name lang-en" style="display:none">3 Months WireGuard Subscription</div>
                                 <div class="subscription-features">
                                     <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fa">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
+                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
                                     <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
                                 </div>
                             </div>
@@ -2239,7 +2246,7 @@
             scanAnimation: document.getElementById('scanAnimation'),
             successCheck: document.getElementById('successCheck'),
             progressRing: document.querySelector('.progress-ring-fill'),
-            mainApp: document.getElementById('mainApp'),
+            contentWindow: document.getElementById('contentWindow'),
             mainContent: document.getElementById('mainContent'),
             mainMenuBtn: document.getElementById('mainMenuBtn'),
             quickMenuBtn: document.getElementById('quickMenuBtn'),
@@ -2573,8 +2580,7 @@
                 elements.authContainer.style.opacity = '0';
                 setTimeout(() => {
                     elements.authContainer.style.display = 'none';
-                    elements.mainApp.style.display = 'block';
-                    elements.mainContent.classList.add('show');
+                    elements.contentWindow.classList.add('show');
                     state.isAuthenticated = true;
                     
                     startTypingAnimation();
