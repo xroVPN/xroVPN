@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VPN Manager - ایکسرو</title>
+    <title>فروشگاه VPN - ایکسرو</title>
     <style>
         :root {
             --primary-color: #6e45e2;
@@ -377,6 +377,28 @@
             color: var(--text-light);
             font-size: 0.95rem;
             margin-bottom: 12px;
+            text-align: right;
+        }
+
+        .update-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(21, 26, 45, 0.4);
+        }
+
+        .update-icon {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            min-width: 30px;
+        }
+
+        .update-text {
+            flex: 1;
+            text-align: right;
         }
 
         .news-footer {
@@ -385,6 +407,22 @@
             margin-top: 15px;
             font-size: 0.85rem;
             color: var(--text-light);
+        }
+
+        .version-code {
+            background: linear-gradient(90deg, #ff4e64, #feb47b, #6e45e2, #3dc8d5);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 5s ease infinite;
+            font-weight: bold;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .creator {
@@ -555,6 +593,19 @@
             bottom: 0;
         }
 
+        .invite-window {
+            top: -100%;
+            right: 0;
+            width: 100%;
+            height: auto;
+            max-height: 70%;
+            border-radius: 0 0 18px 18px;
+        }
+
+        .invite-window.open {
+            top: 0;
+        }
+
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -653,6 +704,64 @@
             font-size: 0.9rem;
             color: var(--text-light);
             line-height: 1.6;
+        }
+
+        /* Invite Methods */
+        .invite-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .invite-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(21, 26, 45, 0.6);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .invite-method:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-color);
+            background: var(--card-hover);
+        }
+
+        .invite-icon {
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-left: 15px;
+            color: white;
+        }
+
+        .sms-icon { background: var(--gradient-success); }
+        .social-icon { background: var(--gradient-primary); }
+        .copy-icon { background: var(--gradient-secondary); }
+
+        .invite-details {
+            flex: 1;
+        }
+
+        .invite-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .invite-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
         }
 
         /* Tabs */
@@ -1262,10 +1371,10 @@
             }
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
     <!-- Particle Background -->
@@ -1273,7 +1382,7 @@
     
     <!-- Audio Element for Background Music -->
     <audio id="bgMusic" loop>
-        <source src="https://musicviral.musitraf.com/Music/03-05/Ghol%20Bede%20Hamin%20Emshab%20Hoomaan.mp3" type="audio/mpeg">
+        <source src="https://musicviral.musitraf.com/Music/03-05/Ghol%20Bede%20Hamin%20Emshab%20Hoomaan.mp3" type="audio/mpeg" />
     </audio>
     
     <!-- Biometric Auth Screen -->
@@ -1297,13 +1406,12 @@
         </div>
     </div>
     
-    <!-- Content Window (Replaces mainApp) -->
+    <!-- Content Window -->
     <div id="contentWindow">
         <div class="top-bar">
             <div class="logo" id="helpBtn">
                 <i class="fas fa-question-circle"></i>
-                <span class="lang-fa">راهنمای سایت</span>
-                <span class="lang-en" style="display:none">Help</span>
+                <span>راهنمای سایت</span>
             </div>
             <div class="menu-btn" id="mainMenuBtn">
                 <div class="menu-line"></div>
@@ -1317,19 +1425,25 @@
                 <div class="news-container">
                     <div class="news-title">
                         <i class="fas fa-bullhorn"></i>
-                        <span class="lang-fa">اطلاعیه مهم</span>
-                        <span class="lang-en" style="display:none">Important Announcement</span>
+                        <span>اطلاعیه آپدیت</span>
                     </div>
-                    <div class="news-content lang-fa">
-                        از این پس اخبار، نسخه‌ها و به‌روزرسانی‌های سرویس در این کادر نمایش داده خواهد شد. برای دریافت آخرین اخبار و اطلاعیه‌ها، این بخش را به‌صورت منظم چک کنید.
-                    </div>
-                    <div class="news-content lang-en" style="display:none">
-                        From now on, news, versions and service updates will be displayed in this panel. Check this section regularly for the latest news and announcements.
+                    <div class="news-content">
+                        <div class="update-item">
+                            <div class="update-icon"><i class="fas fa-music"></i></div>
+                            <div class="update-text">اضافه شدن آهنگ پس زمینه</div>
+                        </div>
+                        <div class="update-item">
+                            <div class="update-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="update-text">سازگاری با دستگاه‌های قدیمی</div>
+                        </div>
+                        <div class="update-item">
+                            <div class="update-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="update-text">ارتقاء سیستم امنیتی و حریم خصوصی</div>
+                        </div>
                     </div>
                     <div class="news-footer">
-                        <span class="lang-fa">بازدیدکنندگان: بزودی</span>
-                        <span class="lang-en" style="display:none">Visitors: Coming Soon</span>
-                        <span id="publishTime">زمان نشر: 12:30</span>
+                        <span>کد نسخه: <span class="version-code">12581</span></span>
+                        <span id="publishTime">زمان ورود: 12:30</span>
                     </div>
                 </div>
                 <div class="creator" id="todayDate"></div>
@@ -1343,37 +1457,76 @@
         <!-- Main Menu -->
         <div class="modal-window main-menu" id="mainMenu">
             <div class="modal-header">
-                <div class="modal-title lang-fa">منوی اصلی</div>
-                <div class="modal-title lang-en" style="display:none">Main Menu</div>
+                <div class="modal-title">منوی اصلی</div>
                 <div class="close-btn" id="closeMainMenu"><span>×</span></div>
             </div>
             <div class="modal-content">
-                <div class="menu-item" id="challengeItem">
-                    <div class="menu-item-title">
-                        <i class="fas fa-gamepad"></i>
-                        <span class="lang-fa">چالش و گیم</span>
-                        <span class="lang-en" style="display:none">Challenges & Games</span>
-                    </div>
-                    <div class="menu-item-desc lang-fa">با شرکت در چالش‌ها سرویس رایگان ببر</div>
-                    <div class="menu-item-desc lang-en" style="display:none">Win free services by participating in challenges</div>
-                </div>
                 <div class="menu-item" id="settingsItem">
                     <div class="menu-item-title">
                         <i class="fas fa-cog"></i>
-                        <span class="lang-fa">تنظیمات</span>
-                        <span class="lang-en" style="display:none">Settings</span>
+                        <span>تنظیمات</span>
                     </div>
-                    <div class="menu-item-desc lang-fa">تغییر تنظیمات برنامه</div>
-                    <div class="menu-item-desc lang-en" style="display:none">Change application settings</div>
+                    <div class="menu-item-desc">تغییر تنظیمات برنامه</div>
+                </div>
+                <div class="menu-item" id="inviteFriendsItem">
+                    <div class="menu-item-title">
+                        <i class="fas fa-user-plus"></i>
+                        <span>دعوت از دوستان</span>
+                    </div>
+                    <div class="menu-item-desc">دعوت دوستان و دریافت پاداش</div>
                 </div>
                 <div class="menu-item" id="aboutItem">
                     <div class="menu-item-title">
                         <i class="fas fa-info-circle"></i>
-                        <span class="lang-fa">درباره ما</span>
-                        <span class="lang-en" style="display:none">About Us</span>
+                        <span>درباره سازنده</span>
                     </div>
-                    <div class="menu-item-desc lang-fa">اطلاعات درباره سرویس و تیم پشتیبانی</div>
-                    <div class="menu-item-desc lang-en" style="display:none">Information about service and support team</div>
+                    <div class="menu-item-desc">اطلاعات درباره تیم توسعه دهنده</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Invite Friends Window -->
+        <div class="modal-window invite-window" id="inviteWindow">
+            <div class="modal-header">
+                <div class="modal-title">دعوت از دوستان</div>
+                <div class="close-btn" id="closeInvite"><span>×</span></div>
+            </div>
+            <div class="modal-content">
+                <div class="important-notice">
+                    <i class="fas fa-gift"></i>
+                    <span>با معرفی دوستان خود سرعت رو هدیه بدید</span>
+                </div>
+                
+                <div class="invite-methods">
+                    <div class="invite-method" id="smsInvite">
+                        <div class="invite-icon sms-icon">
+                            <i class="fas fa-sms"></i>
+                        </div>
+                        <div class="invite-details">
+                            <div class="invite-title">دعوت پیامکی</div>
+                            <div class="invite-desc">ارسال لینک دعوت از طریق پیامک</div>
+                        </div>
+                    </div>
+                    
+                    <div class="invite-method" id="socialInvite">
+                        <div class="invite-icon social-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="invite-details">
+                            <div class="invite-title">دعوت شبکه اجتماعی</div>
+                            <div class="invite-desc">اشتراک گذاری در شبکه‌های اجتماعی</div>
+                        </div>
+                    </div>
+                    
+                    <div class="invite-method" id="copyInvite">
+                        <div class="invite-icon copy-icon">
+                            <i class="fas fa-copy"></i>
+                        </div>
+                        <div class="invite-details">
+                            <div class="invite-title">کپی لینک دعوت</div>
+                            <div class="invite-desc">کپی لینک برای ارسال در هر برنامه</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1381,14 +1534,12 @@
         <!-- Settings Panel -->
         <div class="modal-window settings-panel" id="settingsPanel">
             <div class="modal-header">
-                <div class="modal-title lang-fa">تنظیمات کاربری</div>
-                <div class="modal-title lang-en" style="display:none">User Settings</div>
+                <div class="modal-title">تنظیمات کاربری</div>
                 <div class="close-btn" id="closeSettings"><span>×</span></div>
             </div>
             <div class="modal-content">
                 <div class="setting-item" style="margin-bottom: 20px;">
-                    <div class="setting-label lang-fa" style="margin-bottom: 12px; font-weight: 600;">تغییر زبان</div>
-                    <div class="setting-label lang-en" style="margin-bottom: 12px; font-weight: 600; display: none;">Change Language</div>
+                    <div class="setting-label" style="margin-bottom: 12px; font-weight: 600;">تغییر زبان</div>
                     <div class="language-switcher">
                         <button class="language-btn active" data-lang="fa">فارسی</button>
                         <button class="language-btn" data-lang="en">English</button>
@@ -1396,217 +1547,54 @@
                 </div>
                 
                 <div class="setting-item" style="margin-bottom: 20px;">
-                    <div class="setting-label lang-fa" style="margin-bottom: 12px; font-weight: 600;">تم سایت</div>
-                    <div class="setting-label lang-en" style="margin-bottom: 12px; font-weight: 600; display: none;">Site Theme</div>
+                    <div class="setting-label" style="margin-bottom: 12px; font-weight: 600;">تم سایت</div>
                     <div class="theme-options">
                         <div class="theme-option active" data-theme="default" style="background: var(--gradient-primary);">
-                            <div class="theme-name lang-fa">پیش فرض</div>
-                            <div class="theme-name lang-en" style="display:none">Default</div>
+                            <div class="theme-name">پیش فرض</div>
                         </div>
                         <div class="theme-option" data-theme="dark" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
-                            <div class="theme-name lang-fa">تیره</div>
-                            <div class="theme-name lang-en" style="display:none">Dark</div>
+                            <div class="theme-name">تیره</div>
                         </div>
                         <div class="theme-option" data-theme="ocean" style="background: linear-gradient(135deg, #4ca1af, #2c3e50);">
-                            <div class="theme-name lang-fa">اقیانوسی</div>
-                            <div class="theme-name lang-en" style="display:none">Ocean</div>
+                            <div class="theme-name">اقیانوسی</div>
                         </div>
                         <div class="theme-option" data-theme="sunset" style="background: linear-gradient(135deg, #ff7e5f, #feb47b);">
-                            <div class="theme-name lang-fa">غروب</div>
-                            <div class="theme-name lang-en" style="display:none">Sunset</div>
+                            <div class="theme-name">غروب</div>
                         </div>
                         <div class="theme-option" data-theme="forest" style="background: linear-gradient(135deg, #5a8f3d, #3a6b1f);">
-                            <div class="theme-name lang-fa">جنگلی</div>
-                            <div class="theme-name lang-en" style="display:none">Forest</div>
+                            <div class="theme-name">جنگلی</div>
                         </div>
                         <div class="theme-option" data-theme="midnight" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);">
-                            <div class="theme-name lang-fa">نیمه شب</div>
-                            <div class="theme-name lang-en" style="display:none">Midnight</div>
+                            <div class="theme-name">نیمه شب</div>
                         </div>
                     </div>
                 </div>
-                
-                <button class="btn btn-primary btn-large lang-fa" style="margin-top: 15px;">ذخیره تنظیمات</button>
-                <button class="btn btn-primary btn-large lang-en" style="margin-top: 15px; display: none;">Save Settings</button>
             </div>
         </div>
         
         <!-- Help Window -->
         <div class="modal-window help-window" id="helpWindow">
             <div class="modal-header">
-                <div class="modal-title lang-fa">راهنمای جامع استفاده</div>
-                <div class="modal-title lang-en" style="display:none">Comprehensive User Guide</div>
+                <div class="modal-title">راهنمای جامع استفاده</div>
                 <div class="close-btn" id="closeHelp"><span>×</span></div>
             </div>
             <div class="modal-content">
                 <div class="important-notice">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span class="lang-fa">راهنمای جامع شامل تمام جزئیات استفاده از سرویس</span>
-                    <span class="lang-en" style="display:none">Comprehensive guide covering all service details</span>
+                    <span>راهنمای جامع شامل تمام جزئیات استفاده از سرویس</span>
                 </div>
                 
                 <div class="usage-guide">
-                    <h4><i class="fas fa-shopping-cart"></i> <span class="lang-fa">راهنمای خرید اشتراک</span><span class="lang-en" style="display:none">Subscription Guide</span></h4>
-                    <div class="guide-content">
-                        <div class="guide-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content lang-fa">به بخش فروشگاه سرویس بروید</div>
-                            <div class="step-content lang-en" style="display:none">Go to the service shop section</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content lang-fa">نوع اشتراک مورد نظر خود را انتخاب کنید</div>
-                            <div class="step-content lang-en" style="display:none">Select your desired subscription type</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content lang-fa">روی دکمه سفارش کلیک کنید</div>
-                            <div class="step-content lang-en" style="display:none">Click on the order button</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">4</div>
-                            <div class="step-content lang-fa">پیام پیش‌نویس شده را ارسال کنید</div>
-                            <div class="step-content lang-en" style="display:none">Send the pre-written message</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">5</div>
-                            <div class="step-content lang-fa">منتظر پاسخ پشتیبانی بمانید</div>
-                            <div class="step-content lang-en" style="display:none">Wait for support response</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">6</div>
-                            <div class="step-content lang-fa">پس از پرداخت، فایل پیکربندی را دریافت خواهید کرد</div>
-                            <div class="step-content lang-en" style="display:none">After payment, you'll receive the configuration file</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">7</div>
-                            <div class="step-content lang-fa">فایل را در برنامه WireGuard وارد کنید</div>
-                            <div class="step-content lang-en" style="display:none">Import the file into WireGuard app</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="usage-guide">
-                    <h4><i class="fas fa-download"></i> <span class="lang-fa">راهنمای نصب و راه‌اندازی</span><span class="lang-en" style="display:none">Installation Guide</span></h4>
-                    <div class="guide-content">
-                        <div class="guide-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content lang-fa">برنامه WireGuard را برای دستگاه خود دانلود کنید</div>
-                            <div class="step-content lang-en" style="display:none">Download WireGuard for your device</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content lang-fa">برنامه را نصب و اجرا نمایید</div>
-                            <div class="step-content lang-en" style="display:none">Install and run the application</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content lang-fa">فایل پیکربندی را از پشتیبانی دریافت کنید</div>
-                            <div class="step-content lang-en" style="display:none">Get the configuration file from support</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">4</div>
-                            <div class="step-content lang-fa">فایل را در برنامه وارد کنید</div>
-                            <div class="step-content lang-en" style="display:none">Import the file into the app</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">5</div>
-                            <div class="step-content lang-fa">اتصال را فعال نمایید</div>
-                            <div class="step-content lang-en" style="display:none">Activate the connection</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">6</div>
-                            <div class="step-content lang-fa">برای اتصال خودکار، گزینه "اتصال هنگام راه‌اندازی" را فعال کنید</div>
-                            <div class="step-content lang-en" style="display:none">Enable "Connect on startup" for automatic connection</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">7</div>
-                            <div class="step-content lang-fa">در صورت نیاز به تغییر سرور، با پشتیبانی تماس بگیرید</div>
-                            <div class="step-content lang-en" style="display:none">Contact support if you need to change servers</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="usage-guide">
-                    <h4><i class="fas fa-shield-alt"></i> <span class="lang-fa">امنیت و حریم خصوصی</span><span class="lang-en" style="display:none">Security & Privacy</span></h4>
-                    <div class="guide-content">
-                        <div class="guide-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content lang-fa">از رمزهای عبور قوی استفاده کنید</div>
-                            <div class="step-content lang-en" style="display:none">Use strong passwords</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content lang-fa">اطلاعات حساب خود را با دیگران به اشتراک نگذارید</div>
-                            <div class="step-content lang-en" style="display:none">Don't share your account information</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content lang-fa">به صورت دوره‌ای رمز عبور خود را تغییر دهید</div>
-                            <div class="step-content lang-en" style="display:none">Change your password periodically</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">4</div>
-                            <div class="step-content lang-fa">از اتصال به شبکه‌های ناشناس خودداری کنید</div>
-                            <div class="step-content lang-en" style="display:none">Avoid connecting to unknown networks</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">5</div>
-                            <div class="step-content lang-fa">فایل پیکربندی را در دستگاه امن نگه دارید</div>
-                            <div class="step-content lang-en" style="display:none">Keep configuration files secure on your device</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">6</div>
-                            <div class="step-content lang-fa">برای امنیت بیشتر از احراز هویت دو مرحله‌ای استفاده کنید</div>
-                            <div class="step-content lang-en" style="display:none">Use two-factor authentication for extra security</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">7</div>
-                            <div class="step-content lang-fa">در صورت گم شدن دستگاه، سریعاً با پشتیبانی تماس بگیرید</div>
-                            <div class="step-content lang-en" style="display:none">Contact support immediately if your device is lost</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="usage-guide">
-                    <h4><i class="fas fa-tools"></i> <span class="lang-fa">عیب‌یابی و پشتیبانی</span><span class="lang-en" style="display:none">Troubleshooting</span></h4>
-                    <div class="guide-content">
-                        <div class="guide-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content lang-fa">اتصال اینترنت خود را بررسی کنید</div>
-                            <div class="step-content lang-en" style="display:none">Check your internet connection</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content lang-fa">برنامه را مجددا راه‌اندازی کنید</div>
-                            <div class="step-content lang-en" style="display:none">Restart the application</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content lang-fa">در صورت نیاز با پشتیبانی تماس بگیرید</div>
-                            <div class="step-content lang-en" style="display:none">Contact support if needed</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">4</div>
-                            <div class="step-content lang-fa">اطمینان حاصل کنید که آخرین نسخه برنامه را دارید</div>
-                            <div class="step-content lang-en" style="display:none">Make sure you have the latest app version</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">5</div>
-                            <div class="step-content lang-fa">تنظیمات فایروال خود را بررسی کنید</div>
-                            <div class="step-content lang-en" style="display:none">Check your firewall settings</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">6</div>
-                            <div class="step-content lang-fa">در صورت تغییر IP، ممکن است نیاز به فایل جدید داشته باشید</div>
-                            <div class="step-content lang-en" style="display:none">If your IP changes, you may need a new file</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">7</div>
-                            <div class="step-content lang-fa">لاگ‌های اتصال را برای تشخیص مشکل بررسی کنید</div>
-                            <div class="step-content lang-en" style="display:none">Check connection logs to diagnose issues</div>
-                        </div>
-                    </div>
+                    <h4><i class="fas fa-shopping-cart"></i> راهنمای خرید اشتراک</h4>
+                    <ol>
+                        <li>به بخش فروشگاه سرویس بروید</li>
+                        <li>نوع اشتراک مورد نظر خود را انتخاب کنید</li>
+                        <li>روی دکمه سفارش کلیک کنید</li>
+                        <li>پیام پیش‌نویس شده را ارسال کنید</li>
+                        <li>منتظر پاسخ پشتیبانی بمانید</li>
+                        <li>پس از پرداخت، فایل پیکربندی را دریافت خواهید کرد</li>
+                        <li>فایل را در برنامه WireGuard وارد کنید</li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -1617,20 +1605,16 @@
                 <div class="menu-item" id="quickShopItem">
                     <div class="menu-item-title">
                         <i class="fas fa-shopping-bag"></i>
-                        <span class="lang-fa">فروشگاه سرویس</span>
-                        <span class="lang-en" style="display:none">Service Shop</span>
+                        <span>فروشگاه سرویس</span>
                     </div>
-                    <div class="menu-item-desc lang-fa">خرید اشتراک جدید یا تمدید اشتراک فعلی</div>
-                    <div class="menu-item-desc lang-en" style="display:none">Buy new subscription or renew current one</div>
+                    <div class="menu-item-desc">خرید اشتراک جدید یا تمدید اشتراک فعلی</div>
                 </div>
                 <div class="menu-item" id="quickWireguardItem">
                     <div class="menu-item-title">
                         <i class="fas fa-download"></i>
-                        <span class="lang-fa">دانلود اپلیکیشن</span>
-                        <span class="lang-en" style="display:none">Download App</span>
+                        <span>دانلود اپلیکیشن</span>
                     </div>
-                    <div class="menu-item-desc lang-fa">دانلود کلاینت رسمی برای دستگاه‌های مختلف</div>
-                    <div class="menu-item-desc lang-en" style="display:none">Download official client for different devices</div>
+                    <div class="menu-item-desc">دانلود کلاینت رسمی برای دستگاه‌های مختلف</div>
                 </div>
             </div>
         </div>
@@ -1638,22 +1622,15 @@
         <!-- Shop Window -->
         <div class="modal-window shop-menu" id="shopWindow">
             <div class="modal-header">
-                <div class="modal-title lang-fa">فروشگاه سرویس</div>
-                <div class="modal-title lang-en" style="display:none">Service Shop</div>
+                <div class="modal-title">فروشگاه سرویس</div>
                 <div class="close-btn" id="closeShop"><span>×</span></div>
             </div>
             <div class="tabs">
                 <div class="tab active" data-tab="volumetric">
-                    <span class="lang-fa">حجمی</span>
-                    <span class="lang-en" style="display:none">Volumetric</span>
+                    <span>حجمی</span>
                 </div>
                 <div class="tab" data-tab="unlimited">
-                    <span class="lang-fا">نامحدود</span>
-                    <span class="lang-en" style="display:none">Unlimited</span>
-                </div>
-                <div class="tab" data-tab="free">
-                    <span class="lang-fا">رایگان</span>
-                    <span class="lang-en" style="display:none">Free</span>
+                    <span>نامحدود</span>
                 </div>
             </div>
             <div class="modal-content">
@@ -1662,12 +1639,11 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric1"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۱ ماهه وایرگارد</div>
-                                <div class="subscription-name lang-en" style="display:none">1 Month WireGuard Subscription</div>
+                                <div class="subscription-name">اشتراک ۱ ماهه وایرگارد</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-headset"></i> دارای پشتیبان</span>
                                 </div>
                             </div>
                         </div>
@@ -1677,11 +1653,10 @@
                             <div class="volume-btn" data-volume="100" data-price="235000">100 گیگ</div>
                             <div class="volume-btn" data-volume="200" data-price="471000">200 گیگ</div>
                         </div>
-                        <div class="subscription-price">۹۸,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۹۸,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderVolumetricSubscription(1, 30)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1689,12 +1664,11 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric2"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۲ ماهه وایرگارد</div>
-                                <div class="subscription-name lang-en" style="display:none">2 Months WireGuard Subscription</div>
+                                <div class="subscription-name">اشتراک ۲ ماهه وایرگارد</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-headset"></i> دارای پشتیبان</span>
                                 </div>
                             </div>
                         </div>
@@ -1704,11 +1678,10 @@
                             <div class="volume-btn" data-volume="100" data-price="266000">100 گیگ</div>
                             <div class="volume-btn" data-volume="200" data-price="519000">200 گیگ</div>
                         </div>
-                        <div class="subscription-price">۱۱۶,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱۱۶,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderVolumetricSubscription(2, 30)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1716,12 +1689,11 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric3"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۳ ماهه وایرگارد</div>
-                                <div class="subscription-name lang-en" style="display:none">3 Months WireGuard Subscription</div>
+                                <div class="subscription-name">اشتراک ۳ ماهه وایرگارد</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-headset"></i> دارای پشتیبان</span>
                                 </div>
                             </div>
                         </div>
@@ -1731,11 +1703,10 @@
                             <div class="volume-btn" data-volume="100" data-price="297000">100 گیگ</div>
                             <div class="volume-btn" data-volume="200" data-price="567000">200 گیگ</div>
                         </div>
-                        <div class="subscription-price">۱۳۴,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱۳۴,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderVolumetricSubscription(3, 30)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1743,12 +1714,11 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric4"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۴ ماهه وایرگارد</div>
-                                <div class="subscription-name lang-en" style="display:none">4 Months WireGuard Subscription</div>
+                                <div class="subscription-name">اشتراک ۴ ماهه وایرگارد</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-headset"></i> دارای پشتیبان</span>
                                 </div>
                             </div>
                         </div>
@@ -1758,11 +1728,10 @@
                             <div class="volume-btn" data-volume="100" data-price="328000">100 گیگ</div>
                             <div class="volume-btn" data-volume="200" data-price="615000">200 گیگ</div>
                         </div>
-                        <div class="subscription-price">۱۵۲,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱۵۲,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderVolumetricSubscription(4, 30)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1770,12 +1739,11 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric5"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۵ ماهه وایرگارد</div>
-                                <div class="subscription-name lang-en" style="display:none">5 Months WireGuard Subscription</div>
+                                <div class="subscription-name">اشتراک ۵ ماهه وایرگارد</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-headset"></i> دارای پشتیبان</span>
                                 </div>
                             </div>
                         </div>
@@ -1785,11 +1753,10 @@
                             <div class="volume-btn" data-volume="100" data-price="359000">100 گیگ</div>
                             <div class="volume-btn" data-volume="200" data-price="663000">200 گیگ</div>
                         </div>
-                        <div class="subscription-price">۱۷۰,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱۷۰,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderVolumetricSubscription(5, 30)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1797,12 +1764,11 @@
                         <div class="subscription-info">
                             <div class="subscription-icon volumetric6"><i class="fas fa-database"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۶ ماهه وایرگارد</div>
-                                <div class="subscription-name lang-en" style="display:none">6 Months WireGuard Subscription</div>
+                                <div class="subscription-name">اشتراک ۶ ماهه وایرگارد</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-headset"></i> <span class="lang-fا">دارای پشتیبان</span><span class="lang-en" style="display:none">Support Available</span></span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-headset"></i> دارای پشتیبان</span>
                                 </div>
                             </div>
                         </div>
@@ -1812,11 +1778,10 @@
                             <div class="volume-btn" data-volume="100" data-price="390000">100 گیگ</div>
                             <div class="volume-btn" data-volume="200" data-price="711000">200 گیگ</div>
                         </div>
-                        <div class="subscription-price">۱۸۸,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱۸۸,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderVolumetricSubscription(6, 30)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                 </div>
@@ -1826,20 +1791,18 @@
                         <div class="subscription-info">
                             <div class="subscription-icon unlimited1"><i class="fas fa-infinity"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۱ ماهه نامحدود</div>
-                                <div class="subscription-name lang-en" style="display:none">1 Month Unlimited Subscription</div>
+                                <div class="subscription-name">اشتراک ۱ ماهه نامحدود</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                    <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="subscription-price">۳۴۸,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۳۴۸,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderUnlimitedSubscription(1)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1847,20 +1810,18 @@
                         <div class="subscription-info">
                             <div class="subscription-icon unlimited2"><i class="fas fa-infinity"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۲ ماهه نامحدود</div>
-                                <div class="subscription-name lang-en" style="display:none">2 Months Unlimited Subscription</div>
+                                <div class="subscription-name">اشتراک ۲ ماهه نامحدود</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                    <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="subscription-price">۶۹۱,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۶۹۱,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderUnlimitedSubscription(2)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1868,20 +1829,18 @@
                         <div class="subscription-info">
                             <div class="subscription-icon unlimited3"><i class="fas fa-infinity"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۳ ماهه نامحدود</div>
-                                <div class="subscription-name lang-en" style="display:none">3 Months Unlimited Subscription</div>
+                                <div class="subscription-name">اشتراک ۳ ماهه نامحدود</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                    <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="subscription-price">۹۲۴,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱,۰۳۴,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderUnlimitedSubscription(3)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1889,20 +1848,18 @@
                         <div class="subscription-info">
                             <div class="subscription-icon unlimited4"><i class="fas fa-infinity"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۴ ماهه نامحدود</div>
-                                <div class="subscription-name lang-en" style="display:none">4 Months Unlimited Subscription</div>
+                                <div class="subscription-name">اشتراک ۴ ماهه نامحدود</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                    <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="subscription-price">۱,۱۵۷,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱,۳۷۷,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderUnlimitedSubscription(4)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1910,20 +1867,18 @@
                         <div class="subscription-info">
                             <div class="subscription-icon unlimited5"><i class="fas fa-infinity"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۵ ماهه نامحدود</div>
-                                <div class="subscription-name lang-en" style="display:none">5 Months Unlimited Subscription</div>
+                                <div class="subscription-name">اشتراک ۵ ماهه نامحدود</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                    <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="subscription-price">۱,۳۹۰,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۱,۷۲۰,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderUnlimitedSubscription(5)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
                     </div>
                     
@@ -1931,243 +1886,124 @@
                         <div class="subscription-info">
                             <div class="subscription-icon unlimited6"><i class="fas fa-infinity"></i></div>
                             <div class="subscription-details">
-                                <div class="subscription-name lang-fا">اشتراک ۶ ماهه نامحدود</div>
-                                <div class="subscription-name lang-en" style="display:none">6 Months Unlimited Subscription</div>
+                                <div class="subscription-name">اشتراک ۶ ماهه نامحدود</div>
                                 <div class="subscription-features">
-                                    <span><i class="fas fa-infinity"></i> <span class="lang-fا">حجم نامحدود</span><span class="lang-en" style="display:none">Unlimited Traffic</span></span>
-                                    <span><i class="fas fa-bolt"></i> <span class="lang-fا">سرعت بالا</span><span class="lang-en" style="display:none">High Speed</span></span>
-                                    <span><i class="fas fa-user"></i> <span class="lang-fا">۱ کاربر</span><span class="lang-en" style="display:none">1 User</span></span>
+                                    <span><i class="fas fa-infinity"></i> حجم نامحدود</span>
+                                    <span><i class="fas fa-bolt"></i> سرعت بالا</span>
+                                    <span><i class="fas fa-user"></i> ۱ کاربر</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="subscription-price">۱,۶۲۳,۰۰۰ <span class="lang-fا">تومان</span><span class="lang-en" style="display:none">IRR</span></div>
+                        <div class="subscription-price">۲,۰۶۳,۰۰۰ تومان</div>
                         <button class="btn btn-primary" onclick="orderUnlimitedSubscription(6)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="lang-fا">برای سفارش کلیک کنید</span>
-                            <span class="lang-en" style="display:none">Click to order</span>
+                            <span>برای سفارش کلیک کنید</span>
                         </button>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="free-tab">
-                    <div class="subscription-option" style="text-align: center; padding: 40px 20px;">
-                        <i class="fas fa-gift" style="font-size: 60px; color: var(--warning-color); margin-bottom: 20px;"></i>
-                        <h3 class="lang-fا" style="margin-bottom: 15px; color: var(--warning-color);">منتظر عید نوروز باش!</h3>
-                        <h3 class="lang-en" style="margin-bottom: 15px; color: var(--warning-color); display: none;">Wait for Nowruz!</h3>
-                        <p class="lang-fا" style="color: var(--text-light); line-height: 1.7;">
-                            عیدی ما به کاربران در راه است...<br>
-                            به زودی سرویس رایگان برای مدت محدود ارائه خواهد شد
-                        </p>
-                        <p class="lang-en" style="color: var(--text-light); line-height: 1.7; display: none;">
-                            Our gift to users is on the way...<br>
-                            Free service will be available for a limited time soon
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Challenge Window -->
-        <div class="modal-window challenge-window" id="challengeWindow">
-            <div class="modal-header">
-                <div class="modal-title lang-fا">چالش و گیم</div>
-                <div class="modal-title lang-en" style="display:none">Challenges & Games</div>
-                <div class="close-btn" id="closeChallenge"><span>×</span></div>
-            </div>
-            <div class="modal-content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 35px;">
-                <div class="emoji-container" style="width: 110px; height: 110px; background: var(--gradient-primary); border-radius: 50%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(110, 69, 226, 0.5);">
-                    <i class="fas fa-gamepad" style="font-size: 45px; color: white;"></i>
-                </div>
-                <h3 style="margin-bottom: 12px; font-size: 1.4rem;" class="lang-fا">با شرکت در چالش‌ها سرویس رایگان ببر</h3>
-                <h3 style="margin-bottom: 12px; font-size: 1.4rem; display: none;" class="lang-en">Win free services by participating in challenges</h3>
-                <p style="color: var(--text-light); margin-bottom: 25px; font-size: 0.95rem; max-width: 80%;" class="lang-fا">در چالش‌های ما شرکت کنید و شانس برنده شدن سرویس رایگان را داشته باشید</p>
-                <p style="color: var(--text-light); margin-bottom: 25px; font-size: 0.95rem; max-width: 80%; display: none;" class="lang-en">Participate in our challenges and have a chance to win free service</p>
-                <button class="btn btn-primary" onclick="showComingSoonNotification()" style="padding: 12px 25px; font-size: 1rem;">
-                    <i class="fas fa-play"></i>
-                    <span class="lang-fا">شروع چالش</span>
-                    <span class="lang-en" style="display:none">Start Challenge</span>
-                </button>
-            </div>
-        </div>
-        
-        <!-- WireGuard Download Window -->
-        <div class="modal-window wireguard-window" id="wireguardWindow">
-            <div class="modal-header">
-                <div class="modal-title lang-fا">دانلود اپلیکیشن رسمی</div>
-                <div class="modal-title lang-en" style="display:none">Download Official App</div>
-                <div class="close-btn" id="closeWireguard"><span>×</span></div>
-            </div>
-            <div class="modal-content">
-                <div class="download-buttons">
-                    <div class="download-card" onclick="downloadWireguard('windows')">
-                        <i class="fab fa-windows download-icon"></i>
-                        <div class="download-title lang-fا">ویندوز</div>
-                        <div class="download-title lang-en" style="display:none">Windows</div>
-                        <div class="download-desc lang-fا">نسخه 64 بیتی - سازگار با ویندوز 10 و 11</div>
-                        <div class="download-desc lang-en" style="display:none">64-bit version - Compatible with Windows 10 & 11</div>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-download"></i>
-                            <span class="lang-fا">دانلود (25MB)</span>
-                            <span class="lang-en" style="display:none">Download (25MB)</span>
-                        </button>
-                    </div>
-                    
-                    <div class="download-card" onclick="downloadWireguard('mac')">
-                        <i class="fab fa-apple download-icon"></i>
-                        <div class="download-title lang-fا">مک</div>
-                        <div class="download-title lang-en" style="display:none">Mac</div>
-                        <div class="download-desc lang-fا">نسخه اپل سیلیکون و اینتل - مک اواس 11+</div>
-                        <div class="download-desc lang-en" style="display:none">Apple Silicon & Intel - macOS 11+</div>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-download"></i>
-                            <span class="lang-fا">دانلود (18MB)</span>
-                            <span class="lang-en" style="display:none">Download (18MB)</span>
-                        </button>
-                    </div>
-                    
-                    <div class="download-card" onclick="downloadWireguard('ios')">
-                        <i class="fab fa-apple download-icon"></i>
-                        <div class="download-title lang-fا">iOS</div>
-                        <div class="download-title lang-en" style="display:none">iOS</div>
-                        <div class="download-desc lang-fا">آیفون و آیپد - iOS 12.2 و بالاتر</div>
-                        <div class="download-desc lang-en" style="display:none">iPhone & iPad - iOS 12.2+</div>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span class="lang-fا">رفتن به اپ استور</span>
-                            <span class="lang-en" style="display:none">Go to App Store</span>
-                        </button>
-                    </div>
-                    
-                    <div class="download-card" onclick="downloadWireguard('android')">
-                        <i class="fab fa-android download-icon"></i>
-                        <div class="download-title lang-fا">اندروید</div>
-                        <div class="download-title lang-en" style="display:none">Android</div>
-                        <div class="download-desc lang-fا">اندروید 5.0 و بالاتر - سازگار با تمام دستگاه‌ها</div>
-                        <div class="download-desc lang-en" style="display:none">Android 5.0+ - Compatible with all devices</div>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span class="lang-fا">رفتن به گوگل پلی</span>
-                            <span class="lang-en" style="display:none">Go to Play Store</span>
-                        </button>
-                    </div>
-                    
-                    <div class="download-card" onclick="downloadWireguard('linux')">
-                        <i class="fab fa-linux download-icon"></i>
-                        <div class="download-title lang-fا">لینوکس</div>
-                        <div class="download-title lang-en" style="display:none">Linux</div>
-                        <div class="download-desc lang-fا">دبیان، اوبونتو، فدورا، آرچ و سایر توزیع‌ها</div>
-                        <div class="download-desc lang-en" style="display:none">Debian, Ubuntu, Fedora, Arch and other distros</div>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-download"></i>
-                            <span class="lang-fا">دانلود (12MB)</span>
-                            <span class="lang-en" style="display:none">Download (12MB)</span>
-                        </button>
-                    </div>
-                    
-                    <div class="download-card" onclick="downloadWireguard('router')">
-                        <i class="fas fa-wifi download-icon"></i>
-                        <div class="download-title lang-fا">روتر</div>
-                        <div class="download-title lang-en" style="display:none">Router</div>
-                        <div class="download-desc lang-fا">پیکربندی برای روترهای DD-WRT، OpenWRT و Tomato</div>
-                        <div class="download-desc lang-en" style="display:none">Configuration for DD-WRT, OpenWRT & Tomato routers</div>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-download"></i>
-                            <span class="lang-fا">دانلود راهنما</span>
-                            <span class="lang-en" style="display:none">Download Guide</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="usage-guide">
-                    <h4 class="lang-fا">راهنمای نصب و استفاده:</h4>
-                    <h4 class="lang-en" style="display:none">Installation & Usage Guide:</h4>
-                    <div class="guide-content">
-                        <div class="guide-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content lang-fا">فایل مربوط به سیستم عامل خود را دانلود کنید</div>
-                            <div class="step-content lang-en" style="display:none">Download the file for your operating system</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content lang-fا">برنامه را نصب و اجرا کنید (نیاز به دسترسی روت/ادمین ندارد)</div>
-                            <div class="step-content lang-en" style="display:none">Install and run the application (no root/admin required)</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content lang-fا">فایل پیکربندی را از پشتیبانی دریافت کنید</div>
-                            <div class="step-content lang-en" style="display:none">Get the configuration file from support</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">4</div>
-                            <div class="step-content lang-fا">فایل را در برنامه وارد کنید (از طریق دکمه Import یا کشیدن و رها کردن)</div>
-                            <div class="step-content lang-en" style="display:none">Import the file into the app (via Import button or drag & drop)</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">5</div>
-                            <div class="step-content lang-fا">اتصال را فعال کنید</div>
-                            <div class="step-content lang-en" style="display:none">Activate the connection</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">6</div>
-                            <div class="step-content lang-fا">برای اتصال خودکار، گزینه "اتصال هنگام راه‌اندازی" را فعال کنید</div>
-                            <div class="step-content lang-en" style="display:none">Enable "Connect on startup" for automatic connection</div>
-                        </div>
-                        <div class="guide-step">
-                            <div class="step-number">7</div>
-                            <div class="step-content lang-fا">در صورت مشکل، راهنمای کامل در بخش راهنما موجود است</div>
-                            <div class="step-content lang-en" style="display:none">Full guide available in Help section if you encounter issues</div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- About Window -->
-        <div class="modal-window about-window" id="aboutWindow">
+        <div class="modal-window challenge-window" id="aboutWindow">
             <div class="modal-header">
-                <div class="modal-title lang-fا">درباره ما</div>
-                <div class="modal-title lang-en" style="display:none">About Us</div>
+                <div class="modal-title">درباره سازنده</div>
                 <div class="close-btn" id="closeAbout"><span>×</span></div>
             </div>
+            <div class="modal-content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 35px;">
+                <div class="about-logo">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 style="margin-bottom: 12px; font-size: 1.4rem;">تیم ایکسرو</h3>
+                <p style="color: var(--text-light); margin-bottom: 25px; font-size: 0.95rem; max-width: 80%; line-height: 1.7;">
+                    ما بیش از 5 سال است که در زمینه ارائه سرویس‌های VPN فعالیت داریم. اولویت اصلی ما امنیت و حریم خصوصی کاربران است. 
+                    با استفاده از آخرین تکنولوژی‌های روز دنیا، سرویس‌هایی با بالاترین کیفیت و پایداری ارائه می‌دهیم.
+                    تیم پشتیبانی ما 24 ساعته آماده پاسخگویی به سوالات و مشکلات شماست.
+                </p>
+                
+                <div style="display: flex; gap: 15px; margin-top: 20px; width: 100%; justify-content: center;">
+                    <a href="https://t.me/xroVPN" target="_blank" class="btn btn-primary" style="flex: 1; max-width: 200px;">
+                        <i class="fab fa-telegram"></i>
+                        <span>کانال تلگرام</span>
+                    </a>
+                    <a href="https://t.me/u0v0n" target="_blank" class="btn btn-secondary" style="flex: 1; max-width: 200px;">
+                        <i class="fas fa-headset"></i>
+                        <span>پشتیبانی</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- WireGuard Download Window -->
+        <div class="modal-window wireguard-window" id="wireguardWindow">
+            <div class="modal-header">
+                <div class="modal-title">دانلود اپلیکیشن رسمی</div>
+                <div class="close-btn" id="closeWireguard"><span>×</span></div>
+            </div>
             <div class="modal-content">
-                <div class="about-content">
-                    <div class="about-logo">
-                        <i class="fas fa-shield-alt"></i>
+                <div class="download-buttons">
+                    <div class="download-card" onclick="downloadWireguard('windows')">
+                        <i class="fab fa-windows download-icon"></i>
+                        <div class="download-title">ویندوز</div>
+                        <div class="download-desc">نسخه 64 بیتی - سازگار با ویندوز 10 و 11</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            <span>دانلود (25MB)</span>
+                        </button>
                     </div>
-                    <h3 class="lang-fا" style="margin-bottom: 12px; color: var(--primary-color);">VPN Manager - ایکسرو</h3>
-                    <h3 class="lang-en" style="margin-bottom: 12px; color: var(--primary-color); display: none;">VPN Manager - XServ</h3>
-                    <div class="about-text lang-fا">
-                        سرویس VPN ایکسرو با بیش از 5 سال سابقه در زمینه ارائه خدمات اینترنت پرسرعت و ایمن، همواره در تلاش است تا بهترین تجربه کاربری را برای مشتریان خود فراهم کند. تیم پشتیبانی ما 24 ساعته آماده پاسخگویی به سوالات و حل مشکلات شماست.
+                    
+                    <div class="download-card" onclick="downloadWireguard('mac')">
+                        <i class="fab fa-apple download-icon"></i>
+                        <div class="download-title">مک</div>
+                        <div class="download-desc">نسخه اپل سیلیکون و اینتل - مک اواس 11+</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            <span>دانلود (18MB)</span>
+                        </button>
                     </div>
-                    <div class="about-text lang-en" style="display: none;">
-                        XServ VPN service with more than 5 years of experience in providing high-speed and secure internet services, always strives to provide the best user experience for its customers. Our support team is available 24/7 to answer your questions and solve your problems.
+                    
+                    <div class="download-card" onclick="downloadWireguard('ios')">
+                        <i class="fab fa-apple download-icon"></i>
+                        <div class="download-title">iOS</div>
+                        <div class="download-desc">آیفون و آیپد - iOS 12.2 و بالاتر</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>رفتن به اپ استور</span>
+                        </button>
                     </div>
-                    <div class="social-links">
-                        <a href="https://t.me/u0v0n" target="_blank" class="social-link">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                        <a href="https://instagram.com" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://twitter.com" target="_blank" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
+                    
+                    <div class="download-card" onclick="downloadWireguard('android')">
+                        <i class="fab fa-android download-icon"></i>
+                        <div class="download-title">اندروید</div>
+                        <div class="download-desc">اندروید 5.0 و بالاتر - سازگار با تمام دستگاه‌ها</div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>رفتن به گوگل پلی</span>
+                        </button>
                     </div>
+                </div>
+                
+                <div class="usage-guide">
+                    <h4>راهنمای نصب و استفاده:</h4>
+                    <ol>
+                        <li>فایل مربوط به سیستم عامل خود را دانلود کنید</li>
+                        <li>برنامه را نصب و اجرا کنید (نیاز به دسترسی روت/ادمین ندارد)</li>
+                        <li>فایل پیکربندی را از پشتیبانی دریافت کنید</li>
+                        <li>فایل را در برنامه وارد کنید (از طریق دکمه Import یا کشیدن و رها کردن)</li>
+                        <li>اتصال را فعال کنید</li>
+                        <li>برای اتصال خودکار، گزینه "اتصال هنگام راه‌اندازی" را فعال کنید</li>
+                    </ol>
                 </div>
             </div>
         </div>
         
         <!-- Confirm Window -->
         <div class="modal-window confirm-window" id="confirmWindow">
-            <div class="modal-title lang-fا">تایید عملیات</div>
-            <div class="modal-title lang-en" style="display:none">Confirm Action</div>
-            <div class="menu-item-desc" style="margin: 18px 0 25px; text-align: center;" class="lang-fا">آیا از انجام این عملیات مطمئن هستید؟ این عمل غیرقابل بازگشت است.</div>
-            <div class="menu-item-desc" style="margin: 18px 0 25px; text-align: center; display: none;" class="lang-en">Are you sure you want to perform this action? This action is irreversible.</div>
+            <div class="modal-title">تایید عملیات</div>
+            <div style="margin: 18px 0 25px; text-align: center;">آیا از انجام این عملیات مطمئن هستید؟ این عمل غیرقابل بازگشت است.</div>
             <div style="display: flex; justify-content: center; gap: 15px;">
-                <button class="btn btn-primary" id="confirmYes" style="flex: 1; max-width: 140px;" class="lang-fا">تایید</button>
-                <button class="btn btn-primary" id="confirmYes" style="flex: 1; max-width: 140px; display: none;" class="lang-en">Confirm</button>
-                <button class="btn" id="confirmNo" style="flex: 1; max-width: 140px; background: var(--card-bg); border: var(--glass-border); color: var(--text-color);" class="lang-fا">انصراف</button>
-                <button class="btn" id="confirmNo" style="flex: 1; max-width: 140px; background: var(--card-bg); border: var(--glass-border); color: var(--text-color); display: none;" class="lang-en">Cancel</button>
+                <button class="btn btn-primary" id="confirmYes" style="flex: 1; max-width: 140px;">تایید</button>
+                <button class="btn" id="confirmNo" style="flex: 1; max-width: 140px; background: var(--card-bg); border: var(--glass-border); color: var(--text-color);">انصراف</button>
             </div>
         </div>
         
@@ -2212,8 +2048,8 @@
 
         // App State
         const state = {
-            language: localStorage.getItem('language') || 'fa',
-            theme: localStorage.getItem('theme') || 'default',
+            language: 'fa',
+            theme: 'default',
             isAuthenticated: false,
             authState: {
                 isScanning: false,
@@ -2225,7 +2061,7 @@
                 lastScanTime: 0,
                 cooldown: 1000
             },
-            activityLogs: JSON.parse(localStorage.getItem('activityLogs')) || [
+            activityLogs: [
                 {
                     title: 'ورود به سیستم',
                     date: getFormattedTime(),
@@ -2252,9 +2088,9 @@
             mainMenu: document.getElementById('mainMenu'),
             quickMenu: document.getElementById('quickMenu'),
             shopWindow: document.getElementById('shopWindow'),
-            challengeWindow: document.getElementById('challengeWindow'),
-            wireguardWindow: document.getElementById('wireguardWindow'),
             aboutWindow: document.getElementById('aboutWindow'),
+            wireguardWindow: document.getElementById('wireguardWindow'),
+            inviteWindow: document.getElementById('inviteWindow'),
             confirmWindow: document.getElementById('confirmWindow'),
             settingsPanel: document.getElementById('settingsPanel'),
             helpWindow: document.getElementById('helpWindow'),
@@ -2262,7 +2098,14 @@
             overlay: document.getElementById('overlay'),
             todayDate: document.getElementById('todayDate'),
             publishTime: document.getElementById('publishTime'),
-            bgMusic: document.getElementById('bgMusic')
+            bgMusic: document.getElementById('bgMusic'),
+            inviteFriendsItem: document.getElementById('inviteFriendsItem'),
+            smsInvite: document.getElementById('smsInvite'),
+            socialInvite: document.getElementById('socialInvite'),
+            copyInvite: document.getElementById('copyInvite'),
+            closeInvite: document.getElementById('closeInvite'),
+            aboutItem: document.getElementById('aboutItem'),
+            closeAbout: document.getElementById('closeAbout')
         };
 
         // Initialize the app
@@ -2270,7 +2113,6 @@
             createParticles();
             setupEventListeners();
             applyTheme(state.theme);
-            changeLanguage(state.language);
             setInterval(checkForDayChange, 60000);
             checkForDayChange();
             
@@ -2278,7 +2120,7 @@
             const now = new Date();
             const hours = now.getHours();
             const minutes = now.getMinutes();
-            elements.publishTime.textContent = `زمان نشر: ${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+            elements.publishTime.textContent = `زمان ورود: ${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
             
             // Setup volume buttons
             setupVolumeButtons();
@@ -2301,9 +2143,9 @@
             
             // Menu items
             document.getElementById('helpBtn').addEventListener('click', () => toggleModal(elements.helpWindow));
-            document.getElementById('challengeItem').addEventListener('click', () => toggleModal(elements.challengeWindow));
+            elements.aboutItem.addEventListener('click', () => toggleModal(elements.aboutWindow));
+            elements.inviteFriendsItem.addEventListener('click', () => toggleModal(elements.inviteWindow));
             document.getElementById('settingsItem').addEventListener('click', () => toggleModal(elements.settingsPanel));
-            document.getElementById('aboutItem').addEventListener('click', () => toggleModal(elements.aboutWindow));
             document.getElementById('quickShopItem').addEventListener('click', () => toggleModal(elements.shopWindow));
             document.getElementById('quickWireguardItem').addEventListener('click', () => toggleModal(elements.wireguardWindow));
             
@@ -2341,6 +2183,11 @@
             document.getElementById('confirmYes').addEventListener('click', confirmAction);
             document.getElementById('confirmNo').addEventListener('click', closeConfirmWindow);
             
+            // Invite methods
+            elements.smsInvite.addEventListener('click', sendSMSInvite);
+            elements.socialInvite.addEventListener('click', shareOnSocialMedia);
+            elements.copyInvite.addEventListener('click', copyInviteLink);
+            
             // Escape key to close modals
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
@@ -2367,7 +2214,7 @@
                     
                     // Update price
                     const price = this.dataset.price;
-                    priceElement.textContent = `${Number(price).toLocaleString('fa-IR')} ${state.language === 'fa' ? 'تومان' : 'IRR'}`;
+                    priceElement.textContent = `${Number(price).toLocaleString('fa-IR')} تومان`;
                     
                     // Update order button
                     const months = parent.querySelector('.subscription-name').textContent.match(/(\d+)/)[0];
@@ -2387,7 +2234,6 @@
 
         function changeLanguage(lang) {
             state.language = lang;
-            localStorage.setItem('language', lang);
             
             document.querySelectorAll('.language-btn').forEach(btn => {
                 if (btn.dataset.lang === lang) {
@@ -2397,16 +2243,6 @@
                 }
             });
             
-            document.querySelectorAll('.lang-fa').forEach(el => {
-                el.style.display = lang === 'fa' ? 'inline' : 'none';
-            });
-            
-            document.querySelectorAll('.lang-en').forEach(el => {
-                el.style.display = lang === 'en' ? 'inline' : 'none';
-            });
-            
-            document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
-            
             showNotification(
                 lang === 'fa' ? 'زبان به فارسی تغییر کرد' : 'Language changed to English',
                 'info'
@@ -2415,7 +2251,6 @@
 
         function applyTheme(theme) {
             state.theme = theme;
-            localStorage.setItem('theme', theme);
             
             document.querySelectorAll('.theme-option').forEach(btn => {
                 if (btn.dataset.theme === theme) {
@@ -2473,7 +2308,7 @@
             }
             
             showNotification(
-                state.language === 'fa' ? 'تم سایت تغییر کرد' : 'Site theme changed',
+                'تم سایت تغییر کرد',
                 'info'
             );
         }
@@ -2508,7 +2343,7 @@
             // Add your confirmation logic here
             closeConfirmWindow();
             showNotification(
-                state.language === 'fa' ? 'عملیات با موفقیت انجام شد' : 'Action completed successfully',
+                'عملیات با موفقیت انجام شد',
                 'success'
             );
         }
@@ -2567,8 +2402,8 @@
             elements.successCheck.classList.add('show');
             
             showNotification(
-                state.language === 'fa' ? 'احراز هویت موفق' : 'Authentication successful',
-                state.language === 'fa' ? 'هویت شما با موفقیت تایید شد' : 'Your identity has been successfully verified',
+                'احراز هویت موفق',
+                'هویت شما با موفقیت تایید شد',
                 'success'
             );
             
@@ -2603,8 +2438,8 @@
             
             if (state.authState.progress < 90) {
                 showNotification(
-                    state.language === 'fa' ? 'اسکن ناتمام' : 'Scan incomplete',
-                    state.language === 'fa' ? 'لطفا انگشت خود را تا پایان اسکن نگه دارید' : 'Please keep your finger until scan completes',
+                    'اسکن ناتمام',
+                    'لطفا انگشت خود را تا پایان اسکن نگه دارید',
                     'error'
                 );
             }
@@ -2634,8 +2469,8 @@
             document.getElementById(`${tabId}-tab`).classList.add('active');
             
             addActivityLog(
-                state.language === 'fa' ? `تغییر تب ${tabType === 'shop' ? 'فروشگاه' : 'دانلود'}` : `Changed ${tabType === 'shop' ? 'shop' : 'download'} tab`,
-                state.language === 'fa' ? `تب ${tabId === 'volumetric' ? 'حجمی' : tabId === 'unlimited' ? 'نامحدود' : 'رایگان'} انتخاب شد` : `${tabId === 'volumetric' ? 'Volumetric' : tabId === 'unlimited' ? 'Unlimited' : 'Free'} tab selected`
+                `تغییر تب ${tabType === 'shop' ? 'فروشگاه' : 'دانلود'}`,
+                `تب ${tabId === 'volumetric' ? 'حجمی' : tabId === 'unlimited' ? 'نامحدود' : 'رایگان'} انتخاب شد`
             );
         }
 
@@ -2662,19 +2497,12 @@
             setTimeout(() => {
                 elements.notification.classList.remove('show');
             }, duration);
-            
-            addActivityLog(
-                type === 'success' ? (state.language === 'fa' ? 'اعلان موفقیت' : 'Success notification') :
-                type === 'info' ? (state.language === 'fa' ? 'اعلان اطلاعات' : 'Info notification') :
-                (state.language === 'fa' ? 'اعلان خطا' : 'Error notification'),
-                message
-            );
         }
 
         function showComingSoonNotification() {
             closeAllModals();
             showNotification(
-                state.language === 'fa' ? 'در نسخه بعدی اضافه خواهد شد' : 'Coming in next version',
+                'در نسخه بعدی اضافه خواهد شد',
                 'info'
             );
         }
@@ -2690,12 +2518,6 @@
             if (state.activityLogs.length > 50) {
                 state.activityLogs = state.activityLogs.slice(0, 50);
             }
-            
-            saveActivityLogs();
-        }
-
-        function saveActivityLogs() {
-            localStorage.setItem('activityLogs', JSON.stringify(state.activityLogs));
         }
 
         function checkForDayChange() {
@@ -2705,11 +2527,10 @@
             if (currentDay !== state.lastDayChecked) {
                 state.lastDayChecked = currentDay;
                 state.activityLogs = [];
-                saveActivityLogs();
                 
                 addActivityLog(
-                    state.language === 'fa' ? 'شروع روز جدید' : 'New day started',
-                    state.language === 'fa' ? 'گزارشات روز قبل پاک شد و روز جدید شروع شد.' : 'Previous day logs cleared and new day started.'
+                    'شروع روز جدید',
+                    'گزارشات روز قبل پاک شد و روز جدید شروع شد.'
                 );
             }
         }
@@ -2728,20 +2549,18 @@
                 price = getVolumetricSubscriptionPrice(months, 200);
             }
             
-            const message = state.language === 'fa' 
-                ? `درود آقای ایکسرو!\n\nپروتکل سرویس: حجمی\nحجم سرویس: ${volume} گیگ\nتعداد کاربر سرویس: 1\nانقضا سرویس: ${months} ماه\n\nقیمت نهایی: ${price} تومان\n\nاطلاعات لازم همراه شماره کارت برای بنده ارسال کنید ، باتشکر`
-                : `Hello XServ!\n\nService Protocol: Volumetric\nTraffic: ${volume}GB\nUsers: 1\nExpiration: ${months} months\n\nFinal Price: ${price} IRR\n\nPlease send me the required information along with the card number, Thank you`;
+            const message = `درود آقای ایکسرو!\n\nپروتکل سرویس: حجمی\nحجم سرویس: ${volume} گیگ\nتعداد کاربر سرویس: 1\nانقضا سرویس: ${months} ماه\n\nقیمت نهایی: ${price} تومان\n\nاطلاعات لازم همراه شماره کارت برای بنده ارسال کنید ، باتشکر`;
             
             window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
             closeAllModals();
             
             addActivityLog(
-                state.language === 'fa' ? 'درخواست اشتراک' : 'Subscription request',
-                state.language === 'fa' ? `درخواست اشتراک ${months} ماهه حجمی (${volume} گیگ) ارسال شد` : `${months} month volumetric subscription (${volume}GB) request sent`
+                'درخواست اشتراک',
+                `درخواست اشتراک ${months} ماهه حجمی (${volume} گیگ) ارسال شد`
             );
             
             showNotification(
-                state.language === 'fa' ? `درخواست اشتراک ${months} ماهه با موفقیت ارسال شد` : `${months} month subscription request sent successfully`,
+                `درخواست اشتراک ${months} ماهه با موفقیت ارسال شد`,
                 'success'
             );
         }
@@ -2749,20 +2568,18 @@
         function orderUnlimitedSubscription(months) {
             const price = getUnlimitedSubscriptionPrice(months);
             
-            const message = state.language === 'fa' 
-                ? `درود آقای ایکسرو!\n\nپروتکل سرویس: نامحدود\nحجم سرویس: نامحدود\nتعداد کاربر سرویس: 1\nانقضا سرویس: ${months} ماه\n\nقیمت نهایی: ${price} تومان\n\nاطلاعات لازم همراه شماره کارت برای بنده ارسال کنید ، باتشکر`
-                : `Hello XServ!\n\nService Protocol: Unlimited\nTraffic: Unlimited\nUsers: 1\nExpiration: ${months} months\n\nFinal Price: ${price} IRR\n\nPlease send me the required information along with the card number, Thank you`;
+            const message = `درود آقای ایکسرو!\n\nپروتکل سرویس: نامحدود\nحجم سرویس: نامحدود\nتعداد کاربر سرویس: 1\nانقضا سرویس: ${months} ماه\n\nقیمت نهایی: ${price} تومان\n\nاطلاعات لازم همراه شماره کارت برای بنده ارسال کنید ، باتشکر`;
             
             window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
             closeAllModals();
             
             addActivityLog(
-                state.language === 'fa' ? 'درخواست اشتراک' : 'Subscription request',
-                state.language === 'fa' ? `درخواست اشتراک ${months} ماهه نامحدود ارسال شد` : `${months} month unlimited subscription request sent`
+                'درخواست اشتراک',
+                `درخواست اشتراک ${months} ماهه نامحدود ارسال شد`
             );
             
             showNotification(
-                state.language === 'fa' ? `درخواست اشتراک ${months} ماهه با موفقیت ارسال شد` : `${months} month subscription request sent successfully`,
+                `درخواست اشتراک ${months} ماهه با موفقیت ارسال شد`,
                 'success'
             );
         }
@@ -2830,7 +2647,7 @@
                     break;
                 default:
                     showNotification(
-                        state.language === 'fa' ? 'پلتفرم انتخاب شده نامعتبر است' : 'Selected platform is invalid',
+                        'پلتفرم انتخاب شده نامعتبر است',
                         'error'
                     );
                     return;
@@ -2850,28 +2667,81 @@
             closeAllModals();
             
             addActivityLog(
-                state.language === 'fa' ? 'درخواست دانلود' : 'Download request',
-                state.language === 'fa' ? `دانلود کلاینت برای ${platform} آغاز شد` : `Download client for ${platform} started`
+                'درخواست دانلود',
+                `دانلود کلاینت برای ${platform} آغاز شد`
             );
             
             showNotification(
-                state.language === 'fa' ? `دانلود برای ${platform} با موفقیت آغاز شد` : `Download for ${platform} started successfully`,
+                `دانلود برای ${platform} با موفقیت آغاز شد`,
                 'success'
             );
         }
 
+        // Invite friends functions
+        function sendSMSInvite() {
+            const inviteText = `سلام رفیق 👋\n\nاگه تو هم دنبال یه سرویس قوی VPN هستی پس وارد سایت آقای ایکسرو شو:\n\n🌐 آدرس سایت:\nhttp://xrovpn.github.io/xroVPN\n\n📢 کانال اطلاع رسانی:\nhttp://t.me/xroVPN\n\n💎 ویژگی‌ها:\n- سرعت بالا\n- اتصال پایدار\n- پشتیبانی 24 ساعته`;
+            
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                window.open(`sms:?body=${encodeURIComponent(inviteText)}`, '_blank');
+            } else {
+                navigator.clipboard.writeText(inviteText).then(() => {
+                    showNotification('متن دعوت کپی شد، می‌توانید در برنامه پیامک پیست کنید', 'success');
+                }).catch(err => {
+                    showNotification('خطا در کپی متن دعوت', 'error');
+                    console.error('Could not copy text: ', err);
+                });
+            }
+            
+            closeAllModals();
+            showNotification('دعوت پیامکی آماده ارسال شد', 'success');
+        }
+
+        function shareOnSocialMedia() {
+            const inviteText = `سلام دوست عزیز 👋\n\nسرویس VPN ایکسرو با بهترین کیفیت و سرعت در دسترس شماست!\n\n🔗 لینک سایت:\nhttp://xrovpn.github.io/xroVPN\n\n📢 کانال تلگرام:\nhttp://t.me/xroVPN\n\n✨ ویژگی‌های منحصر به فرد:\n✅ سرعت فوق‌العاده\n✅ اتصال پایدار\n✅ پشتیبانی 24/7\n✅ سرورهای متعدد`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'سرویس VPN ایکسرو',
+                    text: inviteText,
+                    url: 'http://xrovpn.github.io/xroVPN'
+                }).then(() => {
+                    showNotification('دعوت با موفقیت ارسال شد', 'success');
+                }).catch(err => {
+                    showNotification('خطا در ارسال دعوت', 'error');
+                    console.error('Error sharing:', err);
+                });
+            } else if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // For mobile devices without Web Share API
+                window.open(`whatsapp://send?text=${encodeURIComponent(inviteText)}`, '_blank');
+            } else {
+                // For desktop browsers
+                navigator.clipboard.writeText(inviteText).then(() => {
+                    showNotification('متن دعوت کپی شد، می‌توانید در شبکه اجتماعی مورد نظر پیست کنید', 'success');
+                }).catch(err => {
+                    showNotification('خطا در کپی متن دعوت', 'error');
+                    console.error('Could not copy text: ', err);
+                });
+            }
+            
+            closeAllModals();
+        }
+
+        function copyInviteLink() {
+            const inviteText = `سلام 👋\n\nسرویس VPN ایکسرو رو بهت پیشنهاد می‌کنم:\n\n🌐 آدرس سایت:\nhttp://xrovpn.github.io/xroVPN\n\n📢 کانال تلگرام:\nhttp://t.me/xroVPN\n\n💎 امکانات:\n- سرعت بالا\n- اتصال پایدار\n- پشتیبانی 24 ساعته\n- سرورهای متعدد`;
+            
+            navigator.clipboard.writeText(inviteText).then(() => {
+                showNotification('متن دعوت با موفقیت کپی شد', 'success');
+            }).catch(err => {
+                showNotification('خطا در کپی متن دعوت', 'error');
+                console.error('Could not copy text: ', err);
+            });
+            
+            closeAllModals();
+        }
+
         // Typing animation
         function startTypingAnimation() {
-            const messages = state.language === 'fa' ? [
-                " ",
-                
-            ] : [
-                "XServ VPN service with the best quality",
-                "24/7 online support is available",
-                "New servers added in Europe and America"
-            ];
             
-            let currentCharIndex = 0;
             let isDeleting = false;
             let waitBeforeNextMessage = false;
             
