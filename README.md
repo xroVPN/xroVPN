@@ -1180,6 +1180,68 @@
             text-align: center;
         }
 
+        /* Help Guide Cards */
+        .guide-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .guide-card {
+            background: rgba(21, 26, 45, 0.6);
+            border-radius: 14px;
+            padding: 20px;
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: var(--transition-medium);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-color);
+            background: var(--card-hover);
+        }
+
+        .guide-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .guide-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .guide-btn {
+            align-self: flex-start;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--gradient-primary);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: var(--transition-medium);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .guide-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.4);
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -1299,7 +1361,7 @@
         <div class="top-bar">
             <div class="logo" id="helpBtn">
                 <i class="fas fa-question-circle"></i>
-                <span>راهنمای سایت</span>
+                <span>راهنمای ایکسرو</span>
             </div>
             <div class="menu-btn" id="mainMenuBtn">
                 <div class="menu-line"></div>
@@ -1313,24 +1375,24 @@
                 <div class="news-container">
                     <div class="news-title">
                         <i class="fas fa-bullhorn"></i>
-                        <span>اطلاعیه آپدیت</span>
+                        <span>اطلاعیه ویرایش</span>
                     </div>
                     <div class="news-content">
                         <div class="update-item">
-                            <div class="update-icon"><i class="fas fa-music"></i></div>
-                            <div class="update-text">اضافه شدن آهنگ پس زمینه</div>
+                            <div class="update-icon"><i class="fas fa-question-circle"></i></div>
+                            <div class="update-text">اضافه شدن راهنمای ایکسرو</div>
                         </div>
                         <div class="update-item">
                             <div class="update-icon"><i class="fas fa-mobile-alt"></i></div>
-                            <div class="update-text">سازگاری با دستگاه‌های قدیمی</div>
+                            <div class="update-text">بهینه سازی محتوا</div>
                         </div>
                         <div class="update-item">
                             <div class="update-icon"><i class="fas fa-shield-alt"></i></div>
-                            <div class="update-text">ارتقاء سیستم امنیتی و حریم خصوصی</div>
+                            <div class="update-text">پایداری سرویس هیدیفای</div>
                         </div>
                     </div>
                     <div class="news-footer">
-                        <span>کد نسخه: <span class="version-code">12581</span></span>
+                        <span>کد نسخه: <span class="version-code">12496</span></span>
                         <span id="publishTime">زمان ورود: 12:30</span>
                     </div>
                 </div>
@@ -1453,26 +1515,51 @@
         <!-- Help Window -->
         <div class="modal-window help-window" id="helpWindow">
             <div class="modal-header">
-                <div class="modal-title">راهنمای جامع استفاده</div>
+                <div class="modal-title">راهنمای بخش بخش</div>
                 <div class="close-btn" id="closeHelp"><span>×</span></div>
             </div>
             <div class="modal-content">
                 <div class="important-notice">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span>راهنمای جامع شامل تمام جزئیات استفاده از سرویس</span>
+                    <span>راهنما بخش بخش ویدئویی درک بهتر محتوای ایکسرو است</span>
                 </div>
                 
-                <div class="usage-guide">
-                    <h4><i class="fas fa-shopping-cart"></i> راهنمای خرید اشتراک</h4>
-                    <ol>
-                        <li>به بخش فروشگاه سرویس بروید</li>
-                        <li>نوع اشتراک مورد نظر خود را انتخاب کنید</li>
-                        <li>روی دکمه سفارش کلیک کنید</li>
-                        <li>پیام پیش‌نویس شده را ارسال کنید</li>
-                        <li>منتظر پاسخ پشتیبانی بمانید</li>
-                        <li>پس از پرداخت، فایل پیکربندی را دریافت خواهید کرد</li>
-                        <li>فایل را در برنامه Hiddify وارد کنید</li>
-                    </ol>
+                <div class="guide-cards">
+                    <div class="guide-card">
+                        <div class="guide-title">راهنمای ۰ تا ۱۰۰ خرید</div>
+                        <div class="guide-desc">یاد می‌گیری چطوری سفارش بدی</div>
+                        <button class="guide-btn" onclick="showComingSoonNotification()">
+                            <i class="fas fa-robot"></i>
+                            <span>تماشا در ربات</span>
+                        </button>
+                    </div>
+                    
+                    <div class="guide-card">
+                        <div class="guide-title">اضافه کردن ساب</div>
+                        <div class="guide-desc">یاد می‌گیری چطوری ساب دریافتیو وارد کنی</div>
+                        <button class="guide-btn" onclick="window.open('https://t.me/XROVPNBOT?start=Ahm1V1', '_blank')">
+                            <i class="fas fa-robot"></i>
+                            <span>تماشا در ربات</span>
+                        </button>
+                    </div>
+                    
+                    <div class="guide-card">
+                        <div class="guide-title">آپدیت ساب</div>
+                        <div class="guide-desc">یاد می‌گیری چطوری ساب رو به روز رسانی کنی</div>
+                        <button class="guide-btn" onclick="window.open('https://t.me/XROVPNBOT?start=7MupEq', '_blank')">
+                            <i class="fas fa-robot"></i>
+                            <span>تماشا در ربات</span>
+                        </button>
+                    </div>
+                    
+                    <div class="guide-card">
+                        <div class="guide-title">ارتباط با پشتیبان</div>
+                        <div class="guide-desc">یاد می‌گیری چه زمانی باید با پشتیبانی در ارتباط باشی</div>
+                        <button class="guide-btn" onclick="window.open('https://t.me/XROVPNBOT?start=Ahm1V1', '_blank')">
+                            <i class="fas fa-robot"></i>
+                            <span>تماشا در ربات</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1514,11 +1601,11 @@
                             </div>
                             <div class="price-text">قیمت: <span id="volume-price">11,920</span> تومان</div>
                             <div class="slider-container">
-                                <input type="range" min="4" max="2000" value="4" class="slider" id="volume-slider">
+                                <input type="range" min="4" max="8000" value="4" class="slider" id="volume-slider">
                             </div>
                             <div class="range-info">
                                 <span>حداقل: 4 گیگ</span>
-                                <span>حداکثر: 2000 گیگ</span>
+                                <span>حداکثر: 8000 گیگ</span>
                             </div>
                         </div>
                         <div class="nav-buttons">
@@ -1538,11 +1625,11 @@
                             </div>
                             <div class="price-text">قیمت: <span id="days-price">1,380</span> تومان</div>
                             <div class="slider-container">
-                                <input type="range" min="3" max="365" value="3" class="slider" id="days-slider">
+                                <input type="range" min="3" max="765" value="3" class="slider" id="days-slider">
                             </div>
                             <div class="range-info">
                                 <span>حداقل: 3 روز</span>
-                                <span>حداکثر: 365 روز</span>
+                                <span>حداکثر: 765 روز</span>
                             </div>
                         </div>
                         <div class="nav-buttons">
@@ -1566,11 +1653,11 @@
                             </div>
                             <div class="price-text"><span id="users-price">رایگان</span></div>
                             <div class="slider-container">
-                                <input type="range" min="1" max="7" value="1" class="slider" id="users-slider">
+                                <input type="range" min="1" max="12" value="1" class="slider" id="users-slider">
                             </div>
                             <div class="range-info">
                                 <span>حداقل: 1 کاربر</span>
-                                <span>حداکثر: 7 کاربر</span>
+                                <span>حداکثر: 12 کاربر</span>
                             </div>
                         </div>
                         <div class="nav-buttons">
@@ -1601,9 +1688,13 @@
                                     <span class="price-label">قیمت <span id="final-users">1</span> کاربر</span>
                                     <span class="price-value" id="final-users-price">رایگان</span>
                                 </div>
+                                <div class="price-row">
+                                    <span class="price-label">مالیات</span>
+                                    <span class="price-value" id="final-tax">80 تومان</span>
+                                </div>
                                 <div class="total-price">
                                     <span>قابل پرداخت: </span>
-                                    <span id="final-total">13,300 تومان</span>
+                                    <span id="final-total">13,380 تومان</span>
                                 </div>
                             </div>
                             <div class="nav-buttons">
@@ -1655,7 +1746,7 @@
         <!-- Hiddify Download Window -->
         <div class="modal-window hiddify-window" id="hiddifyWindow">
             <div class="modal-header">
-                <div class="modal-title">دانلود اپلیکیشن رسمی Hiddify</div>
+                <div class="modal-title">دانلود اپلیکیشن رسمی ویتوری</div>
                 <div class="close-btn" id="closeHiddify"><span>×</span></div>
             </div>
             <div class="modal-content">
@@ -1666,17 +1757,7 @@
                         <div class="download-desc">نسخه 64 بیتی - سازگار با ویندوز 10 و 11</div>
                         <button class="btn btn-primary">
                             <i class="fas fa-download"></i>
-                            <span>دانلود (25MB)</span>
-                        </button>
-                    </div>
-                    
-                    <div class="download-card" onclick="downloadHiddify('mac')">
-                        <i class="fab fa-apple download-icon"></i>
-                        <div class="download-title">مک</div>
-                        <div class="download-desc">نسخه اپل سیلیکون و اینتل - مک اواس 11+</div>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-download"></i>
-                            <span>دانلود (18MB)</span>
+                            <span>دانلود از ویندوز</span>
                         </button>
                     </div>
                     
@@ -1686,7 +1767,7 @@
                         <div class="download-desc">آیفون و آیپد - iOS 12.2 و بالاتر</div>
                         <button class="btn btn-primary">
                             <i class="fas fa-external-link-alt"></i>
-                            <span>رفتن به اپ استور</span>
+                            <span>دانلود از اپ استور</span>
                         </button>
                     </div>
                     
@@ -1695,8 +1776,8 @@
                         <div class="download-title">اندروید</div>
                         <div class="download-desc">اندروید 5.0 و بالاتر - سازگار با تمام دستگاه‌ها</div>
                         <button class="btn btn-primary">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span>رفتن به گوگل پلی</span>
+                            <i class="fas fa-download"></i>
+                            <span>دانلود مستقیم</span>
                         </button>
                     </div>
                 </div>
@@ -1704,12 +1785,16 @@
                 <div class="usage-guide">
                     <h4>راهنمای نصب و استفاده:</h4>
                     <ol>
-                        <li>فایل مربوط به سیستم عامل خود را دانلود کنید</li>
-                        <li>برنامه را نصب و اجرا کنید (نیاز به دسترسی روت/ادمین ندارد)</li>
-                        <li>فایل پیکربندی را از پشتیبانی دریافت کنید</li>
-                        <li>فایل را در برنامه Hiddify وارد کنید (از طریق دکمه Import یا کشیدن و رها کردن)</li>
-                        <li>اتصال را فعال کنید</li>
-                        <li>برای اتصال خودکار، گزینه "اتصال هنگام راه‌اندازی" را فعال کنید</li>
+                        <li>فایل مربوط به سیستم عامل خود را از فروشگاه معتبر دانلود کنید</li>
+                        <li>برنامه را نصب و اجرا کنید</li>
+                        <li>ساب را از پشتیبانی ایکسرو بگیرید</li>
+                        <li>ساب را در برنامه ویتوری وارد کنید</li>
+                        <li>روی سه نقطه کلیک کنید</li>
+                        <li>روی تاخیر واقعی کانفیگای گروه کلیک کنید</li>
+                        <li>روی سه نقطه کلیک کنید</li>
+                        <li>روی مرتب سازی بر اساس نتایج کلیک کنید</li>
+                        <li>روی اولین سرور کلیک کنید</li>
+                        <li>اتصال را فعال و استفاده کنید</li>
                     </ol>
                 </div>
             </div>
@@ -1898,7 +1983,25 @@
             // Constants
             const PRICE_PER_GB = 2980;
             const PRICE_PER_DAY = 460;
-            const PRICE_PER_USER = 14000;
+            const USER_PRICES = {
+                1: 0,
+                2: 19000,
+                3: 38000,
+                4: 57000,
+                5: 76000,
+                6: 95000,
+                7: 114000,
+                8: 133000,
+                9: 152000,
+                10: 171000,
+                11: 190000,
+                12: 280000 // نامحدود شرکتی
+            };
+            
+            // Tax rates
+            const TAX_PER_GB = 20;
+            const TAX_PER_DAY = 16;
+            const TAX_PER_USER = 28;
             
             // DOM Elements
             const wizardElements = {
@@ -1924,6 +2027,7 @@
                 finalVolumePrice: document.getElementById('final-volume-price'),
                 finalDaysPrice: document.getElementById('final-days-price'),
                 finalUsersPrice: document.getElementById('final-users-price'),
+                finalTax: document.getElementById('final-tax'),
                 finalTotal: document.getElementById('final-total'),
                 
                 // Navigation buttons
@@ -1960,7 +2064,13 @@
                 // Calculate prices
                 const volumePrice = volume * PRICE_PER_GB;
                 const daysPrice = days * PRICE_PER_DAY;
-                const usersPrice = (users - 1) * PRICE_PER_USER;
+                const usersPrice = USER_PRICES[users] || 0;
+                
+                // Calculate taxes
+                const volumeTax = volume * TAX_PER_GB;
+                const daysTax = days * TAX_PER_DAY;
+                const usersTax = users * TAX_PER_USER;
+                const totalTax = volumeTax + daysTax + usersTax;
                 
                 // Update displays
                 wizardElements.volumeValue.textContent = volume;
@@ -1986,8 +2096,15 @@
                 
                 const volumePrice = volume * PRICE_PER_GB;
                 const daysPrice = days * PRICE_PER_DAY;
-                const usersPrice = (users - 1) * PRICE_PER_USER;
-                const totalPrice = volumePrice + daysPrice + usersPrice;
+                const usersPrice = USER_PRICES[users] || 0;
+                
+                // Calculate taxes
+                const volumeTax = volume * TAX_PER_GB;
+                const daysTax = days * TAX_PER_DAY;
+                const usersTax = users * TAX_PER_USER;
+                const totalTax = volumeTax + daysTax + usersTax;
+                
+                const totalPrice = volumePrice + daysPrice + usersPrice + totalTax;
                 
                 wizardElements.finalVolume.textContent = volume;
                 wizardElements.finalDays.textContent = days;
@@ -1996,6 +2113,7 @@
                 wizardElements.finalDaysPrice.textContent = `${daysPrice.toLocaleString('fa-IR')} تومان`;
                 wizardElements.finalUsersPrice.textContent = users === 1 ? 
                     "رایگان" : `${usersPrice.toLocaleString('fa-IR')} تومان`;
+                wizardElements.finalTax.textContent = `${totalTax.toLocaleString('fa-IR')} تومان`;
                 wizardElements.finalTotal.textContent = `${totalPrice.toLocaleString('fa-IR')} تومان`;
             }
             
@@ -2024,10 +2142,17 @@
                 
                 const volumePrice = volume * PRICE_PER_GB;
                 const daysPrice = days * PRICE_PER_DAY;
-                const usersPrice = (users - 1) * PRICE_PER_USER;
-                const totalPrice = volumePrice + daysPrice + usersPrice;
+                const usersPrice = USER_PRICES[users] || 0;
                 
-                const message = `درخواست سفارش سرویس XroVPN:\n\nحجم: ${volume.toLocaleString('fa-IR')} گیگ\nمدت: ${days.toLocaleString('fa-IR')} روز\nکاربران: ${users.toLocaleString('fa-IR')} نفر\nمبلغ: ${totalPrice.toLocaleString('fa-IR')} تومان`;
+                // Calculate taxes
+                const volumeTax = volume * TAX_PER_GB;
+                const daysTax = days * TAX_PER_DAY;
+                const usersTax = users * TAX_PER_USER;
+                const totalTax = volumeTax + daysTax + usersTax;
+                
+                const totalPrice = volumePrice + daysPrice + usersPrice + totalTax;
+                
+                const message = `درخواست سفارش سرویس XroVPN:\n\nحجم: ${volume.toLocaleString('fa-IR')} گیگ\nمدت: ${days.toLocaleString('fa-IR')} روز\nکاربران: ${users.toLocaleString('fa-IR')} نفر\nمالیات: ${totalTax.toLocaleString('fa-IR')} تومان\nمبلغ کل: ${totalPrice.toLocaleString('fa-IR')} تومان`;
                 
                 window.open(`https://t.me/u0v0n?text=${encodeURIComponent(message)}`, '_blank');
                 closeAllModals();
@@ -2215,18 +2340,15 @@
             
             switch (platform) {
                 case 'windows':
-                    downloadUrl = 'https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify.Windows.exe';
-                    fileName = 'hiddify-windows-installer.exe';
-                    break;
-                case 'mac':
-                    downloadUrl = 'https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify.Mac.dmg';
-                    fileName = 'hiddify-macos.dmg';
+                    downloadUrl = 'https://github.com/v2ray/v2ray-core/releases';
+                    fileName = 'v2ray-windows-installer.exe';
                     break;
                 case 'ios':
-                    downloadUrl = 'https://apps.apple.com/us/app/hiddify/id6475881953';
+                    downloadUrl = 'https://apps.apple.com/us/app/streisand/id6450534064';
                     break;
                 case 'android':
-                    downloadUrl = 'https://play.google.com/store/apps/details?id=com.hiddify.hiddify';
+                    downloadUrl = 'https://github.com/2dust/v2rayNG/releases/download/1.10.11/v2rayNG_1.10.11_universal.apk';
+                    fileName = 'v2rayNG_1.10.11_universal.apk';
                     break;
                 default:
                     showNotification(
@@ -2236,12 +2358,12 @@
                     return;
             }
             
-            if (platform === 'ios' || platform === 'android') {
+            if (platform === 'ios') {
                 window.open(downloadUrl, '_blank');
             } else {
                 const link = document.createElement('a');
                 link.href = downloadUrl;
-                link.download = fileName;
+                if (fileName) link.download = fileName;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -2251,7 +2373,7 @@
             
             addActivityLog(
                 'درخواست دانلود',
-                `دانلود کلاینت Hiddify برای ${platform} آغاز شد`
+                `دانلود کلاینت برای ${platform} آغاز شد`
             );
             
             showNotification(
